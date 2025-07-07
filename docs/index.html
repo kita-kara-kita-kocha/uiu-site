@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>(非公式)ういせいうインフォ</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&family=M+PLUS+Rounded+1c:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-background">
+                <!-- 可愛い背景パターン用のSVG -->
+                <svg class="background-pattern" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">
+                    <defs>
+                        <!-- 水色ハートパターン -->
+                        <pattern id="hearts" x="0" y="0" width="50" height="50" patternUnits="userSpaceOnUse">
+                            <!-- 大きなハート -->
+                            <path d="M25,15 C22,10 16,10 14,15 C12,10 6,10 4,15 C4,22 14,30 14,30 C14,30 24,22 24,15 Z" fill="#87ceeb" opacity="0.4"/>
+                            <!-- 小さなハート1 -->
+                            <path d="M40,35 C38.5,32 35,32 33.5,35 C32,32 28.5,32 27,35 C27,38 33.5,42 33.5,42 C33.5,42 40,38 40,35 Z" fill="#add8e6" opacity="0.6"/>
+                            <!-- 小さなハート2 -->
+                            <path d="M15,40 C13.5,37 10,37 8.5,40 C7,37 3.5,37 2,40 C2,43 8.5,47 8.5,47 C8.5,47 15,43 15,40 Z" fill="#b0e0e6" opacity="0.5"/>
+                            <!-- 装飾的な小さな点 -->
+                            <circle cx="45" cy="10" r="1.5" fill="#87ceeb" opacity="0.7"/>
+                            <circle cx="8" cy="25" r="1" fill="#add8e6" opacity="0.8"/>
+                        </pattern>
+                        
+                        <!-- 白い雲パターン -->
+                        <pattern id="clouds" x="0" y="0" width="80" height="60" patternUnits="userSpaceOnUse">
+                            <!-- 大きな雲 -->
+                            <g fill="white" opacity="0.6">
+                                <circle cx="20" cy="30" r="8"/>
+                                <circle cx="30" cy="30" r="10"/>
+                                <circle cx="40" cy="30" r="8"/>
+                                <circle cx="25" cy="22" r="6"/>
+                                <circle cx="35" cy="22" r="7"/>
+                            </g>
+                            <!-- 小さな雲 -->
+                            <g fill="white" opacity="0.4">
+                                <circle cx="65" cy="15" r="4"/>
+                                <circle cx="70" cy="15" r="5"/>
+                                <circle cx="75" cy="15" r="4"/>
+                                <circle cx="68" cy="10" r="3"/>
+                                <circle cx="72" cy="10" r="3"/>
+                            </g>
+                            <!-- 超小さな雲 -->
+                            <g fill="white" opacity="0.3">
+                                <circle cx="10" cy="50" r="2"/>
+                                <circle cx="13" cy="50" r="3"/>
+                                <circle cx="16" cy="50" r="2"/>
+                                <circle cx="13" cy="47" r="2"/>
+                            </g>
+                        </pattern>
+                        
+                        <!-- グラデーション背景 -->
+                        <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#e6f3ff;stop-opacity:1" />
+                            <stop offset="25%" style="stop-color:#cce7ff;stop-opacity:1" />
+                            <stop offset="50%" style="stop-color:#b3daff;stop-opacity:1" />
+                            <stop offset="75%" style="stop-color:#99ccff;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#80bfff;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <!-- 背景を完全に埋める -->
+                    <rect x="0" y="0" width="100%" height="100%" fill="url(#bgGradient)"/>
+                    <rect x="0" y="0" width="100%" height="100%" fill="url(#clouds)"/>
+                    <rect x="0" y="0" width="100%" height="100%" fill="url(#hearts)"/>
+                </svg>
+            </div>
+            <h1>(非公式)ういせいういんふぉ</h1>
+            <!-- タブナビゲーション -->
+            <div class="tab-navigation">
+                <button class="tab-button active" data-tab="youtube">YouTube</button>
+                <button class="tab-button" data-tab="niconico_l">ニコニコ生放送</button>
+                <button class="tab-button" data-tab="niconico_v">ニコニコ動画</button>
+                <button class="tab-button" data-tab="fciu">FC-いうねこないと</button>
+                <button class="tab-button secret" data-tab="secret_ac">裏垢</button>
+            </div>
+        </header>
+        
+        <!-- YouTube タブコンテンツ -->
+        <main class="tab-content active" id="youtube">
+            <div class="thumbnail-grid">
+                <!-- JavaScriptによって動的に読み込まれます -->
+            </div>
+        </main>
+        
+        <!-- ニコニコ生放送 タブコンテンツ -->
+        <main class="tab-content" id="niconico_l">
+            <div class="thumbnail-grid">
+                <!-- JavaScriptによって動的に読み込まれます -->
+            </div>
+        </main>
+        
+        <!-- ニコニコ動画 タブコンテンツ -->
+        <main class="tab-content" id="niconico_v">
+            <div class="thumbnail-grid">
+                <!-- JavaScriptによって動的に読み込まれます -->
+            </div>
+        </main>
+        
+        <!-- FC いうねこないと タブコンテンツ -->
+        <main class="tab-content" id="fciu">
+            <div class="thumbnail-grid">
+                <!-- JavaScriptによって動的に読み込まれます -->
+            </div>
+        </main>
+        
+        <!-- 裏垢 タブコンテンツ -->
+        <main class="tab-content" id="secret_ac">
+            <div class="thumbnail-grid">
+                <!-- JavaScriptによって動的に読み込まれます -->
+            </div>
+        </main>
+    </div>
+    
+    <!-- YouTube動画モーダル -->
+    <div id="videoModal" class="video-modal">
+        <div class="video-container">
+            <button class="video-close" onclick="closeVideoModal()">&times;</button>
+            <div class="video-title" id="videoTitle"></div>
+            <iframe id="videoIframe" class="video-iframe" src="" allowfullscreen></iframe>
+        </div>
+    </div>
+    
+    <script src="index.js"></script>
+</body>
+</html>

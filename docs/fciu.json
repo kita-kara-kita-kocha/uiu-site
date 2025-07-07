@@ -1,0 +1,64 @@
+{
+  "items": [
+    {
+      "title": "【FC-いうねこないと】限定ライブ配信アーカイブ",
+      "image": "tample_thumbnail/maxresdefault.jpg",
+      "alt": "FC限定ライブ配信",
+      "description": "ファンクラブ限定のスペシャルライブ配信",
+      "video_url": "https://fc.uisei-ui.fan/watch/archive001",
+      "metadata": [
+        "配信日: 2024/01/20",
+        "再生時間: 1:45:30",
+        "FC会員限定コンテンツ"
+      ]
+    },
+    {
+      "title": "【メンバー限定】裏話トーク配信",
+      "image": "tample_thumbnail/maxresdefault.jpg",
+      "alt": "裏話トーク",
+      "description": "普段は話せない裏話をファンクラブメンバーだけに",
+      "video_url": "https://fc.uisei-ui.fan/watch/talk002",
+      "metadata": [
+        "配信日: 2024/01/18",
+        "再生時間: 0:55:20",
+        "プレミアム配信"
+      ]
+    },
+    {
+      "title": "【FC特典】未公開楽曲 先行公開",
+      "image": "tample_thumbnail/maxresdefault.jpg",
+      "alt": "未公開楽曲",
+      "description": "新しい楽曲をファンクラブメンバーに先行公開",
+      "video_url": "https://fc.uisei-ui.fan/watch/music003",
+      "metadata": [
+        "公開日: 2024/01/15",
+        "楽曲時間: 3:42",
+        "先行公開特典"
+      ]
+    },
+    {
+      "title": "【メンバー限定】Q&Aコーナー",
+      "image": "tample_thumbnail/maxresdefault.jpg",
+      "alt": "Q&Aコーナー",
+      "description": "ファンからの質問にじっくりお答えします",
+      "video_url": "https://fc.uisei-ui.fan/watch/qa004",
+      "metadata": [
+        "配信日: 2024/01/12",
+        "再生時間: 1:20:15",
+        "質問回答コンテンツ"
+      ]
+    },
+    {
+      "title": "【FC限定】メイキング映像",
+      "image": "tample_thumbnail/maxresdefault.jpg",
+      "alt": "メイキング映像",
+      "description": "配信や動画制作の舞台裏をお見せします",
+      "video_url": "https://fc.uisei-ui.fan/watch/making005",
+      "metadata": [
+        "公開日: 2024/01/10",
+        "再生時間: 0:35:48",
+        "舞台裏映像"
+      ]
+    }
+  ]
+}
