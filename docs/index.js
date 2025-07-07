@@ -45,15 +45,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (tabType === 'youtube' && item.videoId) {
             // YouTube動画の再生ボタン
             playButton = `<button class="play-button" onclick="openVideoModal('${item.videoId}', '${item.title.replace(/'/g, "\\'")}')"></button>`;
-            // devタグでtimestampsを作成
-            timestamp_dev = '';
-            if (item.timestamps && item.timestamps.length > 0) {
-                timestamp_dev = `<div class="timestamps">`;
-                item.timestamps.forEach(timestamp => {
-                    timestamp_dev += `<span class="timestamp">${timestamp}</span>`;
-                });
-                timestamp_dev += `</div>`;
-            }
+            // timestamp表示ボタン
+            timestampButton = `<button class="timestamp-button" onclick="openTimestampModal('${item.videoId}', '${item.timestamps.join(', ')}')">Timestamp</button>`;
         }
         
         return `
