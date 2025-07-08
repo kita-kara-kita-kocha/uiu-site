@@ -247,75 +247,47 @@ header h1 {
     line-height: 1.4;
 }
 
-/* ニコニコ生放送専用スタイル */
-.thumbnail-item.nocast {
+/* schedule専用スタイル */
+.thumbnail-item.schedule {
     border-left: 4px solid #646464;
+    background: linear-gradient(135deg, #999999 0%, #ffffff 100%);
 }
 
-.thumbnail-item.nocast .thumbnail-info {
-    background: linear-gradient(135deg, #505050 0%, #888888 100%);
-}
-
-.thumbnail-item.nocast .thumbnail-info h3 {
+.thumbnail-item.schedule .thumbnail-info h3 {
     color: #ffffff;
 }
 
-.thumbnail-item.nocast .thumbnail-info p:first-of-type {
+.thumbnail-item.schedule .thumbnail-info p:first-of-type {
     color: #ffffff;
     font-weight: 500;
 }
 
-/* Twitch専用スタイル */
-.thumbnail-item.twitch {
-    border-left: 4px solid #9146ff;
+/* subscriber_only専用スタイル */
+.thumbnail-item.subscriber_only {
+    border-left: 4px solid #ff6b6b;
+    background: linear-gradient(135deg, #ff8b8b 0%, #fcbaba 100%);
 }
 
-.thumbnail-item.twitch .thumbnail-info {
-    background: linear-gradient(135deg, #f3f0ff 0%, #ffffff 100%);
+.thumbnail-item.subscriber_only .thumbnail-info h3 {
+    color: #ffffff;
 }
 
-.thumbnail-item.twitch .thumbnail-info h3 {
-    color: #6441a4;
-}
-
-.thumbnail-item.twitch .thumbnail-info p:first-of-type {
-    color: #9146ff;
+.thumbnail-item.subscriber_only .thumbnail-info p:first-of-type {
+    color: #ffffff;
     font-weight: 500;
 }
 
-/* bilibili専用スタイル */
-.thumbnail-item.bilibili {
-    border-left: 4px solid #00a1d6;
+/* scheduleかつsubscriber_only専用スタイル */
+.thumbnail-item.schedule.subscriber_only {
+    border-left: 4px solid #646464;
+    background: linear-gradient(135deg, #ff8b8b 0%, #fcbaba 100%);
 }
 
-.thumbnail-item.bilibili .thumbnail-info {
-    background: linear-gradient(135deg, #e6f7ff 0%, #ffffff 100%);
+.thumbnail-item.schedule.subscriber_only .thumbnail-info h3 {
+    color: #ffffff;
 }
-
-.thumbnail-item.bilibili .thumbnail-info h3 {
-    color: #1890ff;
-}
-
-.thumbnail-item.bilibili .thumbnail-info p:first-of-type {
-    color: #00a1d6;
-    font-weight: 500;
-}
-
-/* TikTok専用スタイル */
-.thumbnail-item.tiktok {
-    border-left: 4px solid #fe2c55;
-}
-
-.thumbnail-item.tiktok .thumbnail-info {
-    background: linear-gradient(135deg, #fff0f3 0%, #ffffff 100%);
-}
-
-.thumbnail-item.tiktok .thumbnail-info h3 {
-    color: #fe2c55;
-}
-
-.thumbnail-item.tiktok .thumbnail-info p:first-of-type {
-    color: #fe2c55;
+.thumbnail-item.schedule.subscriber_only .thumbnail-info p:first-of-type {
+    color: #ffffff;
     font-weight: 500;
 }
 
@@ -424,20 +396,114 @@ header h1 {
     font-family: 'M PLUS Rounded 1c', sans-serif;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+/* 動画モーダル内のタイムスタンプセクション */
+.timestamp-section {
+    margin-top: 20px;
+    background: linear-gradient(135deg, #f8f9ff 0%, #f0f3ff 100%);
+    border-radius: 12px;
+    padding: 15px;
+    border: 2px solid #e6ecff;
 }
 
-@keyframes slideIn {
-    from { 
-        opacity: 0;
-        transform: scale(0.8) translateY(-20px);
-    }
-    to { 
-        opacity: 1;
-        transform: scale(1) translateY(0);
-    }
+.timestamp-section h4 {
+    margin: 0 0 12px 0;
+    color: #4a5568;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.timestamp-section h4::before {
+    content: "🕒";
+    font-size: 18px;
+}
+
+.video-timestamps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 150px;
+    overflow-y: auto;
+    border-radius: 8px;
+    background: white;
+    border: 1px solid #e2e8f0;
+}
+
+.video-timestamps li {
+    padding: 10px 15px;
+    border-bottom: 1px solid #f1f5f9;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-size: 14px;
+    color: #2d3748;
+    position: relative;
+}
+
+.video-timestamps li:last-child {
+    border-bottom: none;
+}
+
+.video-timestamps li:hover {
+    background: linear-gradient(90deg, rgba(74, 158, 255, 0.08), rgba(107, 182, 255, 0.08));
+    color: #2b6cb0;
+    transform: translateX(3px);
+    box-shadow: inset 3px 0 0 #4a9eff;
+}
+
+.video-timestamps li:active {
+    background: linear-gradient(90deg, rgba(74, 158, 255, 0.15), rgba(107, 182, 255, 0.15));
+    transform: translateX(1px);
+}
+
+/* タイムスタンプがない場合のスタイル */
+.video-timestamps li:only-child {
+    text-align: center;
+    color: #718096;
+    font-style: italic;
+    cursor: default;
+}
+
+.video-timestamps li:only-child:hover {
+    background: transparent;
+    transform: none;
+    box-shadow: none;
+    color: #718096;
+}
+
+/* スクロールバーのカスタマイズ */
+.video-timestamps::-webkit-scrollbar {
+    width: 6px;
+}
+
+.video-timestamps::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 3px;
+}
+
+.video-timestamps::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #4a9eff, #6bb6ff);
+    border-radius: 3px;
+}
+
+.video-timestamps::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #3a8eef, #5ba6ef);
+}
+
+/* モーダル内レイアウト調整 */
+.video-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.video-iframe {
+    margin-bottom: 0;
 }
 
 /* レスポンシブ対応 */

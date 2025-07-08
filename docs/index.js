@@ -43,10 +43,14 @@ document.addEventListener('DOMContentLoaded', function() {
         // YouTubeの場合のみ再生ボタンを追加
         let playButton = '';
         if (tabType === 'youtube' && item.videoId) {
+            // timestampsが存在する場合のみjoinメソッドを使用
+            const timestampsStr = item.timestamps && Array.isArray(item.timestamps) ? item.timestamps.join(', ') : '';
             // YouTube動画の再生ボタン
-            playButton = `<button class="play-button" onclick="openVideoModal('${item.videoId}', '${item.title.replace(/'/g, "\\'")}')"></button>`;
-            // timestamp表示ボタン
-            timestampButton = `<button class="timestamp-button" onclick="openTimestampModal('${item.videoId}', '${item.timestamps.join(', ')}')">Timestamp</button>`;
+            playButton = `<button class="play-button" onclick="openVideoModal('${item.videoId}', '${item.title.replace(/'/g, "\\'")}', '${timestampsStr}')"></button>`;
+            // item.addAdditionalClassが0個以上あればadditionalClassを追加
+            if (item.addAdditionalClass.length > 0) {
+                additionalClass += ' ' + item.addAdditionalClass.join(' ');
+            }
         }
         
         return `
@@ -56,7 +60,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="thumbnail-info">
                     ${infoHTML}
                 </div>
-                ${timestamp_dev}
             </div>
         `;
     }
@@ -233,7 +236,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // YouTube動画モーダル関数
-function openVideoModal(videoId, title) {
+function openVideoModal(videoId, title, timestamps) {
     const modal = document.getElementById('videoModal');
     const iframe = document.getElementById('videoIframe');
     const titleElement = document.getElementById('videoTitle');
@@ -241,14 +244,59 @@ function openVideoModal(videoId, title) {
     // タイトルを設定
     titleElement.textContent = title;
     
-    // YouTube埋め込みURLを設定
-    iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+    // YouTube埋め込みURLを設定（JavaScript API有効化）
+    iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&enablejsapi=1&origin=${window.location.origin}`;
     
     // モーダルを表示
     modal.classList.add('show');
     
     // スクロールを無効化
     document.body.style.overflow = 'hidden';
+
+    // タイムスタンプがある場合は表示
+    if (timestamps && timestamps.length > 0) {
+        const timestampList = document.getElementById('videoTimestamps');
+        timestampList.innerHTML = ''; // 既存のリストをクリア
+        timestamps.split(',').forEach(timestamp => {
+            const listItem = document.createElement('li');
+            listItem.textContent = timestamp.trim();
+            listItem.addEventListener('click', function() {
+                // タイムスタンプクリック時の処理: 特定の時間にジャンプ
+                const timeParts = timestamp.trim().split(' ')[0].split(':').map(part => parseInt(part, 10));
+                let seconds = 0;
+                if (timeParts.length === 3) {
+                    // HH:MM:SS 形式
+                    seconds = timeParts[0] * 3600 + timeParts[1] * 60 + timeParts[2];
+                }
+                else if (timeParts.length === 2) {
+                    // MM:SS 形式
+                    seconds = timeParts[0] * 60 + timeParts[1];
+                }
+                else if (timeParts.length === 1) {
+                    // SS 形式
+                    seconds = timeParts[0];
+                }
+                
+                // 新しいジャンプ関数を使用
+                jumpToTime(iframe, seconds);
+                
+                // 視覚的フィードバック
+                listItem.style.backgroundColor = '#4a9eff';
+                listItem.style.color = 'white';
+                listItem.style.transform = 'scale(1.02)';
+                setTimeout(() => {
+                    listItem.style.backgroundColor = '';
+                    listItem.style.color = '';
+                    listItem.style.transform = '';
+                }, 500);
+            });
+            timestampList.appendChild(listItem);
+        });
+    }
+    else {
+        const timestampList = document.getElementById('videoTimestamps');
+        timestampList.innerHTML = '<li>タイムスタンプはありません。</li>';
+    }
 }
 
 function closeVideoModal() {
@@ -278,6 +326,33 @@ document.getElementById('videoModal').addEventListener('click', function(e) {
         closeVideoModal();
     }
 });
+
+// YouTube Player API用の関数
+function jumpToTime(iframe, seconds) {
+    // 方法1: postMessage APIを使用
+    try {
+        iframe.contentWindow.postMessage(
+            JSON.stringify({
+                event: 'command',
+                func: 'seekTo',
+                args: [seconds, true]
+            }), 
+            '*'
+        );
+    } catch (e) {
+        console.log('postMessage failed, trying URL reload method');
+    }
+    
+    // 方法2: URL再読み込み（フォールバック）
+    setTimeout(() => {
+        const currentSrc = iframe.src;
+        if (currentSrc) {
+            const baseUrl = currentSrc.split('?')[0];
+            const newSrc = `${baseUrl}?autoplay=1&rel=0&enablejsapi=1&origin=${window.location.origin}&start=${seconds}`;
+            iframe.src = newSrc;
+        }
+    }, 100);
+}
 
 // ユーティリティ関数
 function addThumbnail(imageSrc, title, description) {

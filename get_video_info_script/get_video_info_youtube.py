@@ -57,16 +57,17 @@ def get_video_info(channel_url):
                                 download=False
                             )
 
-                            # TimeStamp情報を取得
+                            # コメント情報からTimeStamp情報を取得
                             # コメント情報から"author": "@shokoaz"の"text"を取得
                             raw_az_texts = [
                                 comment['text'] for comment in video_info.get('comments', [])
-                                if 'author' in comment and comment['author'].startswith('@shokoaz')
+                                if 'author' in comment and comment['author'].startswith('@あずにゃんch')
                             ]
                             timestamps = []
                             # "text"を改行\n\rで配列化し、[0-9]{1,2}:[0-9]{2}.*と一致するものを抽出
                             for raw_az_text in raw_az_texts:
-                                rn_az_texts = re.split(r'[\n\r]', raw_az_text)
+                                rn_az_texts = raw_az_text.splitlines()
+                                # 各行をチェック
                                 for rn_az_text in rn_az_texts:
                                     # rn_az_textが正規表現で"[0-9]{1,2}:[0-9]{2}.*"と一致するか確認
                                     if re.match(r'[0-9]{1,2}:[0-9]{2}.*', rn_az_text):
@@ -87,14 +88,15 @@ def get_video_info(channel_url):
                                     f"再生時間: {format_duration(video_info.get('duration', 0))}",
                                     f"視聴回数: {format_view_count(video_info.get('view_count', 0))}",
                                     f"投稿日: {format_upload_date(video_info.get('upload_date', ''))}"
-                                ]
+                                ],
+                                "addAdditionalClass": [video_info.get('availability', '')],  # "availability": "subscriber_only"なら"subscriber_only", それ以外は"-"
                             }
                             
                             videos.append(video_data)
                             print(f"✓ 取得完了: {video_data.get('title', 'タイトル不明')} (ID: {entry['id']})")
                             
                         except Exception as e:
-                            # 個別動画の取得に失敗した場合は放送予定枠なので動画情報を整形する
+                            # 個別動画の取得に失敗した場合は放送予定枠かメン限枠なので動画情報を整形する
                             print(f"✓ 放送予定枠: {entry.get('title', 'タイトル不明')} (ID: {entry['id']})")
                             video_data = {
                                 "title": entry.get('title', 'タイトル不明'),
@@ -102,7 +104,8 @@ def get_video_info(channel_url):
                                 "alt": entry.get('title', 'タイトル不明'),
                                 "description": entry.get('description')[:100] + "..." if entry.get('description') else "説明なし",
                                 "videoId": entry['id'],
-                                "video_url": entry['url']
+                                "video_url": entry['url'],
+                                "addAdditionalClass": ['subscriber_only', 'schedule'] if entry.get('availability') == 'subscriber_only' else ['schedule'],
                             }
                             videos.append(video_data)
 
