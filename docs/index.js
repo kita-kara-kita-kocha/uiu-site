@@ -22,27 +22,24 @@ document.addEventListener('DOMContentLoaded', function() {
     // サムネイルHTMLを生成する関数
     function createThumbnailHTML(item, tabType) {
         let additionalClass = '';
-        if (tabType === 'niconico_l') additionalClass = 'niconico_l';
-        else if (tabType === 'niconico_v') additionalClass = 'niconico_v';
-        else if (tabType === 'fciu') additionalClass = 'fciu';
-        else if (tabType === 'secret_ac') additionalClass = 'secret_ac';
-        else if (item.special) additionalClass = item.special;
+        let playButton = '';
+
+
         
         let infoHTML = `<h3>${item.title}</h3>`;
         
         if (item.description) {
             infoHTML += `<p>${item.description}</p>`;
         }
-        
         if (item.metadata) {
             item.metadata.forEach(meta => {
                 infoHTML += `<p>${meta}</p>`;
             });
         }
 
-        // YouTubeの場合のみ再生ボタンを追加
-        let playButton = '';
+        // YouTubeの場合
         if (tabType === 'youtube' && item.videoId) {
+            additionalClass = 'youtube';       
             // timestampsが存在する場合のみjoinメソッドを使用
             const timestampsStr = item.timestamps && Array.isArray(item.timestamps) ? item.timestamps.join(', ') : '';
             // YouTube動画の再生ボタン
@@ -52,7 +49,33 @@ document.addEventListener('DOMContentLoaded', function() {
                 additionalClass += ' ' + item.addAdditionalClass.join(' ');
             }
         }
-        
+        // ニコニコ生放送の場合
+        if (tabType === 'niconico_l') {
+            additionalClass = 'niconico_l';
+            // タイムシフト期限が現在日時を超えている場合は、additionalClassに'timeshiftout'を追加
+            let timeshiftLimitDate;
+            let currentDate = new Date();
+            const timeshiftMeta = item.metadata && item.metadata.find(meta => meta.startsWith('タイムシフト視聴期限:'));
+            if (timeshiftMeta) {
+                timeshiftLimitDate = new Date(timeshiftMeta.split('タイムシフト視聴期限: ')[1].trim());
+                if (timeshiftLimitDate < currentDate || timeshiftMeta === 'タイムシフト視聴期限: 視聴不可' || timeshiftMeta === 'タイムシフト視聴期限: 不明') {
+                    additionalClass += ' timeshiftout';
+                }
+            } else {
+                // タイムシフト期限がない場合は、'timeshiftout'を追加
+                additionalClass += ' timeshiftout';
+            }
+        }
+        if (tabType === 'niconico_v') {
+            additionalClass = 'niconico_v';
+        }
+        if (tabType === 'fciu') {
+            additionalClass = 'fciu';
+        }
+        if (tabType === 'secret_ac') {
+            additionalClass = 'secret_ac';
+        }
+
         return `
             <div class="thumbnail-item ${additionalClass}" style="position: relative;">
                 <img src="${item.image}" alt="${item.alt || item.title}" class="thumbnail-image">
