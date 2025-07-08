@@ -105,7 +105,7 @@ def get_video_info(channel_url):
                                 "description": entry.get('description')[:100] + "..." if entry.get('description') else "説明なし",
                                 "videoId": entry['id'],
                                 "video_url": entry['url'],
-                                "addAdditionalClass": ['subscriber_only', 'schedule'] if entry.get('availability') == 'subscriber_only' else ['schedule'],
+                                "addAdditionalClass": ['subscriber_only'] if entry.get('availability') == 'subscriber_only' else ['schedule'],
                             }
                             videos.append(video_data)
 
