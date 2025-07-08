@@ -277,18 +277,10 @@ header h1 {
     font-weight: 500;
 }
 
-/* scheduleかつsubscriber_only専用スタイル */
-.thumbnail-item.schedule.subscriber_only {
-    border-left: 4px solid #646464;
-    background: linear-gradient(135deg, #ff8b8b 0%, #fcbaba 100%);
-}
-
-.thumbnail-item.schedule.subscriber_only .thumbnail-info h3 {
-    color: #ffffff;
-}
-.thumbnail-item.schedule.subscriber_only .thumbnail-info p:first-of-type {
-    color: #ffffff;
-    font-weight: 500;
+/* timeshiftout専用スタイル */
+.thumbnail-item.timeshiftout {
+    border-left: 4px solid #664b4b;
+    background: linear-gradient(135deg, #cacaca 0%, #d6d6d6 100%);
 }
 
 /* YouTube再生ボタン */

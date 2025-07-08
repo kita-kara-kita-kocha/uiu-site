@@ -66,9 +66,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 additionalClass += ' timeshiftout';
             }
         }
-        if (tabType === 'niconico_v') {
-            additionalClass = 'niconico_v';
-        }
         if (tabType === 'fciu') {
             additionalClass = 'fciu';
         }
