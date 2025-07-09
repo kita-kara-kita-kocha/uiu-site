@@ -234,7 +234,10 @@ def get_video_info(channel_url):
             print(f"'{channel_url}/stream' から動画情報を取得中...")
             
             # チャンネルの動画一覧を取得
+            info = ydl.extract_info("https://www.youtube.com/watch?v=0n8X9fQBrs0", download=False)
             info = ydl.extract_info(channel_url, download=False)
+
+            exit(0)  # デバッグ用に一時的に追加
             
             if 'entries' in info:
                 print(f"発見された動画数: {len(info['entries'])}")
