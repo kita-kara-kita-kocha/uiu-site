@@ -30,15 +30,15 @@ def get_video_info(channel_url):
     
     # yt-dlpの設定（GitHub Actions対応）
     ydl_opts = {
-        'quiet': False,  # Falseでエラー以外の出力を表示
+        'quiet': True,  # CLI出力を非表示
         'no_warnings': True, # 警告を非表示
         'extract_flat': True,  # 詳細情報も取得
         'ignoreerrors': True,  # エラーが発生しても続行
         'getcomments': True,  # コメントを取得
         # GitHub Actions環境での対策
         'user_agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-        'sleep_interval': 2,  # リクエスト間隔を2秒に設定
-        'max_sleep_interval': 5,  # 最大スリープ間隔
+        'sleep_interval': 5,  # リクエスト間隔を設定(秒)
+        'max_sleep_interval': 15,  # 最大スリープ間隔
         'retries': 3,  # リトライ回数
         'fragment_retries': 3,  # フラグメントリトライ回数
         'http_headers': {
