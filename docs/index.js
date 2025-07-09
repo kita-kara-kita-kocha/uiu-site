@@ -68,6 +68,18 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         if (tabType === 'fciu') {
             additionalClass = 'fciu';
+            // 視聴条件に応じてクラスを追加
+            const viewingCondition = item.metadata && item.metadata.find(meta => meta.startsWith('視聴条件:'));
+            if (viewingCondition) {
+                const condition = viewingCondition.split('視聴条件: ')[1].trim();
+                if (condition === '会員のみ') {
+                    additionalClass += ' fciu-members-only';
+                } else if (condition === '一部無料') {
+                    additionalClass += ' fciu-partial-free';
+                } else if (condition === '全編無料') {
+                    additionalClass += ' fciu-full-free';
+                }
+            }
         }
         if (tabType === 'secret_ac') {
             additionalClass = 'secret_ac';

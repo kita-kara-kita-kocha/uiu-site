@@ -283,6 +283,55 @@ header h1 {
     background: linear-gradient(135deg, #cacaca 0%, #d6d6d6 100%);
 }
 
+/* fciu（いうねこないとFC）視聴条件別スタイル */
+/* 会員のみ */
+.thumbnail-item.fciu-members-only {
+    border-left: 4px solid #8b5a3c;
+    background: linear-gradient(135deg, #d4a574 0%, #f4e4c1 100%);
+}
+
+.thumbnail-item.fciu-members-only .thumbnail-info h3 {
+    color: #5d4e37;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+.thumbnail-item.fciu-members-only .thumbnail-info p:first-of-type {
+    color: #8b5a3c;
+    font-weight: 600;
+}
+
+/* 一部無料 */
+.thumbnail-item.fciu-partial-free {
+    border-left: 4px solid #4a90e2;
+    background: linear-gradient(135deg, #74a9f7 0%, #b8d4ff 100%);
+}
+
+.thumbnail-item.fciu-partial-free .thumbnail-info h3 {
+    color: #2c5aa0;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+.thumbnail-item.fciu-partial-free .thumbnail-info p:first-of-type {
+    color: #4a90e2;
+    font-weight: 600;
+}
+
+/* 全編無料 */
+.thumbnail-item.fciu-full-free {
+    border-left: 4px solid #50c878;
+    background: linear-gradient(135deg, #7ed957 0%, #bcf5a9 100%);
+}
+
+.thumbnail-item.fciu-full-free .thumbnail-info h3 {
+    color: #2d5a3d;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+}
+
+.thumbnail-item.fciu-full-free .thumbnail-info p:first-of-type {
+    color: #50c878;
+    font-weight: 600;
+}
+
 /* YouTube再生ボタン */
 .play-button {
     position: absolute;

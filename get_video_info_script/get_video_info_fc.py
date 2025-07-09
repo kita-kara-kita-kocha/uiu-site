@@ -139,24 +139,103 @@ class FCVideoInfoExtractor:
             metadata = []
             
             # 日時情報を探す
-            date_elements = element.find_elements(By.CSS_SELECTOR, "time, .date, .datetime, [datetime]")
-            for date_elem in date_elements:
-                date_text = date_elem.text.strip()
-                if date_text:
-                    metadata.append(f"配信日時: {date_text}")
+            try:
+                # 様々な日時表示パターンを探す
+                date_selectors = [
+                    "time", "[datetime]", ".date", ".time", ".datetime",
+                    "[class*='date']", "[class*='time']", "[class*='Date']", "[class*='Time']",
+                    "span", "div", "p"
+                ]
+                
+                for selector in date_selectors:
+                    try:
+                        date_elements = element.find_elements(By.CSS_SELECTOR, selector)
+                        for date_elem in date_elements:
+                            # datetime属性をチェック
+                            datetime_attr = date_elem.get_attribute('datetime')
+                            if datetime_attr:
+                                metadata.append(f"配信日時: {datetime_attr}")
+                                break
+                            
+                            # テキストから日時らしきものを抽出
+                            date_text = date_elem.text.strip()
+                            if date_text and any(pattern in date_text for pattern in 
+                                               ['年', '月', '日', '時', '分', '/', '-', ':', '202', '2025']):
+                                if len(date_text) < 50:  # 長すぎるテキストは除外
+                                    metadata.append(f"配信日時: {date_text}")
+                                    break
+                        if metadata:  # 日時が見つかったら終了
+                            break
+                    except Exception:
+                        continue
+            except Exception:
+                pass
             
-            # その他のメタデータを探す
-            meta_elements = element.find_elements(By.CSS_SELECTOR, "p, span, div")
-            for meta_elem in meta_elements[:5]:  # 最初の5つのメタデータのみ
-                meta_text = meta_elem.text.strip()
-                # 重複チェックと長さチェック
-                if (meta_text and 
-                    len(meta_text) < 300 and 
-                    meta_text not in [video_info.get('title', '')] and
-                    meta_text not in metadata):  # 重複を避ける
-                    metadata.append(meta_text)
-                if len(metadata) >= 3:  # 最大3つまで
-                    break
+            # 再生時間を探す
+            try:
+                # 再生時間表示パターンを探す
+                duration_selectors = [
+                    "[class*='duration']", "[class*='Duration']", "[class*='time']",
+                    ".length", ".runtime", "span", "div"
+                ]
+                
+                for selector in duration_selectors:
+                    try:
+                        duration_elements = element.find_elements(By.CSS_SELECTOR, selector)
+                        for duration_elem in duration_elements:
+                            duration_text = duration_elem.text.strip()
+                            # 時間らしいパターン（例: "12:34", "1:23:45", "34分"）
+                            if duration_text and any(pattern in duration_text for pattern in 
+                                                   [':', '分', '秒', '時間']):
+                                # 短時間フォーマットかチェック
+                                if len(duration_text) < 20 and any(char.isdigit() for char in duration_text):
+                                    metadata.append(f"再生時間: {duration_text}")
+                                    break
+                        if any("再生時間" in m for m in metadata):  # 再生時間が見つかったら終了
+                            break
+                    except Exception:
+                        continue
+            except Exception:
+                pass
+
+            # 全編無料か一部無料か会員のみかを探す
+            try:
+                pricing_type = "-"  # デフォルト
+                
+                # タイトルに全編無料が含まれる場合→全編無料
+                title_text = video_info.get('title', '')
+                if '全編無料' in title_text:
+                    pricing_type = "全編無料"
+                else:
+                    # 一部無料のチップを探す
+                    chip_selectors = [
+                        "span.MuiChip-label.MuiChip-labelMedium",
+                        ".MuiChip-label", "[class*='Chip']", "[class*='chip']",
+                        "span", "div", ".badge", ".tag"
+                    ]
+                    
+                    for selector in chip_selectors:
+                        try:
+                            chip_elements = element.find_elements(By.CSS_SELECTOR, selector)
+                            for chip_elem in chip_elements:
+                                chip_text = chip_elem.text.strip()
+                                if '一部無料' in chip_text:
+                                    pricing_type = "一部無料"
+                                    break
+                            if pricing_type != "-":
+                                break
+
+                        except Exception:
+                            continue
+                    if pricing_type == "-":
+                        # リンク先にアクセスして、全編無料のタグがあるか確認
+                        pricing_type = self.check_pricing_from_video_page(video_info.get('video_url'))
+
+                metadata.append(f"視聴条件: {pricing_type}")
+                
+            except Exception:
+                metadata.append(f"視聴条件: {pricing_type}")
+
             
             if metadata:
                 video_info['metadata'] = metadata
@@ -352,6 +431,105 @@ class FCVideoInfoExtractor:
         """
         if hasattr(self, 'driver'):
             self.driver.quit()
+
+    def check_pricing_from_video_page(self, video_url):
+        """
+        動画ページにアクセスして料金タイプを確認する
+        """
+        if not video_url:
+            return "会員のみ"
+        
+        try:
+            print(f"料金確認のため動画ページにアクセス中: {video_url}")
+            
+            # 新しいタブで動画ページを開く
+            original_window = self.driver.current_window_handle
+            self.driver.execute_script("window.open('');")
+            new_window = [window for window in self.driver.window_handles if window != original_window][0]
+            self.driver.switch_to.window(new_window)
+            
+            try:
+                # 動画ページにアクセス
+                self.driver.get(video_url)
+                time.sleep(5)  # ページ読み込み待機を延長
+                
+                # 動画ページでも年齢認証ダイアログを処理
+                try:
+                    print("動画ページで年齢認証ダイアログを確認中...")
+                    age_confirm_selectors = [
+                        "button[aria-label*='確認']",
+                        "button[aria-label*='同意']", 
+                        ".MuiButton-root",
+                        "button[type='button']"
+                    ]
+                    
+                    for selector in age_confirm_selectors:
+                        try:
+                            buttons = self.driver.find_elements(By.CSS_SELECTOR, selector)
+                            for button in buttons:
+                                button_text = button.text.strip().lower()
+                                if any(keyword in button_text for keyword in ['はい', '同意', '確認']):
+                                    print(f"動画ページで年齢認証ボタンをクリック: {button_text}")
+                                    button.click()
+                                    time.sleep(3)
+                                    break
+                        except Exception:
+                            continue
+                except Exception as e:
+                    print(f"動画ページの年齢認証処理でエラー: {e}")
+                
+                # 追加の待機時間
+                time.sleep(3)
+                
+                # ページの構造をデバッグ出力
+                print(f"動画ページURL: {self.driver.current_url}")
+                
+                # 全編無料のタグを探す
+                wrapper = self.driver.find_element(By.ID, "video-page-wrapper")
+                all_links = wrapper.find_elements(By.TAG_NAME, "a")
+                # #全編無料♡が含まれるリンクがあれば全編無料
+                for link in all_links:
+                    if '#全編無料♡' in link.text:
+                        print("全編無料のタグリンクを発見")
+                        return "全編無料"
+
+                return "会員のみ"
+                # video-page-wrapper内の全aタグとspanタグを出力
+                try:
+                    wrapper = self.driver.find_element(By.ID, "video-page-wrapper")
+                    all_links = wrapper.find_elements(By.TAG_NAME, "a")
+                    all_spans = wrapper.find_elements(By.TAG_NAME, "span")
+                    
+                    print(f"video-page-wrapper内のaタグ数: {len(all_links)}")
+                    for i, link in enumerate(all_links[:10]):  # 最初の10個のみ表示
+                        print(f"  a[{i}]: '{link.text.strip()}'")
+                    
+                    print(f"video-page-wrapper内のspanタグ数: {len(all_spans)}")
+                    for i, span in enumerate(all_spans[:20]):  # 最初の20個のみ表示
+                        span_text = span.text.strip()
+                        if span_text:
+                            print(f"  span[{i}]: '{span_text}'")
+                            
+                except Exception as e:
+                    print(f"要素詳細確認でエラー: {e}")
+                
+                # HTMLをファイルに保存
+                body_html = self.driver.find_element(By.TAG_NAME, "body").get_attribute("innerHTML")
+                timestamp = int(time.time())
+                with open(f"/tmp/debug_video_page_{timestamp}.html", "w", encoding="utf-8") as f:
+                    f.write(body_html)
+                print(f"デバッグ用HTMLを /tmp/debug_video_page_{timestamp}.html に保存")
+                
+                return "会員のみ"
+
+            finally:
+                # タブを閉じて元のウィンドウに戻る
+                self.driver.close()
+                self.driver.switch_to.window(original_window)
+                
+        except Exception as e:
+            print(f"動画ページの料金確認でエラー: {e}")
+            return "会員のみ"  # エラー時はデフォルト
 
 def main():
     extractor = FCVideoInfoExtractor()
