@@ -49,6 +49,7 @@ jobs:
           ./run.sh
         env:
           DISPLAY: ':99'
+          TZ: 'Asia/Tokyo'
           # yt-dlp用の設定
           YT_DLP_CACHE_DIR: '/tmp/yt-dlp-cache'
       
