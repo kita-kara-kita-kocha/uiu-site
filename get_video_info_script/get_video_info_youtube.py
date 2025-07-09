@@ -17,19 +17,14 @@ import re
 CHANNEL_URL = "https://www.youtube.com/@uise_iu_asmr"
 OUTPUT_FILE = "../docs/youtube.json"
 
-def get_video_info(channel_url):
+def get_ydl_options():
     """
-    YouTubeチャンネルから動画情報を取得
-    
-    Args:
-        channel_url (str): YouTubeチャンネルのURL
+    yt-dlpの設定を取得
     
     Returns:
-        list: 動画情報のリスト
+        dict: yt-dlpの設定辞書
     """
-    
-    # yt-dlpの設定（GitHub Actions対応）
-    ydl_opts = {
+    return {
         'quiet': True,  # CLI出力を非表示
         'no_warnings': True, # 警告を非表示
         'extract_flat': True,  # 詳細情報も取得
@@ -50,6 +45,187 @@ def get_video_info(channel_url):
             'Upgrade-Insecure-Requests': '1',
         }
     }
+
+def extract_timestamps_from_comments(video_info):
+    """
+    動画のコメントからタイムスタンプ情報を抽出
+    
+    Args:
+        video_info (dict): 動画情報
+    
+    Returns:
+        list: タイムスタンプのリスト
+    """
+    # コメント情報から"author": "@あずにゃんch"の"text"を取得
+    raw_az_texts = [
+        comment['text'] for comment in video_info.get('comments', [])
+        if 'author' in comment and comment['author'].startswith('@あずにゃんch')
+    ]
+    
+    timestamps = []
+    # "text"を改行\n\rで配列化し、[0-9]{1,2}:[0-9]{2}.*と一致するものを抽出
+    for raw_az_text in raw_az_texts:
+        # 改行で分割
+        rn_az_texts = raw_az_text.splitlines()
+        # ".*[0-9]{1,2}:[0-9]{2}.*"と一致する行を抽出
+        rn_az_texts = [text for text in rn_az_texts if re.match(r'.*[0-9]{1,2}:[0-9]{2}.*', text)]
+        # 最初の行が"[0-9]{1,2}:[0-9]{2}.*START.*"と一致していなかったらスキップ
+        if not rn_az_texts or not re.match(r'.*[0-9]{1,2}:[0-9]{2}.*START.*', rn_az_texts[0]):
+            continue
+        timestamps.extend(rn_az_texts)
+    
+    return timestamps
+
+def get_detailed_video_info(video_id, ydl_opts):
+    """
+    個別動画の詳細情報を取得（リトライ機能付き）
+    
+    Args:
+        video_id (str): 動画ID
+        ydl_opts (dict): yt-dlpの設定
+    
+    Returns:
+        dict: 動画の詳細情報、失敗時はNone
+    """
+    # 個別動画用のyt-dlp設定
+    video_ydl_opts = ydl_opts.copy()
+    video_ydl_opts['extract_flat'] = False  # 詳細情報を取得
+    
+    video_info = None
+    for attempt in range(3):  # 3回まで再試行
+        try:
+            # BOT対策のため、キャッシュクリアと待機してからリクエスト
+            if attempt > 0:
+                print(f"    リトライ中... 試行 {attempt + 1}/3")
+                video_ydl_opts['cache_dir'] = None  # キャッシュをクリア
+                video_ydl_opts['sleep_interval'] = 5  # リトライ間隔を設定
+                video_ydl_opts['max_sleep_interval'] = 15  # 最大スリープ間隔を設定
+
+            with yt_dlp.YoutubeDL(video_ydl_opts) as video_ydl:
+                video_info = video_ydl.extract_info(
+                    f"https://www.youtube.com/watch?v={video_id}", 
+                    download=False
+                )
+            break  # 成功したらループを抜ける
+        except Exception as retry_error:
+            print(f"    試行 {attempt + 1}/3 失敗: {str(retry_error)}")
+            if attempt < 2:  # 最後の試行でなければ待機
+                time.sleep(5)  # 5秒待機
+            else:
+                raise retry_error  # 最後の試行で失敗したら例外を上げる
+    
+    return video_info
+
+def create_video_data_from_detailed_info(video_info, video_id):
+    """
+    詳細な動画情報から動画データを作成
+    
+    Args:
+        video_info (dict): 詳細な動画情報
+        video_id (str): 動画ID
+    
+    Returns:
+        dict: 整形された動画データ
+    """
+    timestamps = extract_timestamps_from_comments(video_info)
+    
+    return {
+        "title": video_info.get('title', 'タイトル不明'),
+        "image": f"https://i.ytimg.com/vi/{video_id}/maxresdefault.jpg",
+        "alt": video_info.get('title', 'タイトル不明'),
+        "description": video_info.get('description', '')[:100] + "..." if video_info.get('description') else "説明なし",
+        "videoId": video_id,
+        "video_url": f"https://www.youtube.com/watch?v={video_id}",
+        "tags": video_info.get('tags', []),
+        "timestamps": timestamps,
+        "metadata": [
+            f"再生時間: {format_duration(video_info.get('duration', 0))}",
+            f"視聴回数: {format_view_count(video_info.get('view_count', 0))}",
+            f"投稿日: {format_upload_date(video_info.get('upload_date', ''))}"
+        ],
+        "addAdditionalClass": [video_info.get('availability', '')],  # "availability": "subscriber_only"なら"subscriber_only", それ以外は"-"
+    }
+
+def create_video_data_from_basic_info(entry):
+    """
+    基本的な動画情報から動画データを作成（詳細取得失敗時用）
+    
+    Args:
+        entry (dict): 基本的な動画情報
+    
+    Returns:
+        dict: 整形された動画データ
+    """
+    video_id = entry['id']
+    
+    # availability情報の取得を試行
+    availability = entry.get('availability', 'unknown')
+    add_class = []
+    
+    if availability == 'subscriber_only':
+        add_class = ['subscriber_only']
+    elif entry.get('live_status') == 'is_upcoming':
+        add_class = ['schedule']
+    else:
+        add_class = ['unavailable']
+    
+    return {
+        "title": entry.get('title', 'タイトル不明'),
+        "image": f"https://i.ytimg.com/vi/{video_id}/maxresdefault.jpg",
+        "alt": entry.get('title', 'タイトル不明'),
+        "description": entry.get('description')[:100] + "..." if entry.get('description') else "説明なし",
+        "videoId": video_id,
+        "video_url": entry.get('url', f"https://www.youtube.com/watch?v={video_id}"),
+        "addAdditionalClass": add_class,
+    }
+
+def process_video_entry(entry, ydl_opts):
+    """
+    個別の動画エントリを処理
+    
+    Args:
+        entry (dict): 動画エントリ情報
+        ydl_opts (dict): yt-dlpの設定
+    
+    Returns:
+        dict: 処理された動画データ
+    """
+    video_id = entry['id']
+    
+    try:
+        # 個別の動画情報を取得（エラーハンドリング強化）
+        print(f"動画ID {video_id} の詳細情報を取得中...")
+        
+        video_info = get_detailed_video_info(video_id, ydl_opts)
+
+        if not video_info:
+            raise Exception("動画情報の取得に失敗しました")
+
+        # 動画情報を整形
+        video_data = create_video_data_from_detailed_info(video_info, video_id)
+        
+        print(f"  → ✓ 取得完了: {video_data.get('title', 'タイトル不明')} (ID: {video_id})")
+        return video_data
+        
+    except Exception as e:
+        # 個別動画の取得に失敗した場合は放送予定枠かメン限枠なので動画情報を整形する
+        print(f"  → ✗ 詳細取得失敗: {entry.get('title', 'タイトル不明')} (ID: {video_id}) - {str(e)}")
+        print(f"    → 基本情報のみで処理を続行します")
+        
+        return create_video_data_from_basic_info(entry)
+
+def get_video_info(channel_url):
+    """
+    YouTubeチャンネルから動画情報を取得
+    
+    Args:
+        channel_url (str): YouTubeチャンネルのURL
+    
+    Returns:
+        list: 動画情報のリスト
+    """
+    
+    ydl_opts = get_ydl_options()
     
     videos = []
     
@@ -65,99 +241,8 @@ def get_video_info(channel_url):
                 
                 for entry in info['entries']:
                     if entry and 'id' in entry:
-                        try:
-                            # 個別の動画情報を取得（エラーハンドリング強化）
-                            print(f"  → 動画ID {entry['id']} の詳細情報を取得中...")
-                            
-                            # 個別動画用のyt-dlp設定
-                            video_ydl_opts = ydl_opts.copy()
-                            video_ydl_opts['extract_flat'] = False  # 詳細情報を取得
-                            
-                            video_info = None
-                            for attempt in range(3):  # 3回まで再試行
-                                try:
-                                    with yt_dlp.YoutubeDL(video_ydl_opts) as video_ydl:
-                                        video_info = video_ydl.extract_info(
-                                            f"https://www.youtube.com/watch?v={entry['id']}", 
-                                            download=False
-                                        )
-                                    break  # 成功したらループを抜ける
-                                except Exception as retry_error:
-                                    print(f"    試行 {attempt + 1}/3 失敗: {str(retry_error)}")
-                                    if attempt < 2:  # 最後の試行でなければ待機
-                                        import time
-                                        time.sleep(5)  # 5秒待機
-                                    else:
-                                        raise retry_error  # 最後の試行で失敗したら例外を上げる
-
-                            if not video_info:
-                                raise Exception("動画情報の取得に失敗しました")
-
-                            # コメント情報からTimeStamp情報を取得
-                            # コメント情報から"author": "@shokoaz"の"text"を取得
-                            raw_az_texts = [
-                                comment['text'] for comment in video_info.get('comments', [])
-                                if 'author' in comment and comment['author'].startswith('@あずにゃんch')
-                            ]
-                            timestamps = []
-                            # "text"を改行\n\rで配列化し、[0-9]{1,2}:[0-9]{2}.*と一致するものを抽出
-                            for raw_az_text in raw_az_texts:
-                                # 改行で分割
-                                rn_az_texts = raw_az_text.splitlines()
-                                # ".*[0-9]{1,2}:[0-9]{2}.*"と一致する行を抽出
-                                rn_az_texts = [text for text in rn_az_texts if re.match(r'.*[0-9]{1,2}:[0-9]{2}.*', text)]
-                                # 最初の行が"[0-9]{1,2}:[0-9]{2}.*START.*"と一致していなかったらスキップ
-                                if not rn_az_texts or not re.match(r'.*[0-9]{1,2}:[0-9]{2}.*START.*', rn_az_texts[0]):
-                                    continue
-                                timestamps.extend(rn_az_texts)
-
-                            # 動画情報を整形
-                            video_data = {
-                                "title": video_info.get('title', 'タイトル不明'),
-                                "image": f"https://i.ytimg.com/vi/{entry['id']}/maxresdefault.jpg",
-                                "alt": video_info.get('title', 'タイトル不明'),
-                                "description": video_info.get('description', '')[:100] + "..." if video_info.get('description') else "説明なし",
-                                "videoId": entry['id'],
-                                "video_url": f"https://www.youtube.com/watch?v={entry['id']}",
-                                "tags": video_info.get('tags', []),
-                                "timestamps": timestamps,
-                                "metadata": [
-                                    f"再生時間: {format_duration(video_info.get('duration', 0))}",
-                                    f"視聴回数: {format_view_count(video_info.get('view_count', 0))}",
-                                    f"投稿日: {format_upload_date(video_info.get('upload_date', ''))}"
-                                ],
-                                "addAdditionalClass": [video_info.get('availability', '')],  # "availability": "subscriber_only"なら"subscriber_only", それ以外は"-"
-                            }
-                            
-                            videos.append(video_data)
-                            print(f"✓ 取得完了: {video_data.get('title', 'タイトル不明')} (ID: {entry['id']})")
-                            
-                        except Exception as e:
-                            # 個別動画の取得に失敗した場合は放送予定枠かメン限枠なので動画情報を整形する
-                            print(f"✗ 詳細取得失敗: {entry.get('title', 'タイトル不明')} (ID: {entry['id']}) - {str(e)}")
-                            print(f"  → 基本情報のみで処理を続行します")
-                            
-                            # availability情報の取得を試行
-                            availability = entry.get('availability', 'unknown')
-                            add_class = []
-                            
-                            if availability == 'subscriber_only':
-                                add_class = ['subscriber_only']
-                            elif entry.get('live_status') == 'is_upcoming':
-                                add_class = ['schedule']
-                            else:
-                                add_class = ['unavailable']
-                            
-                            video_data = {
-                                "title": entry.get('title', 'タイトル不明'),
-                                "image": f"https://i.ytimg.com/vi/{entry['id']}/maxresdefault.jpg",
-                                "alt": entry.get('title', 'タイトル不明'),
-                                "description": entry.get('description')[:100] + "..." if entry.get('description') else "説明なし",
-                                "videoId": entry['id'],
-                                "video_url": entry.get('url', f"https://www.youtube.com/watch?v={entry['id']}"),
-                                "addAdditionalClass": add_class,
-                            }
-                            videos.append(video_data)
+                        video_data = process_video_entry(entry, ydl_opts)
+                        videos.append(video_data)
 
             else:
                 print("チャンネルに動画が見つかりませんでした。")
@@ -261,6 +346,52 @@ def save_to_json(videos, output_file):
     except Exception as e:
         print(f"❌ ファイル保存エラー: {str(e)}")
 
+def check_dependencies():
+    """
+    必要な依存関係をチェック
+    
+    Returns:
+        bool: 依存関係が満たされている場合True
+    """
+    try:
+        import yt_dlp
+        print(f"✅ yt-dlp バージョン: {yt_dlp.version.__version__}")
+        return True
+    except ImportError:
+        print("❌ yt-dlpがインストールされていません。")
+        print("以下のコマンドでインストールしてください:")
+        print("pip install yt-dlp")
+        return False
+
+def display_execution_environment():
+    """
+    実行環境の情報を表示
+    """
+    import os
+    if os.getenv('GITHUB_ACTIONS') == 'true':
+        print("🤖 GitHub Actions環境で実行中")
+        print(f"📁 キャッシュディレクトリ: {os.getenv('YT_DLP_CACHE_DIR', 'デフォルト')}")
+
+def display_video_samples(videos, sample_count=3):
+    """
+    取得した動画のサンプルを表示
+    
+    Args:
+        videos (list): 動画情報のリスト
+        sample_count (int): 表示するサンプル数
+    """
+    print("\n📝 取得した動画の例:")
+    for i, video in enumerate(videos[:sample_count]):
+        print(f"\n{i+1}. {video['title']}")
+        print(f"   ID: {video['videoId']}")
+        print(f"   説明: {video['description']}")
+        if 'metadata' in video:
+            print(f"   メタデータ: {', '.join(video['metadata'])}")
+        print(f"   クラス: {video.get('addAdditionalClass', [])}")
+    
+    if len(videos) > sample_count:
+        print(f"\n... 他 {len(videos) - sample_count} 個の動画")
+
 def main():
     """
     メイン実行関数
@@ -268,19 +399,11 @@ def main():
     print("🎬 YouTube動画情報取得スクリプト")
     
     # 実行環境の情報を表示
-    import os
-    if os.getenv('GITHUB_ACTIONS') == 'true':
-        print("🤖 GitHub Actions環境で実行中")
-        print(f"📁 キャッシュディレクトリ: {os.getenv('YT_DLP_CACHE_DIR', 'デフォルト')}")
+    display_execution_environment()
     
     # yt-dlpがインストールされているかチェック
-    try:
-        import yt_dlp
-        print(f"✅ yt-dlp バージョン: {yt_dlp.version.__version__}")
-    except ImportError:
-        print("❌ yt-dlpがインストールされていません。")
-        print("以下のコマンドでインストールしてください:")
-        print("pip install yt-dlp")
+    if not check_dependencies():
+        print("❌ 必要な依存関係が満たされていません。スクリプトを終了します。")
         sys.exit(1)
     
     # 動画情報を取得
@@ -292,17 +415,7 @@ def main():
         save_to_json(videos, OUTPUT_FILE)
         
         # 取得した動画の最初の3つを表示
-        print("\n📝 取得した動画の例:")
-        for i, video in enumerate(videos[:3]):
-            print(f"\n{i+1}. {video['title']}")
-            print(f"   ID: {video['videoId']}")
-            print(f"   説明: {video['description']}")
-            if 'metadata' in video:
-                print(f"   メタデータ: {', '.join(video['metadata'])}")
-            print(f"   クラス: {video.get('addAdditionalClass', [])}")
-        
-        if len(videos) > 3:
-            print(f"\n... 他 {len(videos) - 3} 個の動画")
+        display_video_samples(videos)
             
     else:
         print("❌ 動画情報の取得に失敗しました。")
