@@ -466,14 +466,6 @@ def main():
     extractor = SecretVideoInfoExtractor()
     
     try:
-        # 既存のファイルをバックアップ
-        output_path = Path(OUTPUT_FILE)
-        if output_path.exists():
-            backup_path = output_path.with_suffix('.json.backup')
-            import shutil
-            shutil.copy2(output_path, backup_path)
-            print(f"既存ファイルを {backup_path} にバックアップしました")
-        
         # 全投稿情報を取得
         all_posts = extractor.extract_all_post_info()
         
