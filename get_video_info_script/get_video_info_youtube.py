@@ -7,6 +7,7 @@ docs/youtube.jsonファイルを更新します。
 
 import json
 import sys
+import time
 from datetime import datetime
 import yt_dlp
 from pathlib import Path
@@ -27,13 +28,27 @@ def get_video_info(channel_url):
         list: 動画情報のリスト
     """
     
-    # yt-dlpの設定
+    # yt-dlpの設定（GitHub Actions対応）
     ydl_opts = {
         'quiet': False,  # Falseでエラー以外の出力を表示
         'no_warnings': True, # 警告を非表示
         'extract_flat': True,  # 詳細情報も取得
         'ignoreerrors': True,  # エラーが発生しても続行
         'getcomments': True,  # コメントを取得
+        # GitHub Actions環境での対策
+        'user_agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        'sleep_interval': 2,  # リクエスト間隔を2秒に設定
+        'max_sleep_interval': 5,  # 最大スリープ間隔
+        'retries': 3,  # リトライ回数
+        'fragment_retries': 3,  # フラグメントリトライ回数
+        'http_headers': {
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+            'Accept-Language': 'ja,en-US;q=0.5',
+            'Accept-Encoding': 'gzip, deflate',
+            'DNT': '1',
+            'Connection': 'keep-alive',
+            'Upgrade-Insecure-Requests': '1',
+        }
     }
     
     videos = []
@@ -51,11 +66,32 @@ def get_video_info(channel_url):
                 for entry in info['entries']:
                     if entry and 'id' in entry:
                         try:
-                            # 個別の動画情報を取得
-                            video_info = ydl.extract_info(
-                                f"https://www.youtube.com/watch?v={entry['id']}", 
-                                download=False
-                            )
+                            # 個別の動画情報を取得（エラーハンドリング強化）
+                            print(f"  → 動画ID {entry['id']} の詳細情報を取得中...")
+                            
+                            # 個別動画用のyt-dlp設定
+                            video_ydl_opts = ydl_opts.copy()
+                            video_ydl_opts['extract_flat'] = False  # 詳細情報を取得
+                            
+                            video_info = None
+                            for attempt in range(3):  # 3回まで再試行
+                                try:
+                                    with yt_dlp.YoutubeDL(video_ydl_opts) as video_ydl:
+                                        video_info = video_ydl.extract_info(
+                                            f"https://www.youtube.com/watch?v={entry['id']}", 
+                                            download=False
+                                        )
+                                    break  # 成功したらループを抜ける
+                                except Exception as retry_error:
+                                    print(f"    試行 {attempt + 1}/3 失敗: {str(retry_error)}")
+                                    if attempt < 2:  # 最後の試行でなければ待機
+                                        import time
+                                        time.sleep(5)  # 5秒待機
+                                    else:
+                                        raise retry_error  # 最後の試行で失敗したら例外を上げる
+
+                            if not video_info:
+                                raise Exception("動画情報の取得に失敗しました")
 
                             # コメント情報からTimeStamp情報を取得
                             # コメント情報から"author": "@shokoaz"の"text"を取得
@@ -98,15 +134,28 @@ def get_video_info(channel_url):
                             
                         except Exception as e:
                             # 個別動画の取得に失敗した場合は放送予定枠かメン限枠なので動画情報を整形する
-                            print(f"✓ 放送予定枠: {entry.get('title', 'タイトル不明')} (ID: {entry['id']})")
+                            print(f"✗ 詳細取得失敗: {entry.get('title', 'タイトル不明')} (ID: {entry['id']}) - {str(e)}")
+                            print(f"  → 基本情報のみで処理を続行します")
+                            
+                            # availability情報の取得を試行
+                            availability = entry.get('availability', 'unknown')
+                            add_class = []
+                            
+                            if availability == 'subscriber_only':
+                                add_class = ['subscriber_only']
+                            elif entry.get('live_status') == 'is_upcoming':
+                                add_class = ['schedule']
+                            else:
+                                add_class = ['unavailable']
+                            
                             video_data = {
                                 "title": entry.get('title', 'タイトル不明'),
                                 "image": f"https://i.ytimg.com/vi/{entry['id']}/maxresdefault.jpg",
                                 "alt": entry.get('title', 'タイトル不明'),
                                 "description": entry.get('description')[:100] + "..." if entry.get('description') else "説明なし",
                                 "videoId": entry['id'],
-                                "video_url": entry['url'],
-                                "addAdditionalClass": ['subscriber_only'] if entry.get('availability') == 'subscriber_only' else ['schedule'],
+                                "video_url": entry.get('url', f"https://www.youtube.com/watch?v={entry['id']}"),
+                                "addAdditionalClass": add_class,
                             }
                             videos.append(video_data)
 
@@ -218,6 +267,12 @@ def main():
     """
     print("🎬 YouTube動画情報取得スクリプト")
     
+    # 実行環境の情報を表示
+    import os
+    if os.getenv('GITHUB_ACTIONS') == 'true':
+        print("🤖 GitHub Actions環境で実行中")
+        print(f"📁 キャッシュディレクトリ: {os.getenv('YT_DLP_CACHE_DIR', 'デフォルト')}")
+    
     # yt-dlpがインストールされているかチェック
     try:
         import yt_dlp
@@ -229,6 +284,7 @@ def main():
         sys.exit(1)
     
     # 動画情報を取得
+    print(f"🔍 チャンネル '{CHANNEL_URL}' から動画情報を取得します...")
     videos = get_video_info(CHANNEL_URL)
     
     if videos:
@@ -241,7 +297,9 @@ def main():
             print(f"\n{i+1}. {video['title']}")
             print(f"   ID: {video['videoId']}")
             print(f"   説明: {video['description']}")
-            print(f"   メタデータ: {', '.join(video['metadata'])}")
+            if 'metadata' in video:
+                print(f"   メタデータ: {', '.join(video['metadata'])}")
+            print(f"   クラス: {video.get('addAdditionalClass', [])}")
         
         if len(videos) > 3:
             print(f"\n... 他 {len(videos) - 3} 個の動画")

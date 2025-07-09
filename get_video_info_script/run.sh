@@ -16,6 +16,14 @@ fi
 # 必要なパッケージがインストールされているかチェック
 echo "🔍 依存関係をチェックしています..."
 
+# GitHub Actions環境の検出
+if [ "$GITHUB_ACTIONS" = "true" ]; then
+    echo "🤖 GitHub Actions環境を検出しました"
+    # yt-dlpキャッシュディレクトリの作成
+    mkdir -p /tmp/yt-dlp-cache
+    export YT_DLP_CACHE_DIR=/tmp/yt-dlp-cache
+fi
+
 check_package() {
     python -c "import $1; print('✅ $1 インストール済み')" 2>/dev/null || {
         echo "❌ $1がインストールされていません。インストールしています..."
@@ -52,6 +60,12 @@ run_script() {
     echo "⏰ 開始時刻: $(date)"
     echo "=================================================================================="
     
+    # GitHub Actions環境では追加の待機時間を設ける
+    if [ "$GITHUB_ACTIONS" = "true" ]; then
+        echo "🤖 CI環境での実行 - レート制限回避のため少し待機します..."
+        sleep 3
+    fi
+    
     if python "$script_name"; then
         echo "✅ $description - 完了"
         success_count=$((success_count + 1))
@@ -62,6 +76,12 @@ run_script() {
     
     echo "📊 完了時刻: $(date)"
     echo ""
+    
+    # GitHub Actions環境では次のスクリプト実行前に少し待機
+    if [ "$GITHUB_ACTIONS" = "true" ] && [ $script_count -lt 4 ]; then
+        echo "⏳ 次のスクリプト実行まで少し待機します..."
+        sleep 5
+    fi
 }
 
 # 各スクリプトを順次実行

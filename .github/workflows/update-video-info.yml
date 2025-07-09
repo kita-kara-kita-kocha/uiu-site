@@ -28,8 +28,11 @@ jobs:
       - name: Chrome/Chromiumのインストール
         run: |
           sudo apt-get update
-          sudo apt-get install -y chromium-browser
+          sudo apt-get install -y chromium-browser xvfb
           chromium-browser --version
+          # 仮想ディスプレイを開始
+          export DISPLAY=:99
+          Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
       
       - name: 依存関係のインストール
         run: |
@@ -40,9 +43,14 @@ jobs:
         run: |
           cd get_video_info_script
           chmod +x run.sh
+          # GitHub Actions環境変数を設定
+          export PYTHONUNBUFFERED=1
+          export GITHUB_ACTIONS=true
           ./run.sh
         env:
           DISPLAY: ':99'
+          # yt-dlp用の設定
+          YT_DLP_CACHE_DIR: '/tmp/yt-dlp-cache'
       
       - name: 変更検出と直接コミット
         id: check_changes
