@@ -282,7 +282,10 @@ function openVideoModal(videoId, title, timestamps) {
             listItem.textContent = timestamp.trim();
             listItem.addEventListener('click', function() {
                 // タイムスタンプクリック時の処理: 特定の時間にジャンプ
-                const timeParts = timestamp.trim().split(' ')[0].split(':').map(part => parseInt(part, 10));
+                // タイムスタンプ文字列から最初に現れる時間部分（例: 1:23, 12:34:56など）を抽出
+                const match = timestamp.match(/([0-9]{1,2}:[0-9]{2}(?::[0-9]{2})?)/);
+                const timeStr = match ? match[1] : timestamp.trim();
+                const timeParts = timeStr.split(':').map(part => parseInt(part, 10));
                 let seconds = 0;
                 if (timeParts.length === 3) {
                     // HH:MM:SS 形式

@@ -66,13 +66,14 @@ def get_video_info(channel_url):
                             timestamps = []
                             # "text"を改行\n\rで配列化し、[0-9]{1,2}:[0-9]{2}.*と一致するものを抽出
                             for raw_az_text in raw_az_texts:
+                                # 改行で分割
                                 rn_az_texts = raw_az_text.splitlines()
-                                # 各行をチェック
-                                for rn_az_text in rn_az_texts:
-                                    # rn_az_textが正規表現で"[0-9]{1,2}:[0-9]{2}.*"と一致するか確認
-                                    if re.match(r'[0-9]{1,2}:[0-9]{2}.*', rn_az_text):
-                                        # 一致した場合は、timestampsリストに追加
-                                        timestamps.append(rn_az_text.strip())
+                                # ".*[0-9]{1,2}:[0-9]{2}.*"と一致する行を抽出
+                                rn_az_texts = [text for text in rn_az_texts if re.match(r'.*[0-9]{1,2}:[0-9]{2}.*', text)]
+                                # 最初の行が"[0-9]{1,2}:[0-9]{2}.*START.*"と一致していなかったらスキップ
+                                if not rn_az_texts or not re.match(r'.*[0-9]{1,2}:[0-9]{2}.*START.*', rn_az_texts[0]):
+                                    continue
+                                timestamps.extend(rn_az_texts)
 
                             # 動画情報を整形
                             video_data = {
