@@ -1,0 +1,121 @@
+name: 動画情報自動更新
+
+on:
+  schedule:
+    - cron: '0 15,21,3,9 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-video-info:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: リポジトリをチェックアウト
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+      
+      - name: Pythonセットアップ
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      
+      - name: Chrome/Chromiumのインストール
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y chromium-browser
+          chromium-browser --version
+      
+      - name: 依存関係のインストール
+        run: |
+          cd get_video_info_script
+          pip install -r requirements.txt
+      
+      - name: 動画情報取得スクリプト実行
+        run: |
+          cd get_video_info_script
+          chmod +x run.sh
+          ./run.sh
+        env:
+          DISPLAY: ':99'
+      
+      - name: 変更検出とPR作成
+        id: check_changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          
+          if git diff --quiet docs/; then
+            echo "変更なし"
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "変更あり"
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            
+            timestamp=$(date '+%Y%m%d-%H%M%S')
+            branch_name="auto-update/video-info-$timestamp"
+            echo "branch_name=$branch_name" >> $GITHUB_OUTPUT
+            
+            git checkout -b "$branch_name"
+            git add docs/
+            git commit -m "🎬 動画情報を自動更新 ($timestamp)"
+            git push origin "$branch_name"
+          fi
+      
+      - name: プルリクエスト作成とマージ
+        if: steps.check_changes.outputs.has_changes == 'true'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const branchName = '${{ steps.check_changes.outputs.branch_name }}';
+            const timestamp = new Date().toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' });
+            
+            // プルリクエストを作成
+            const { data: pullRequest } = await github.rest.pulls.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: '🎬 動画情報自動更新 - ' + new Date().toLocaleDateString('ja-JP'),
+              head: branchName,
+              base: 'main',
+              body: `## 📺 動画情報の自動更新\n\n実行時刻: ${timestamp}\n\nGitHub Actionsによる自動更新です。`
+            });
+            
+            console.log('プルリクエストが作成されました:', pullRequest.number);
+            
+            // 少し待機してからマージ
+            await new Promise(resolve => setTimeout(resolve, 3000));
+            
+            // プルリクエストをマージ
+            await github.rest.pulls.merge({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: pullRequest.number,
+              commit_title: '🎬 動画情報自動更新をマージ',
+              merge_method: 'squash'
+            });
+            
+            console.log('プルリクエストがマージされました');
+            
+            // ブランチを削除
+            await github.rest.git.deleteRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: `heads/${branchName}`
+            });
+            
+            console.log('ブランチが削除されました');
+      
+      - name: 実行結果通知
+        if: always()
+        run: |
+          if [ "${{ steps.check_changes.outputs.has_changes }}" == "true" ]; then
+            echo "✅ 動画情報の更新とプルリクエストの作成/マージが完了しました"
+          else
+            echo "ℹ️ 動画情報に変更はありませんでした"
+          fi
