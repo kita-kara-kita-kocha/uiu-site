@@ -195,7 +195,7 @@ def process_video_entry(entry, ydl_opts):
         
     except Exception as e:
         # 個別動画の取得に失敗した場合は放送予定枠かメン限枠なので動画情報を整形する
-        print(f"  → ✗ 詳細取得失敗: {entry.get('title', 'タイトル不明')} (ID: {video_id}) - {str(e)}")
+        print(f"  → ✗ 詳細取得失敗: ID: {video_id} - {str(e)}")
         print(f"    → 基本情報のみで処理を続行します")
         
         return create_video_data_from_basic_info(entry)
@@ -382,6 +382,9 @@ def main():
     """
     メイン実行関数
     """
+    # スクリプトの開始時間を記録
+    start_time = datetime.now()
+
     print("🎬 YouTube動画情報取得スクリプト")
     
     # 実行環境の情報を表示
@@ -406,7 +409,11 @@ def main():
     else:
         print("❌ 動画情報の取得に失敗しました。")
         sys.exit(1)
-    
+
+    # 実行時間を表示
+    end_time = datetime.now()
+    execution_time = end_time - start_time
+    print(f"\n⏱ 実行時間: {execution_time}")    
     print("\n🎉 処理が完了しました！")
 
 if __name__ == "__main__":

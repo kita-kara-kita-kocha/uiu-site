@@ -182,8 +182,10 @@ def get_video_info(channel_url):
                     if entry and 'id' in entry:
                         video_data = process_video_entry(entry)
                         videos.append(video_data)
-                    else:
+                    elif entry:
                         print(f"  → ✗ 無効な動画エントリ: {entry.get('title', '不明')}")
+                    else:
+                        print("  → ✗ エントリが空です(updateスクリプトではメン限は取得できないため)")
 
             else:
                 print("チャンネルに動画が見つかりませんでした。")
@@ -282,14 +284,21 @@ def save_to_json(videos, output_file):
                     if video and video['videoId'] == existing_video_id:
                         raw_item.update(video)
                         break
-            existing_data['last_updated'] = json_data['last_updated']
-            existing_data['total_videos'] = len(existing_data['items'])
-            json_data = existing_data
+
+            # `json_data`を適切に初期化
+            json_data = {
+                'items': existing_data['items'],
+                'last_updated': datetime.now().isoformat(),
+                'total_videos': len(existing_data['items']),
+            }
     except FileNotFoundError:
         # ファイルが存在しない場合はget_video_info_youtube.pyを実行するように指示
         print("先にget_video_info_youtube.pyを実行して、正確な動画情報を取得してください。")
-        return
-        
+    with open(output_file, 'w', encoding='utf-8') as f:
+        json.dump(json_data, f, ensure_ascii=False, indent=2)
+    print(f"動画情報を {output_file} に保存しました")
+
+
 def check_dependencies():
     """
     必要な依存関係をチェック
@@ -340,6 +349,9 @@ def main():
     """
     メイン実行関数
     """
+    # スクリプトの開始時間を記録
+    start_time = datetime.now()
+
     print("🎬 YouTube動画情報取得スクリプト")
     
     # 実行環境の情報を表示
@@ -365,6 +377,10 @@ def main():
         print("❌ 動画情報の取得に失敗しました。")
         sys.exit(1)
     
+    # 実行時間を表示
+    end_time = datetime.now()
+    execution_time = end_time - start_time
+    print(f"\n⏱ 実行時間: {execution_time}")
     print("\n🎉 処理が完了しました！")
 
 if __name__ == "__main__":

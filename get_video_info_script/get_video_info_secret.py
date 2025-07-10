@@ -29,6 +29,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.common.exceptions import TimeoutException
 from webdriver_manager.chrome import ChromeDriverManager
 import time
+from datetime import datetime
 import sys
 
 # 設定
@@ -463,6 +464,14 @@ class SecretVideoInfoExtractor:
             self.driver.quit()
 
 def main():
+    """
+    メイン実行関数
+    """
+    # スクリプトの開始時間を記録
+    start_time = datetime.now()
+
+    print("🎬 ファンサイト動画情報取得スクリプト")
+
     extractor = SecretVideoInfoExtractor()
     
     try:
@@ -504,6 +513,11 @@ def main():
         
     finally:
         extractor.close()
+        # 実行時間を表示
+        end_time = datetime.now()
+        execution_time = end_time - start_time
+        print(f"\n⏱ 実行時間: {execution_time}")
+        print("🎉 処理が完了しました！")
 
 if __name__ == "__main__":
     main()

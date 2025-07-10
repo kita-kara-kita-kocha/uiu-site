@@ -532,6 +532,14 @@ class FCVideoInfoExtractor:
             return "会員のみ"  # エラー時はデフォルト
 
 def main():
+    """
+    メイン実行関数
+    """
+    # スクリプトの開始時間を記録
+    start_time = time.time()
+
+    print("🎬 ファンクラブ動画情報取得スクリプト")
+
     extractor = FCVideoInfoExtractor()
     
     try:
@@ -559,7 +567,13 @@ def main():
         sys.exit(1)
         
     finally:
+        # WebDriverを閉じる
         extractor.close()
+        # スクリプトの終了時間を記録
+        end_time = time.time()
+        execution_time = end_time - start_time
+        print(f"\n⏱ 実行時間: {execution_time}")
+        print("🎉 処理が完了しました！")
 
 if __name__ == "__main__":
     main()

@@ -219,6 +219,13 @@ class NiconicoLiveVideoInfoExtractor:
             print(f"ファイル保存に失敗: {e}")
 
 def main():
+    """
+    メイン実行関数
+    """
+    # スクリプトの開始時間を記録
+    start_time = datetime.now()
+
+    print("🎬 ニコニコ動画ライブ情報取得スクリプト")
     
     extractor = NiconicoLiveVideoInfoExtractor()
     
@@ -244,6 +251,13 @@ def main():
     except Exception as e:
         print(f"エラーが発生しました: {e}")
         sys.exit(1)
+
+    finally:
+        # スクリプトの終了時間を記録
+        end_time = datetime.now()
+        execution_time = end_time - start_time
+        print(f"\n⏱ 実行時間: {execution_time}")
+        print("🎉 処理が完了しました！")
 
 if __name__ == "__main__":
     main()
