@@ -1,0 +1,95 @@
+name: 動画情報自動更新
+
+on:
+  schedule:
+    - cron: '0 15,21,3,9 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-video-info:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: リポジトリをチェックアウト
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+      
+      - name: Pythonセットアップ
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      
+      - name: Chrome/Chromiumのインストール
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y chromium-browser xvfb
+          chromium-browser --version
+          # 仮想ディスプレイを開始
+          export DISPLAY=:99
+          Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+      
+      - name: 依存関係のインストール
+        run: |
+          cd get_video_info_script
+          pip install -r requirements.txt
+      
+      - name: 動画情報取得スクリプト実行
+        run: |
+          cd get_video_info_script
+          chmod +x run.sh
+          # GitHub Actions環境変数を設定
+          export PYTHONUNBUFFERED=1
+          export GITHUB_ACTIONS=true
+          ./run.sh
+        env:
+          DISPLAY: ':99'
+          TZ: 'Asia/Tokyo'
+          # yt-dlp用の設定
+          YT_DLP_CACHE_DIR: '/tmp/yt-dlp-cache'
+      
+      - name: 変更検出と直接コミット
+        id: check_changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          
+          if git diff --quiet docs/; then
+            echo "変更なし"
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "変更あり"
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            
+            # 変更されたファイルの詳細を取得
+            changed_files=$(git diff --name-only docs/ | tr '\n' ' ')
+            echo "changed_files=$changed_files" >> $GITHUB_OUTPUT
+            
+            timestamp=$(date '+%Y-%m-%d %H:%M:%S JST')
+            
+            # 変更をステージング
+            git add docs/
+            
+            # 直接mainブランチにコミット
+            git commit -m "🎬 動画情報を自動更新 (${timestamp}) - ファイル: ${changed_files}"
+            
+            # mainブランチにプッシュ
+            git push origin main
+            
+            echo "✅ 動画情報の更新をmainブランチに直接コミットしました"
+          fi
+      
+      - name: 実行結果通知
+        if: always()
+        run: |
+          if [ "${{ steps.check_changes.outputs.has_changes }}" == "true" ]; then
+            echo "✅ 動画情報の更新が完了しました"
+            echo "更新されたファイル: ${{ steps.check_changes.outputs.changed_files }}"
+          else
+            echo "ℹ️ 動画情報に変更はありませんでした"
+          fi
