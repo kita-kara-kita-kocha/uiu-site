@@ -85,7 +85,7 @@ run_script() {
 }
 
 # 各スクリプトを順次実行
-run_script "update_video_info_youtube.py" "YouTube動画情報取得"
+run_script "get_video_info_youtube.py" "YouTube動画情報取得"
 run_script "get_video_info_niconico_live.py" "ニコニコ動画ライブ情報取得"
 run_script "get_video_info_secret.py" "ファンサイト投稿情報取得"
 run_script "get_video_info_fc.py" "ファンクラブ動画情報取得"
@@ -113,4 +113,56 @@ else
     echo "💡 失敗したスクリプトは個別に実行して詳細を確認してください。"
 fi
 
+echo "=================================================================================="
+
+# Git コミット&プッシュ機能
+echo "🔄 Git コミット&プッシュを実行します..."
+echo ""
+
+# プロジェクトルートディレクトリに移動
+cd ..
+
+# Git設定の確認
+if ! git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
+    echo "❌ Gitリポジトリではありません。コミット&プッシュをスキップします。"
+else
+    # 変更の確認
+    if git diff --quiet && git diff --cached --quiet; then
+        echo "📝 変更されたファイルがありません。コミット&プッシュをスキップします。"
+    else
+        echo "📝 変更されたファイルを確認しています..."
+        git status --porcelain
+        echo ""
+        
+        # JSON ファイルのみをステージングに追加
+        echo "📦 JSON ファイルをステージングに追加します..."
+        git add docs/youtube.json docs/niconico_l.json docs/secret_ac.json docs/fciu.json
+        
+        # コミット
+        commit_message="Update video info data - $(date '+%Y-%m-%d %H:%M:%S')"
+        echo "💾 コミットを実行します: $commit_message"
+        
+        if git commit -m "$commit_message"; then
+            echo "✅ コミットが完了しました"
+            
+            # プッシュ
+            echo "🚀 プッシュを実行します..."
+            if git push; then
+                echo "✅ プッシュが完了しました！"
+                echo "🌐 変更がリモートリポジトリに反映されました"
+            else
+                echo "❌ プッシュに失敗しました"
+                echo "💡 手動でプッシュを実行してください: git push"
+            fi
+        else
+            echo "❌ コミットに失敗しました"
+            echo "💡 手動でコミットしてください"
+        fi
+    fi
+fi
+
+echo ""
+echo "=================================================================================="
+echo "🎊 すべての処理が完了しました！"
+echo "📅 完了時刻: $(date)"
 echo "=================================================================================="
