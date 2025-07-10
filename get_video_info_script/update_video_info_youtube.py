@@ -7,7 +7,6 @@ docs/youtube.jsonファイルを更新します。
 
 import json
 import sys
-import time
 from datetime import datetime
 import yt_dlp
 from pathlib import Path
@@ -27,13 +26,9 @@ def get_ydl_options():
     return {
         'quiet': True,  # CLI出力を非表示
         'no_warnings': True, # 警告を非表示
-        'extract_flat': True,  # 詳細情報も取得
+        'extract_flat': False,  # 詳細情報も取得
         'ignoreerrors': True,  # エラーが発生しても続行
         'getcomments': True,  # コメントを取得
-        'sleep_interval': 5,  # リクエスト間隔を設定(秒)
-        'max_sleep_interval': 15,  # 最大スリープ間隔
-        'retries': 3,  # リトライ回数
-        'fragment_retries': 3,  # フラグメントリトライ回数
     }
 
 def extract_timestamps_from_comments(video_info):
@@ -65,42 +60,6 @@ def extract_timestamps_from_comments(video_info):
         timestamps.extend(rn_az_texts)
     
     return timestamps
-
-def get_detailed_video_info(video_id, ydl_opts):
-    """
-    個別動画の詳細情報を取得（リトライ機能付き）
-    
-    Args:
-        video_id (str): 動画ID
-        ydl_opts (dict): yt-dlpの設定
-    
-    Returns:
-        dict: 動画の詳細情報、失敗時はNone
-    """
-    # 個別動画用のyt-dlp設定
-    video_ydl_opts = ydl_opts.copy()
-    video_ydl_opts['extract_flat'] = False  # 詳細情報を取得
-    
-    video_info = None
-    for attempt in range(3):  # 3回まで再試行
-        try:
-            if attempt > 0:
-                print(f"    リトライ中... 試行 {attempt + 1}/3")
-
-            with yt_dlp.YoutubeDL(video_ydl_opts) as video_ydl:
-                video_info = video_ydl.extract_info(
-                    f"https://www.youtube.com/watch?v={video_id}", 
-                    download=False
-                )
-            break  # 成功したらループを抜ける
-        except Exception as retry_error:
-            print(f"    試行 {attempt + 1}/3 失敗: {str(retry_error)}")
-            if attempt < 2:  # 最後の試行でなければ待機
-                time.sleep(5)  # 5秒待機
-            else:
-                raise retry_error  # 最後の試行で失敗したら例外を上げる
-    
-    return video_info
 
 def create_video_data_from_detailed_info(video_info, video_id):
     """
@@ -165,13 +124,12 @@ def create_video_data_from_basic_info(entry):
         "addAdditionalClass": add_class,
     }
 
-def process_video_entry(entry, ydl_opts):
+def process_video_entry(entry):
     """
     個別の動画エントリを処理
     
     Args:
         entry (dict): 動画エントリ情報
-        ydl_opts (dict): yt-dlpの設定
     
     Returns:
         dict: 処理された動画データ
@@ -179,24 +137,17 @@ def process_video_entry(entry, ydl_opts):
     video_id = entry['id']
     
     try:
-        # 個別の動画情報を取得（エラーハンドリング強化）
-        print(f"動画ID {video_id} の詳細情報を取得中...")
-        
-        video_info = get_detailed_video_info(video_id, ydl_opts)
-
-        if not video_info:
-            raise Exception("動画情報の取得に失敗しました")
-
+        print(f"動画ID: {video_id} の詳細情報を取得")
         # 動画情報を整形
-        video_data = create_video_data_from_detailed_info(video_info, video_id)
+        video_data = create_video_data_from_detailed_info(entry, video_id)
         
         print(f"  → ✓ 取得完了: {video_data.get('title', 'タイトル不明')} (ID: {video_id})")
         return video_data
         
     except Exception as e:
-        # 個別動画の取得に失敗した場合は放送予定枠かメン限枠なので動画情報を整形する
+        # 個別動画の取得に失敗した場合は...
         print(f"  → ✗ 詳細取得失敗: {entry.get('title', 'タイトル不明')} (ID: {video_id}) - {str(e)}")
-        print(f"    → 基本情報のみで処理を続行します")
+        print(f"    → 基本情報のみで処理を続行")
         
         return create_video_data_from_basic_info(entry)
 
@@ -220,15 +171,19 @@ def get_video_info(channel_url):
             print(f"'{channel_url}/stream' から動画情報を取得中...")
             
             # チャンネルの動画一覧を取得
+            # 動画ごとの詳細情報、コメントも取得
             info = ydl.extract_info(channel_url, download=False)
+            print(f"チャンネル '{channel_url}' の動画情報を取得しました")
             
             if 'entries' in info:
                 print(f"発見された動画数: {len(info['entries'])}")
                 
                 for entry in info['entries']:
                     if entry and 'id' in entry:
-                        video_data = process_video_entry(entry, ydl_opts)
+                        video_data = process_video_entry(entry)
                         videos.append(video_data)
+                    else:
+                        print(f"  → ✗ 無効な動画エントリ: {entry.get('title', '不明')}")
 
             else:
                 print("チャンネルに動画が見つかりませんでした。")
@@ -304,7 +259,7 @@ def format_upload_date(date_str):
 
 def save_to_json(videos, output_file):
     """
-    動画情報をJSONファイルに保存
+    動画情報をJSONファイルに統合
     
     Args:
         videos (list): 動画情報のリスト
@@ -315,23 +270,26 @@ def save_to_json(videos, output_file):
     output_path = Path(output_file)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     
-    # JSON形式でデータを構築
-    json_data = {
-        "items": videos,
-        "last_updated": datetime.now().isoformat(),
-        "total_videos": len(videos)
-    }
-    
     try:
-        with open(output_file, 'w', encoding='utf-8') as f:
-            json.dump(json_data, f, ensure_ascii=False, indent=2)
-        
-        print(f"\n✅ 動画情報を {output_file} に保存しました")
-        print(f"📊 総動画数: {len(videos)}")
-        
-    except Exception as e:
-        print(f"❌ ファイル保存エラー: {str(e)}")
+        with open(output_file, 'r', encoding='utf-8') as f:
+            existing_data = json.load(f)
+            # 既存のデータとマージ
 
+            for raw_item in existing_data['items']:
+                # 既存の動画IDをキーにして、動画情報を更新
+                existing_video_id = raw_item['videoId']
+                for video in videos:
+                    if video and video['videoId'] == existing_video_id:
+                        raw_item.update(video)
+                        break
+            existing_data['last_updated'] = json_data['last_updated']
+            existing_data['total_videos'] = len(existing_data['items'])
+            json_data = existing_data
+    except FileNotFoundError:
+        # ファイルが存在しない場合はget_video_info_youtube.pyを実行するように指示
+        print("先にget_video_info_youtube.pyを実行して、正確な動画情報を取得してください。")
+        return
+        
 def check_dependencies():
     """
     必要な依存関係をチェック

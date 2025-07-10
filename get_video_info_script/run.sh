@@ -85,7 +85,7 @@ run_script() {
 }
 
 # 各スクリプトを順次実行
-run_script "get_video_info_youtube.py" "YouTube動画情報取得"
+run_script "update_video_info_youtube.py" "YouTube動画情報取得"
 run_script "get_video_info_niconico_live.py" "ニコニコ動画ライブ情報取得"
 run_script "get_video_info_secret.py" "ファンサイト投稿情報取得"
 run_script "get_video_info_fc.py" "ファンクラブ動画情報取得"
