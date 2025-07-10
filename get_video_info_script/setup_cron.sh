@@ -15,8 +15,8 @@ LOG_FILE="${LOG_DIR}/cron_execution.log"
 # ログディレクトリの作成
 mkdir -p "${LOG_DIR}"
 
-# Cronジョブの設定（6時間ごと: 0時、6時、12時、18時）
-CRON_JOB="0 */6 * * * cd \"${SCRIPT_DIR}\" && bash \"${RUN_SCRIPT_PATH}\" >> \"${LOG_FILE}\" 2>&1"
+# Cronジョブの設定（3時間ごと: 0時、3時、6時、9時、12時、15時、18時、21時）
+CRON_JOB="0 */3 * * * cd \"${SCRIPT_DIR}\" && bash \"${RUN_SCRIPT_PATH}\" >> \"${LOG_FILE}\" 2>&1"
 
 echo "📝 設定するCronジョブ:"
 echo "${CRON_JOB}"
@@ -41,9 +41,13 @@ if [ $? -eq 0 ]; then
     echo ""
     echo "🕐 実行スケジュール:"
     echo "   - 毎日 00:00 (午前0時)"
+    echo "   - 毎日 03:00 (午前3時)"
     echo "   - 毎日 06:00 (午前6時)"
-    echo "   - 毎日 12:00 (午後12時)"
+    echo "   - 毎日 09:00 (午前9時)"
+    echo "   - 毎日 12:00 (午後0時)"
+    echo "   - 毎日 15:00 (午後3時)"
     echo "   - 毎日 18:00 (午後6時)"
+    echo "   - 毎日 21:00 (午後9時)"
 else
     echo "❌ Cronジョブの設定に失敗しました"
     exit 1
