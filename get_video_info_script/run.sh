@@ -136,7 +136,7 @@ else
         
         # JSON ファイルのみをステージングに追加
         echo "📦 JSON ファイルをステージングに追加します..."
-        git add docs/youtube.json docs/niconico_l.json docs/secret_ac.json docs/fciu.json
+        git add docs/youtube.json docs/niconico_l.json docs/secret_ac.json docs/fciu.json get_video_info_script/logs/cron_execution.logs
         
         # コミット
         commit_message="Update video info data - $(date '+%Y-%m-%d %H:%M:%S')"
