@@ -17,6 +17,45 @@ import re
 CHANNEL_URL = "https://www.youtube.com/@uise_iu_asmr"
 OUTPUT_FILE = "../docs/youtube.json"
 
+class CustomLogger:
+    """カスタムロガークラス"""
+    def __init__(self, verbose=False):
+        self.messages = []
+        self.verbose = verbose
+        
+    def debug(self, message):
+        self.messages.append({'logType': 'DEBUG', 'message': message})
+        if self.verbose:
+            print(f"[DEBUG] {message}")
+        
+    def warning(self, message):
+        self.messages.append({'logType': 'WARNING', 'message': message})
+        if self.verbose:
+            print(f"[WARNING] {message}")
+        
+    def error(self, message):
+        self.messages.append({'logType': 'ERROR', 'message': message})
+        if self.verbose:
+            print(f"[ERROR] {message}")
+    
+    def get_messages(self):
+        return self.messages
+    
+    def get_latest_error(self):
+        """
+        最新のエラーメッセージを取得
+        
+        Returns:
+            str: 最新のエラーメッセージ、存在しない場合はNone
+        """
+        for message in reversed(self.messages):
+            if message['logType'] == 'ERROR':
+                return message['message']
+        return None
+    
+    def clear_messages(self):
+        self.messages = []
+
 def get_ydl_options():
     """
     yt-dlpの設定を取得
@@ -24,12 +63,16 @@ def get_ydl_options():
     Returns:
         dict: yt-dlpの設定辞書
     """
+    # カスタムロガーのインスタンスを作成（CLI出力オフ）
+    custom_logger = CustomLogger(verbose=False)
     return {
         'quiet': True,  # CLI出力を非表示
         'no_warnings': True, # 警告を非表示
         'extract_flat': True,  # 詳細情報も取得
         'ignoreerrors': True,  # エラーが発生しても続行
         'getcomments': True,  # コメントを取得
+        # ロガーを使用する
+        'logger': custom_logger,  # カスタムロガーを設定
         'sleep_interval': 5,  # リクエスト間隔を設定(秒)
         'max_sleep_interval': 15,  # 最大スリープ間隔
         'retries': 3,  # リトライ回数
@@ -94,23 +137,20 @@ def get_detailed_video_info(video_id, ydl_opts):
                 )
             break  # 成功したらループを抜ける
         except Exception as retry_error:
-            # エラー文にmembers-onlyが部分一致する場合はメンバー限定動画
-            if 'members-only' in str(retry_error):
-                print(f"    メンバー限定動画: {video_id} - 詳細情報の取得をスキップします")
-                return {
-                    "addAdditionalClass": ["subscriber_only"]
-                }
-            # エラー文に"This live event will"が含まれている場合は未放送枠
-            if "This live event will" in str(retry_error):
-                print(f"    未放送枠: {video_id} - 詳細情報の取得をスキップします")
-                return {
-                    "addAdditionalClass": ["schedule"]
-                }
             print(f"    試行 {attempt + 1}/3 失敗: {str(retry_error)}")
             if attempt < 2:  # 最後の試行でなければ待機
                 time.sleep(5)  # 5秒待機
             else:
                 raise retry_error  # 最後の試行で失敗したら例外を上げる
+    
+    if video_info is None:
+        # ロガーからの情報を取得
+        logger = video_ydl_opts['logger']
+        # 最新のエラーログメッセージを取得
+        latest_error = logger.get_latest_error()
+        if latest_error:
+            logger.clear_messages()  # エラーメッセージをクリア
+            raise Exception(latest_error)  # エラーメッセージを例外として上げる
     
     return video_info
 
@@ -196,24 +236,23 @@ def process_video_entry(entry, ydl_opts):
         
         video_info = get_detailed_video_info(video_id, ydl_opts)
 
-        if not video_info:
-            raise Exception("動画情報の取得に失敗しました")
-        if video_info.get('addAdditionalClass') == 'subscriber_only':
-            print(f"  → ✗ メンバー限定動画: ID: {video_id} - 詳細情報の取得をスキップします")
-            return create_video_data_from_basic_info(entry)
-        if video_info.get('addAdditionalClass') == 'schedule':
-            print(f"  → ✗ 未放送枠: ID: {video_id} - 詳細情報の取得をスキップします")
-            return create_video_data_from_basic_info(entry)
-
         # 動画情報を整形
         video_data = create_video_data_from_detailed_info(video_info, video_id)
         
         print(f"  → ✓ 取得完了: {video_data.get('title', 'タイトル不明')} (ID: {video_id})")
         return video_data
         
-    except Exception as e:
+    except Exception as e: 
         # 個別動画の取得に失敗した場合は放送予定枠かメン限枠なので動画情報を整形する
-        print(f"  → ✗ 詳細情報取得失敗: ID: {video_id} - {str(e)}")
+        error_message = str(e)
+        
+        # エラーメッセージから特定の状況を判定
+        if 'members-only' in error_message:
+            print(f"  → ✓ メンバー限定動画: ID: {video_id} - 詳細情報の取得をスキップします")
+        elif "This live event will" in error_message:
+            print(f"  → ✓ 未放送枠: ID: {video_id} - 詳細情報の取得をスキップします")
+        else:
+            print(f"  → ✗ 詳細情報取得失敗: ID: {video_id} - {error_message}")
         print(f"    → 基本情報のみで処理を続行します")
         
         return create_video_data_from_basic_info(entry)
