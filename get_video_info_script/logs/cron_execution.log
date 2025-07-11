@@ -1,5 +1,5 @@
 🎬 動画情報取得スクリプトを開始します...
-📅 実行開始時刻: Thu Jul 10 23:35:14 JST 2025
+📅 実行開始時刻: Fri Jul 11 10:05:01 JST 2025
 📦 仮想環境をアクティベートします...
 🔍 依存関係をチェックしています...
 ✅ yt_dlp インストール済み
@@ -15,18 +15,102 @@
 ==================================================================================
 📺 [1/4] YouTube動画情報取得
 🎯 実行スクリプト: get_video_info_youtube.py
-⏰ 開始時刻: Thu Jul 10 23:35:14 JST 2025
+⏰ 開始時刻: Fri Jul 11 10:05:01 JST 2025
 ==================================================================================
-ERROR: [youtube] Rw6gMvJh1J8: This live event will begin in 54 minutes.
+ERROR: [youtube] j3OsMve5rnY: This live event will begin in 12 hours.
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [youtube] 2XVJLuA0gFg: Requested format is not available. Use --list-formats for a list of available formats
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [youtube] bjo0GUqriVI: Requested format is not available. Use --list-formats for a list of available formats
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
 ERROR: [youtube] M5TcDyLs7dA: Join this channel to get access to members-only content like this video, and other exclusive perks.
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
 🎬 YouTube動画情報取得スクリプト
 ✅ yt-dlp バージョン: 2025.06.30
 🔍 チャンネル 'https://www.youtube.com/@uise_iu_asmr' から動画情報を取得します...
 'https://www.youtube.com/@uise_iu_asmr/stream' から動画情報を取得中...
-発見された動画数: 150
-動画ID Rw6gMvJh1J8 の詳細情報を取得中...
-  → ✗ 詳細取得失敗: ID: Rw6gMvJh1J8 - 動画情報の取得に失敗しました
+発見された動画数: 151
+動画ID j3OsMve5rnY の詳細情報を取得中...
+  → ✗ 詳細取得失敗: ID: j3OsMve5rnY - 動画情報の取得に失敗しました
     → 基本情報のみで処理を続行します
+動画ID Rw6gMvJh1J8 の詳細情報を取得中...
+  → ✓ 取得完了: ❤︎ ASMR KU100┊あーむ..っ♡៸៸おくちでもぎゅっと耳はむ♡脳がとろけて骨抜きに..🩷濃厚な耳責めとろあま睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: Rw6gMvJh1J8)
 動画ID 0n8X9fQBrs0 の詳細情報を取得中...
   → ✓ 取得完了: ❤︎  #憂世いうbirthday┊ぎゅっぎゅしながらのんびりお礼♡これからもあなたのそばにいさせてね♡ (ID: 0n8X9fQBrs0)
 動画ID XjRoJSU0Nlg の詳細情報を取得中...
@@ -38,11 +122,13 @@ ERROR: [youtube] M5TcDyLs7dA: Join this channel to get access to members-only co
 動画ID FWrQmYQLQVY の詳細情報を取得中...
   → ✓ 取得完了: ✦ #3┊メタルギアソリッド2┊見つからないようにこっそり..変装からの潜入捜査だあ🐈📦ステルス名作MGS2完全初見で潜入するっ🐾 (ID: FWrQmYQLQVY)
 動画ID 2XVJLuA0gFg の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊よわよわぁ..っ♡ヒミツの甘やかしタイム♡甘ったるい夜にしよ？🩷濃密な耳責めとろあま睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: 2XVJLuA0gFg)
+  → ✗ 詳細取得失敗: ID: 2XVJLuA0gFg - 動画情報の取得に失敗しました
+    → 基本情報のみで処理を続行します
 動画ID ESsE39PV0Tc の詳細情報を取得中...
   → ✓ 取得完了: ✦ #2┊メタルギアソリッド2┊爆弾処理班いきます..！！！🐈📦ステルス名作MGS2完全初見で潜入するっ🐾 (ID: ESsE39PV0Tc)
 動画ID bjo0GUqriVI の詳細情報を取得中...
-  → ✓ 取得完了: ✦ #1┊メタルギアソリッド2┊ダンボール箱を上手く使いこなすことが任務の要..🐈📦ステルス名作MGS2完全初見で潜入するっ🐾 (ID: bjo0GUqriVI)
+  → ✗ 詳細取得失敗: ID: bjo0GUqriVI - 動画情報の取得に失敗しました
+    → 基本情報のみで処理を続行します
 動画ID KkUXmzlNB94 の詳細情報を取得中...
   → ✓ 取得完了: ❤︎ ASMR KU100┊びくびく..っ♡負け癖治りませんね♡甘サド×からかい上手な敬語彼女🩷濃密な耳責めとろあま睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: KkUXmzlNB94)
 動画ID zbntJpr-em0 の詳細情報を取得中...
@@ -87,10 +173,41 @@ ERROR: [youtube] M5TcDyLs7dA: Join this channel to get access to members-only co
 動画ID fveJ1wRl--I の詳細情報を取得中...
   → ✓ 取得完了: ✦  港詭實錄 ParanormalHK┊過去一怖そう...うぅ… (ID: fveJ1wRl--I)
 動画ID 9-ERpCap2F4 の詳細情報を取得中...
+ERROR: [youtube] 6MJlqK0u5lg: Join this channel to get access to members-only content like this video, and other exclusive perks.
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [download] Got error: HTTP Error 403: Forbidden
+ERROR: fragment 1 not found, unable to continue
+ERROR: [youtube] ygvaFBVPzmE: Requested format is not available. Use --list-formats for a list of available formats
+ERROR: [youtube] bq4EJpII7Mg: Join this channel to get access to members-only content like this video, and other exclusive perks.
   → ✓ 取得完了: ❤︎ ASMR KU100┊よく我慢できたね..♡しっとり包まれてぽかぽか🩷今日も甘々完全敗北しようね🖤濃密な耳責め睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: 9-ERpCap2F4)
 動画ID RBfuNw3J9Jg の詳細情報を取得中...
-ERROR: [youtube] 6MJlqK0u5lg: Join this channel to get access to members-only content like this video, and other exclusive perks.
-ERROR: [youtube] bq4EJpII7Mg: Join this channel to get access to members-only content like this video, and other exclusive perks.
   → ✓ 取得完了: ✦ Minecraft ~7日目~┊ゆったり深夜のはーどこあ🩷ブレイズロッド集めからのエンドラへ…最終回!?🌳癒される波の音🧊💤 (ID: RBfuNw3J9Jg)
 動画ID ke4BBTdgWNY の詳細情報を取得中...
   → ✓ 取得完了: ✦ chatting┊2周年のお礼とのんびりお話ししたいな🩷.∘ (ID: ke4BBTdgWNY)
@@ -138,7 +255,8 @@ ERROR: [youtube] bq4EJpII7Mg: Join this channel to get access to members-only co
 動画ID IAibU03BjM4 の詳細情報を取得中...
   → ✓ 取得完了: ❤︎ ASMR KU100┊むぎゅ..♡むにっ..♡眠る前にすきが溢れて幸せいっぱい沼らせる💗鼓膜まで濃密な耳責め睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: IAibU03BjM4)
 動画ID ygvaFBVPzmE の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ Happy Valentine🍫┊甘々彼女はいかがですか..？♡ (ID: ygvaFBVPzmE)
+  → ✗ 詳細取得失敗: ID: ygvaFBVPzmE - 動画情報の取得に失敗しました
+    → 基本情報のみで処理を続行します
 動画ID cNct2iLPxUM の詳細情報を取得中...
   → ✓ 取得完了: ❤︎ ASMR KU100┊チョコよりもあま～い誘惑耐えられる？💗ぽかぽか吐息で温める♡鼓膜まで幸せいっぱい睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: cNct2iLPxUM)
 動画ID QU9TSzdS1rE の詳細情報を取得中...
@@ -155,10 +273,10 @@ ERROR: [youtube] bq4EJpII7Mg: Join this channel to get access to members-only co
 動画ID GEBuU4TiTXk の詳細情報を取得中...
   → ✓ 取得完了: ✦ ＃5┊ドラクエ3リメイク┊完全初見🗡️久しぶり！オーブ集めの旅だああああ！！！₊⁺ ⚠ネタバレあり (ID: GEBuU4TiTXk)
 動画ID Wu8a12zzaG0 の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊もうだめ..♡あなたの全部ちょーだい💗熱い吐息で精一杯搾り取り🤍愛情たっぷり可愛がられる睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: Wu8a12zzaG0)
-動画ID HWxqW1mx1VA の詳細情報を取得中...
 ERROR: [youtube] pa0bRTf5DCI: Join this channel to get access to members-only content like this video, and other exclusive perks.
 ERROR: [youtube] oyCTvp9HYo4: Join this channel to get access to members-only content like this video, and other exclusive perks.
+  → ✓ 取得完了: ❤︎ ASMR KU100┊もうだめ..♡あなたの全部ちょーだい💗熱い吐息で精一杯搾り取り🤍愛情たっぷり可愛がられる睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: Wu8a12zzaG0)
+動画ID HWxqW1mx1VA の詳細情報を取得中...
   → ✓ 取得完了: ✦  呪われたデジカメ┊霊を写す不思議なカメラを手に入れたみたいです..👻📸 (ID: HWxqW1mx1VA)
 動画ID fkmGii6eKts の詳細情報を取得中...
   → ✓ 取得完了: ❤︎ ASMR KU100┊「すき♡すき..♡♡」耳元で超濃厚すき攻め♡今年初のASMR🤍愛情たっぷり可愛がられる睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: fkmGii6eKts)
@@ -223,11 +341,11 @@ ERROR: [youtube] oyCTvp9HYo4: Join this channel to get access to members-only co
 動画ID rAKf493SYL8 の詳細情報を取得中...
   → ✓ 取得完了: ✦ ASMR × Gaming┊島の評価あげたり、のんびり釣りしたり。 深夜の落ち着く囁きとあつ森🌳 [ #あつ森  / #あつまれどうぶつの森  / #憂世いう ] (ID: rAKf493SYL8)
 動画ID 8bqiioHJaR0 の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊病み上がりふにゃふにゃん...♡耳元でゆったり囁き＆熱々吐息…♡ぎゅっと安心⯎なでなでとんとん。 [ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: 8bqiioHJaR0)
-動画ID bgpdRhASVIk の詳細情報を取得中...
 ERROR: [youtube] UiMUibq22Tg: Join this channel to get access to members-only content like this video, and other exclusive perks.
 ERROR: [youtube] zPtPXhWM9aI: Join this channel to get access to members-only content like this video, and other exclusive perks.
 ERROR: [youtube] 5k7hz3Yq0sM: Join this channel to get access to members-only content like this video, and other exclusive perks.
+  → ✓ 取得完了: ❤︎ ASMR KU100┊病み上がりふにゃふにゃん...♡耳元でゆったり囁き＆熱々吐息…♡ぎゅっと安心⯎なでなでとんとん。 [ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: 8bqiioHJaR0)
+動画ID bgpdRhASVIk の詳細情報を取得中...
   → ✓ 取得完了: ❤︎ ASMR KU100┊ん…♡おいで♡吐息で感じる甘々攻め…♡体温感じながら深くまでたっぷり可愛がられる睡眠導入🤍 [ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: bgpdRhASVIk)
 動画ID KZp3eL3OSsI の詳細情報を取得中...
   → ✓ 取得完了: ✦＃11┊FF10┊飛空艇から✦ いよいよ最終章。シンをたおします...！⚠ネタバレあり  [ #憂世いう /  #ファイナルファンタジー10 / #ff10 ] (ID: KZp3eL3OSsI)
@@ -291,9 +409,9 @@ ERROR: [youtube] 5k7hz3Yq0sM: Join this channel to get access to members-only co
 動画ID B-Mre1e2Kd8 の詳細情報を取得中...
   → ✓ 取得完了: ✦ The Game Of sisyphus┊タマ(岩)転がしちゃおっかな～？🤍…転がされちゃうかも。 [ 憂世いう ,  #岩おじ , #thegameofsisyphus  ] (ID: B-Mre1e2Kd8)
 動画ID URhMEKUaEBE の詳細情報を取得中...
+ERROR: [youtube] FZOBSoaCAKE: Join this channel to get access to members-only content like this video, and other exclusive perks.
   → ✓ 取得完了: ❤︎ ASMR KU100┊ぬぷっと奥まで…🤍耳奥ゾクゾクご奉仕♡極上睡眠導入♡ [ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: URhMEKUaEBE)
 動画ID 9ZjaB6fu9Uc の詳細情報を取得中...
-ERROR: [youtube] FZOBSoaCAKE: Join this channel to get access to members-only content like this video, and other exclusive perks.
   → ✓ 取得完了: ✦＃1┊FF10┊不朽の名作やります 。「最後かもしれないだろ。だから 全部話しておきたいんだ」⚠ネタバレあり [ 憂世いう ,  #ファイナルファンタジー10 , #ff10 ] (ID: 9ZjaB6fu9Uc)
 動画ID FZOBSoaCAKE の詳細情報を取得中...
   → ✗ 詳細取得失敗: ID: FZOBSoaCAKE - 動画情報の取得に失敗しました
@@ -344,21 +462,34 @@ ERROR: [youtube] FZOBSoaCAKE: Join this channel to get access to members-only co
   → ✓ 取得完了: ❤︎ ASMR KU100┊ASMR界期待の新人です♡初配信(？) 甘々吐息♡体温感じて眠れる濃厚ご奉仕♡[ 耳はむ 吐息 ear cleaning Mouthsound] (ID: 8w4APZhLJZ4)
 
 ✅ 動画情報を ../docs/youtube.json に保存しました
-📊 総動画数: 150
+📊 総動画数: 151
 
 📝 取得した動画の例:
 
-1. ❤︎ ASMR KU100┊あーむ..っ♡៸៸おくちでもぎゅっと耳はむ♡脳がとろけて骨抜きに..🩷濃厚な耳責めとろあま睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ]
-   ID: Rw6gMvJh1J8
-   説明: ⠀⠀
-　チャンネル登録・高評価おしてくれると
-　とっても励みになります ꔫ .∘
+1. ✦ #4┊メタルギアソリッド2┊ついに最終回..!?🐈📦エマを救出する！ステルス名作MGS2完全初見で潜入するっ🐾
+   ID: j3OsMve5rnY
+   説明: ⠀⠀⠀
+　ෆ 2025年期間限定誕生日グッズ発売 ꔫ ෆ
 
-　イヤフォンorヘッドフォンできいてね🎧
-　 ꔫ﹕使用機材......
+　あなたと夏のデートグッズがたくさん🐬🩵
+　▮ https://tosta.jp/shops/uise_iu
+
+　チャンネル登録......
    クラス: ['schedule']
 
-2. ❤︎  #憂世いうbirthday┊ぎゅっぎゅしながらのんびりお礼♡これからもあなたのそばにいさせてね♡
+2. ❤︎ ASMR KU100┊あーむ..っ♡៸៸おくちでもぎゅっと耳はむ♡脳がとろけて骨抜きに..🩷濃厚な耳責めとろあま睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ]
+   ID: Rw6gMvJh1J8
+   説明: ⠀⠀
+　ෆ 2025年期間限定誕生日グッズ発売 ꔫ ෆ
+
+　あなたと夏のデートグッズがたくさん🐬🩵
+　▮ https://tosta.jp/shops/uise_iu
+
+　チャンネル登録・高評価おして...
+   メタデータ: 再生時間: 1:59:22, 視聴回数: 29.7K回, 投稿日: 2025/07/10
+   クラス: ['public']
+
+3. ❤︎  #憂世いうbirthday┊ぎゅっぎゅしながらのんびりお礼♡これからもあなたのそばにいさせてね♡
    ID: 0n8X9fQBrs0
    説明: ⠀⠀
 　ෆ 2025年期間限定誕生日グッズ発売 ꔫ ෆ
@@ -367,33 +498,21 @@ ERROR: [youtube] FZOBSoaCAKE: Join this channel to get access to members-only co
 　▮ https://tosta.jp/shops/uise_iu
 
 　チャンネル登録・高評価おして...
-   メタデータ: 再生時間: 2:46:22, 視聴回数: 39.7K回, 投稿日: 2025/07/07
+   メタデータ: 再生時間: 2:46:22, 視聴回数: 40.4K回, 投稿日: 2025/07/07
    クラス: ['public']
 
-3. ❤︎ #憂世いうbirthday┊1年に1度の特別な日🎂🩷カウントダウンでいっしょにイこ？♡世界一可愛いお披露目みてみてみて♡
-   ID: XjRoJSU0Nlg
-   説明: ⠀⠀
-　ෆ 2025年期間限定誕生日グッズ発売 ꔫ ෆ
+... 他 148 個の動画
 
-　あなたと夏のデートグッズがたくさん🐬🩵
-　▮https://tosta.jp/shops/uise_iu
-
-　チャンネル登録・高評価おしてく...
-   メタデータ: 再生時間: 1:56:27, 視聴回数: 28.2K回, 投稿日: 2025/07/06
-   クラス: ['public']
-
-... 他 147 個の動画
-
-⏱ 実行時間: 0:10:30.656279
+⏱ 実行時間: 0:07:39.616740
 
 🎉 処理が完了しました！
 ✅ YouTube動画情報取得 - 完了
-📊 完了時刻: Thu Jul 10 23:45:45 JST 2025
+📊 完了時刻: Fri Jul 11 10:12:41 JST 2025
 
 ==================================================================================
 📺 [2/4] ニコニコ動画ライブ情報取得
 🎯 実行スクリプト: get_video_info_niconico_live.py
-⏰ 開始時刻: Thu Jul 10 23:45:45 JST 2025
+⏰ 開始時刻: Fri Jul 11 10:12:41 JST 2025
 ==================================================================================
 /home/kttpc/uiu-site/get_video_info_script/get_video_info_niconico_live.py:164: DeprecationWarning: The 'text' argument to find()-type methods is deprecated. Use 'string' instead.
   timeshift_limit_element_ = ts_soup.find_all('dt', text=re.compile(r'タイムシフト視聴期限：'))
@@ -469,15 +588,15 @@ ERROR: [youtube] FZOBSoaCAKE: Join this channel to get access to members-only co
 サムネイル: https://listing-thumbnail.live.nicovideo.jp?image=prod-lv347701873/thumbnail_1746559796674.jpg&w=352&h=198&v=1746559796674
 放送開始: N/A
 
-⏱ 実行時間: 0:00:14.301977
+⏱ 実行時間: 0:00:15.836071
 🎉 処理が完了しました！
 ✅ ニコニコ動画ライブ情報取得 - 完了
-📊 完了時刻: Thu Jul 10 23:45:59 JST 2025
+📊 完了時刻: Fri Jul 11 10:12:57 JST 2025
 
 ==================================================================================
 📺 [3/4] ファンサイト投稿情報取得
 🎯 実行スクリプト: get_video_info_secret.py
-⏰ 開始時刻: Thu Jul 10 23:45:59 JST 2025
+⏰ 開始時刻: Fri Jul 11 10:12:57 JST 2025
 ==================================================================================
 🎬 ファンサイト動画情報取得スクリプト
 ページを読み込み中: https://candfans.jp/iu_nyaa
@@ -533,15 +652,15 @@ ERROR: [youtube] FZOBSoaCAKE: Join this channel to get access to members-only co
 サムネイル: https://video.candfans.jp/user/1189871/post/888265/secret.jpeg
 メタデータ: ['05:45']
 
-⏱ 実行時間: 0:00:44.758180
+⏱ 実行時間: 0:00:42.338154
 🎉 処理が完了しました！
 ✅ ファンサイト投稿情報取得 - 完了
-📊 完了時刻: Thu Jul 10 23:46:44 JST 2025
+📊 完了時刻: Fri Jul 11 10:13:40 JST 2025
 
 ==================================================================================
 📺 [4/4] ファンクラブ動画情報取得
 🎯 実行スクリプト: get_video_info_fc.py
-⏰ 開始時刻: Thu Jul 10 23:46:44 JST 2025
+⏰ 開始時刻: Fri Jul 11 10:13:40 JST 2025
 ==================================================================================
 🎬 ファンクラブ動画情報取得スクリプト
 ページを読み込み中: https://uise-official.com/lives
@@ -657,7 +776,7 @@ ERROR: [youtube] FZOBSoaCAKE: Join this channel to get access to members-only co
 タイトル: ♥実写♥脱いだらすごい..♡だる着でゆる～っとおしゃべり💗
 動画URL: https://uise-official.com/live/smQ59Eeyfx3JoMWeRuDAFXHg
 サムネイル: https://cdn.uise-official.com/public_html/contents/video_pages/57528/thumbnail_path?time=1752058463&width=282
-メタデータ: ['配信日時: 22時間前', '再生時間: 1:33:48', '視聴条件: 一部無料']
+メタデータ: ['配信日時: 1日前', '再生時間: 1:33:48', '視聴条件: 一部無料']
 
 --- 動画 2 ---
 タイトル: ♥お風呂♥はじめてのスマホからのもちもち♡お風呂はいる♡てすとつきあって～！♡
@@ -671,14 +790,14 @@ ERROR: [youtube] FZOBSoaCAKE: Join this channel to get access to members-only co
 サムネイル: https://cdn.uise-official.com/public_html/contents/video_pages/56380/thumbnail_path?time=1750526279&width=282
 メタデータ: ['配信日時: 2025/06/23', '再生時間: 1:42:19', '視聴条件: 一部無料']
 
-⏱ 実行時間: 98.37242794036865
+⏱ 実行時間: 90.36545395851135
 🎉 処理が完了しました！
 ✅ ファンクラブ動画情報取得 - 完了
-📊 完了時刻: Thu Jul 10 23:48:23 JST 2025
+📊 完了時刻: Fri Jul 11 10:15:10 JST 2025
 
 ==================================================================================
 🎉 すべてのスクリプトの実行が完了しました！
-📅 実行完了時刻: Thu Jul 10 23:48:23 JST 2025
+📅 実行完了時刻: Fri Jul 11 10:15:10 JST 2025
 📊 実行結果: 4/4 スクリプトが成功
 ✨ すべてのスクリプトが正常に完了しました！
 
@@ -693,730 +812,26 @@ ERROR: [youtube] FZOBSoaCAKE: Join this channel to get access to members-only co
 📝 変更されたファイルを確認しています...
  M docs/fciu.json
  M docs/youtube.json
-?? get_video_info_script/logs/
+ M get_video_info_script/logs/cron_execution.log
 
 📦 JSON ファイルをステージングに追加します...
-💾 コミットを実行します: Update video info data - 2025-07-10 23:48:23
-[main 943964b] Update video info data - 2025-07-10 23:48:23
- 2 files changed, 5 insertions(+), 5 deletions(-)
-✅ コミットが完了しました
-🚀 プッシュを実行します...
-To https://github.com/kita-kara-kita-kocha/uiu-site.git
-   52110a6..943964b  main -> main
-✅ プッシュが完了しました！
-🌐 変更がリモートリポジトリに反映されました
+fatal: pathspec 'get_video_info_script/logs/cron_execution.logs' did not match any files
+💾 コミットを実行します: Update video info data - 2025-07-11 10:15:10
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   docs/fciu.json
+	modified:   docs/youtube.json
+	modified:   get_video_info_script/logs/cron_execution.log
+
+no changes added to commit (use "git add" and/or "git commit -a")
+❌ コミットに失敗しました
+💡 手動でコミットしてください
 
 ==================================================================================
 🎊 すべての処理が完了しました！
-📅 完了時刻: Thu Jul 10 23:48:24 JST 2025
-==================================================================================
-🎬 動画情報取得スクリプトを開始します...
-📅 実行開始時刻: Fri Jul 11 00:00:06 JST 2025
-📦 仮想環境をアクティベートします...
-🔍 依存関係をチェックしています...
-✅ yt_dlp インストール済み
-✅ requests インストール済み
-✅ bs4 インストール済み
-✅ lxml インストール済み
-✅ selenium インストール済み
-✅ webdriver_manager インストール済み
-
-🚀 すべてのスクリプトを順次実行します...
-⏱️  予想実行時間: 約20-45分
-
-==================================================================================
-📺 [1/4] YouTube動画情報取得
-🎯 実行スクリプト: get_video_info_youtube.py
-⏰ 開始時刻: Fri Jul 11 00:00:07 JST 2025
-==================================================================================
-ERROR: [youtube] Rw6gMvJh1J8: This live event will begin in 29 minutes.
-ERROR: [youtube] M5TcDyLs7dA: Join this channel to get access to members-only content like this video, and other exclusive perks.
-🎬 YouTube動画情報取得スクリプト
-✅ yt-dlp バージョン: 2025.06.30
-🔍 チャンネル 'https://www.youtube.com/@uise_iu_asmr' から動画情報を取得します...
-'https://www.youtube.com/@uise_iu_asmr/stream' から動画情報を取得中...
-発見された動画数: 150
-動画ID Rw6gMvJh1J8 の詳細情報を取得中...
-  → ✗ 詳細取得失敗: ID: Rw6gMvJh1J8 - 動画情報の取得に失敗しました
-    → 基本情報のみで処理を続行します
-動画ID 0n8X9fQBrs0 の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎  #憂世いうbirthday┊ぎゅっぎゅしながらのんびりお礼♡これからもあなたのそばにいさせてね♡ (ID: 0n8X9fQBrs0)
-動画ID XjRoJSU0Nlg の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ #憂世いうbirthday┊1年に1度の特別な日🎂🩷カウントダウンでいっしょにイこ？♡世界一可愛いお披露目みてみてみて♡ (ID: XjRoJSU0Nlg)
-動画ID f5Bh65rjjXU の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊声我慢..♡とろとろ病みつき♡柔らかいトコロを優しく包み込む..🩷濃密な耳責めとろあま睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: f5Bh65rjjXU)
-動画ID OoN6V3rY3rM の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊ゾクゾク..っ♡とまんない♡たまんない♡焦らされて逃げられない..🩷濃密な耳責めとろあま睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: OoN6V3rY3rM)
-動画ID FWrQmYQLQVY の詳細情報を取得中...
-  → ✓ 取得完了: ✦ #3┊メタルギアソリッド2┊見つからないようにこっそり..変装からの潜入捜査だあ🐈📦ステルス名作MGS2完全初見で潜入するっ🐾 (ID: FWrQmYQLQVY)
-動画ID 2XVJLuA0gFg の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊よわよわぁ..っ♡ヒミツの甘やかしタイム♡甘ったるい夜にしよ？🩷濃密な耳責めとろあま睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: 2XVJLuA0gFg)
-動画ID ESsE39PV0Tc の詳細情報を取得中...
-  → ✓ 取得完了: ✦ #2┊メタルギアソリッド2┊爆弾処理班いきます..！！！🐈📦ステルス名作MGS2完全初見で潜入するっ🐾 (ID: ESsE39PV0Tc)
-動画ID bjo0GUqriVI の詳細情報を取得中...
-  → ✓ 取得完了: ✦ #1┊メタルギアソリッド2┊ダンボール箱を上手く使いこなすことが任務の要..🐈📦ステルス名作MGS2完全初見で潜入するっ🐾 (ID: bjo0GUqriVI)
-動画ID KkUXmzlNB94 の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊びくびく..っ♡負け癖治りませんね♡甘サド×からかい上手な敬語彼女🩷濃密な耳責めとろあま睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: KkUXmzlNB94)
-動画ID zbntJpr-em0 の詳細情報を取得中...
-  → ✓ 取得完了: ✦  青鬼 ブルーベリー温泉の怪異┊話題の完全新作✦ ぶ、ブルーベリー温泉･･.ᐣ🫐♨ (ID: zbntJpr-em0)
-動画ID 3OjNEQR7WVw の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊ぐっぽり..っ♡本気の耳はむ♡ぽかぽかあちゅあちゅになろ..？🩷濃密な耳責めとろあま睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: 3OjNEQR7WVw)
-動画ID M5TcDyLs7dA の詳細情報を取得中...
-  → ✗ 詳細取得失敗: ID: M5TcDyLs7dA - 動画情報の取得に失敗しました
-    → 基本情報のみで処理を続行します
-動画ID Xw4B0obGMBM の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊腰ビク..っ♡献身的な専属あまあまナースに一生お世話されちゃえ..🩷濃密な耳責めとろあま睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: Xw4B0obGMBM)
-動画ID tn-P8mJx048 の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR new model┊ あなた専属の極上ご奉仕❤︎ ずーっと優しくお世話されて...♡ (ID: tn-P8mJx048)
-動画ID lD1D6uI6oOk の詳細情報を取得中...
-  → ✓ 取得完了: ✦ #3┊メタルギアソリッド┊待たせたな！最終回！レイブン戦後から👊ステルス名作MGS完全初見で潜入するっ🐾 (ID: lD1D6uI6oOk)
-動画ID -1a9cu_UGMg の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊はぁ..っ♡奥までしっとりあまい吐息流し込まれてへろへろになっちゃえ🩷濃密な耳責めとろあま睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: -1a9cu_UGMg)
-動画ID 3xXlbUpkKNc の詳細情報を取得中...
-  → ✓ 取得完了: ✦ #2┊メタルギアソリッド┊待たせたな！サイコマンティス戦後から👊ステルス名作MGS完全初見で潜入するっ🐾 (ID: 3xXlbUpkKNc)
-動画ID 3Cfrt-H2xX8 の詳細情報を取得中...
-  → ✓ 取得完了: ✦ #1┊メタルギアソリッド┊待たせたな！ステルス名作MGS完全初見で潜入するっ🐾 (ID: 3Cfrt-H2xX8)
-動画ID EeLjTQLdJY8 の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊さわさわ..っ♡包容力がすっごい♡抱きしめられて腰ピク耳イジり🩷濃密な耳責めとろあま睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: EeLjTQLdJY8)
-動画ID jvEge7ELF9s の詳細情報を取得中...
-  → ✓ 取得完了: ✦ Among Us 3D┊臨場感やっばぁ...🔪リアルなあもあすで精一杯遊んでく！🩷 (ID: jvEge7ELF9s)
-動画ID ac1v_7i8Cgs の詳細情報を取得中...
-  → ✓ 取得完了: ✦ Binaural × Minecraft┊寝落ち推奨🩷癒されるマイクラの音と波音と耳元囁き🌳建築物見たり、素材集めたり、いう鯖ゆったり☁ (ID: ac1v_7i8Cgs)
-動画ID enn9zYyH-10 の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊よわよわで可愛い..♡なでなですりすり..♡愛情いっぱい擦り付け🩷濃密な耳責めとろあま睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: enn9zYyH-10)
-動画ID u3EOWe7kJD0 の詳細情報を取得中...
-  → ✓ 取得完了: ✦  Slither.io┊酔っぱらっておいしくぱくぱくごっくんおっきくなぁれ💗 (ID: u3EOWe7kJD0)
-動画ID 6Arte5kGF-s の詳細情報を取得中...
-  → ✓ 取得完了: ✦  アソビ大全┊負けたら...○○!? 推しをわからせたいっ😼💓 [ #憩居ももあ #すき ] (ID: 6Arte5kGF-s)
-動画ID szjACfrZGD0 の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊ここ好き…？♡両耳から従順にゃんこに挟まれて敗北確定...🩷とろあま極楽睡眠♡濃厚な耳責め睡眠導入🤍[ #鈴白めるく #すき 睡眠導入 吐息 ear cleaning  ] (ID: szjACfrZGD0)
-動画ID mL6TzZQnEJE の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊ゾクゾクがとまんないっ..♡密着×多幸感に包まれて🩷とろあま極楽睡眠♡濃密な耳責め睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: mL6TzZQnEJE)
-動画ID ZyuXFRpVvzM の詳細情報を取得中...
-  → ✓ 取得完了: ✦  不審者通報しました。┊わるいひとみーっけ🖤 (ID: ZyuXFRpVvzM)
-動画ID cqzZ2EtACTo の詳細情報を取得中...
-  → ✓ 取得完了: ✦ ？？？┊激辛ペヤング食べて一皮剥けますッ…！！！！！！（カメラあり） (ID: cqzZ2EtACTo)
-動画ID fveJ1wRl--I の詳細情報を取得中...
-  → ✓ 取得完了: ✦  港詭實錄 ParanormalHK┊過去一怖そう...うぅ… (ID: fveJ1wRl--I)
-動画ID 9-ERpCap2F4 の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊よく我慢できたね..♡しっとり包まれてぽかぽか🩷今日も甘々完全敗北しようね🖤濃密な耳責め睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: 9-ERpCap2F4)
-動画ID RBfuNw3J9Jg の詳細情報を取得中...
-ERROR: [youtube] 6MJlqK0u5lg: Join this channel to get access to members-only content like this video, and other exclusive perks.
-ERROR: [youtube] bq4EJpII7Mg: Join this channel to get access to members-only content like this video, and other exclusive perks.
-  → ✓ 取得完了: ✦ Minecraft ~7日目~┊ゆったり深夜のはーどこあ🩷ブレイズロッド集めからのエンドラへ…最終回!?🌳癒される波の音🧊💤 (ID: RBfuNw3J9Jg)
-動画ID ke4BBTdgWNY の詳細情報を取得中...
-  → ✓ 取得完了: ✦ chatting┊2周年のお礼とのんびりお話ししたいな🩷.∘ (ID: ke4BBTdgWNY)
-動画ID 4Mv9kbtja24 の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊逃げようとしてもだーめっ🩷誘って攻守逆転♡甘やかし完全屈服🖤鼓膜まで濃密な耳責め睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: 4Mv9kbtja24)
-動画ID dC1Z1-mA8j4 の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR #憂世いう2周年┊カウントダウン♡3年目ももっとすきになってほしいの♡ (ID: dC1Z1-mA8j4)
-動画ID gWNDPD8TTF8 の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ 晩酌ASMR🥂┊2周年直前.ᐟ♡お酒よわよわふわふわほろ酔いしたいきぶん💗 (ID: gWNDPD8TTF8)
-動画ID ZC21cwyyWFo の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊びく..♡びく..っ♡密着×わからせ♡心地いい刺激で強制とろとろ🩷鼓膜まで濃密な耳責め睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: ZC21cwyyWFo)
-動画ID fetpuP5VZog の詳細情報を取得中...
-  → ✓ 取得完了: ✦ Minecraft ~6日目~┊ゆったり深夜のはーどこあ🩷chillな作業🌳癒される波の音🧊💤 (ID: fetpuP5VZog)
-動画ID EFzRJ4ncwXw の詳細情報を取得中...
-  → ✓ 取得完了: ✦ Minecraft ~5日目~┊ゆったり深夜のはーどこあ🩷ネザー探索..🔥 癒される波の音🧊💤 (ID: EFzRJ4ncwXw)
-動画ID Xc9Y7Dw3ffw の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊むち..♡むに..♡暖かい吐息でぽかぽか鼓膜塞ぎ🩷とろあま耳奥責め♡鼓膜まで濃密な耳責め睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: Xc9Y7Dw3ffw)
-動画ID nFQwsa7RRYA の詳細情報を取得中...
-  → ✓ 取得完了: ✦ Minecraft ~4日目~┊久しぶりのゆったり深夜のはーどこあ..🩷 癒される波の音💤 (ID: nFQwsa7RRYA)
-動画ID aV4NF69X638 の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊ずぽずぽ..っ♡反応したら負け🩷抗えない心地よさに耐えられる..？🩷鼓膜まで濃密な耳責め睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: aV4NF69X638)
-動画ID 6MJlqK0u5lg の詳細情報を取得中...
-  → ✗ 詳細取得失敗: ID: 6MJlqK0u5lg - 動画情報の取得に失敗しました
-    → 基本情報のみで処理を続行します
-動画ID WFuiTttezMc の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊さわさわ..っ♡容赦なく襲ってくる鼓膜癒しで完堕ちさせられる..💗鼓膜まで濃密な耳責め睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: WFuiTttezMc)
-動画ID dtWi8TnX4kY の詳細情報を取得中...
-  → ✓ 取得完了: ✦ ＃8┊ドラクエ3リメイク┊完全初見🗡️最終回！？魔王倒したと思ったら物語が続いている件について･･！？ ⚠ネタバレあり (ID: dtWi8TnX4kY)
-動画ID JoosolwSw7Q の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊その調子..♡上手上手💗極上耳奥刺激がとまらない..♡逃げちゃだーめ♡鼓膜まで濃密な耳責め睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: JoosolwSw7Q)
-動画ID -OI2h9DziR0 の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊脳とろ..♡じんわりぽかぽか包容力たっぷりであなたを包み込む甘やかし💗鼓膜まで濃密な耳責め睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: -OI2h9DziR0)
-動画ID 3IeNPCdhY3o の詳細情報を取得中...
-  → ✓ 取得完了: ✦  Don't Drop The Cake┊ケーキ運ぶだけのお仕事する♩🍰...落としたら即死？！？！ (ID: 3IeNPCdhY3o)
-動画ID 9RBxgyRQuZE の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊㊗10万スペシャル💗甘々メイドと小悪魔メイドに両耳のお耳から挟まれて♡鼓膜まで濃密な耳責め睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: 9RBxgyRQuZE)
-動画ID AtPIf-j-Paw の詳細情報を取得中...
-  → ✓ 取得完了: ✦ ＃7┊ドラクエ3リメイク┊完全初見🗡️レヴナント戦後から！！いよいよ後半！？！？₊⁺ ⚠ネタバレあり (ID: AtPIf-j-Paw)
-動画ID 5d5i5aAb9UQ の詳細情報を取得中...
-  → ✓ 取得完了: ✦ karaoke ┊10万人記念⊹今年初の激レア歌枠🎤いつもありがとうの気持ち込めてうたうよ🎧💗 (ID: 5d5i5aAb9UQ)
-動画ID ihx8K-KslZ0 の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊お疲れさま会..♡はむ♡高密着♡たくさん癒しあげる♡ (ID: ihx8K-KslZ0)
-動画ID oWASiYWiUY4 の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊ドキドキのリアイベ前日だぁ..♡ねむくなるまで耳元囁き♡付き合ってくれる？♡ (ID: oWASiYWiUY4)
-動画ID IAibU03BjM4 の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊むぎゅ..♡むにっ..♡眠る前にすきが溢れて幸せいっぱい沼らせる💗鼓膜まで濃密な耳責め睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: IAibU03BjM4)
-動画ID ygvaFBVPzmE の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ Happy Valentine🍫┊甘々彼女はいかがですか..？♡ (ID: ygvaFBVPzmE)
-動画ID cNct2iLPxUM の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊チョコよりもあま～い誘惑耐えられる？💗ぽかぽか吐息で温める♡鼓膜まで幸せいっぱい睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: cNct2iLPxUM)
-動画ID QU9TSzdS1rE の詳細情報を取得中...
-  → ✓ 取得完了: ✦  MiSide：ミサイド┊美少女と恋愛する💗圧倒的好評な話題の..ほらげー？💦 (ID: QU9TSzdS1rE)
-動画ID _F-xIGvH9lg の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊ほら..♡こっちおいで？💗ふにゃふにゃあまあま🤍ぽかぽか吐息で温める♡たっぷり可愛がられる睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: _F-xIGvH9lg)
-動画ID bq4EJpII7Mg の詳細情報を取得中...
-  → ✗ 詳細取得失敗: ID: bq4EJpII7Mg - 動画情報の取得に失敗しました
-    → 基本情報のみで処理を続行します
-動画ID TScRkSTmuA0 の詳細情報を取得中...
-  → ✓ 取得完了: ✦ ＃6┊ドラクエ3リメイク┊完全初見🗡️テドンでボス戦！！ジパングのおろち倒しにいくぞおおお！！！！₊⁺ ⚠ネタバレあり (ID: TScRkSTmuA0)
-動画ID -0BgZ4m3nek の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊これ..♡やっばぁ💗蕩ける耳はむで脳がイキ返る🤍病みつきになっちゃえ~♡たっぷり可愛がられる睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: -0BgZ4m3nek)
-動画ID GEBuU4TiTXk の詳細情報を取得中...
-  → ✓ 取得完了: ✦ ＃5┊ドラクエ3リメイク┊完全初見🗡️久しぶり！オーブ集めの旅だああああ！！！₊⁺ ⚠ネタバレあり (ID: GEBuU4TiTXk)
-動画ID Wu8a12zzaG0 の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊もうだめ..♡あなたの全部ちょーだい💗熱い吐息で精一杯搾り取り🤍愛情たっぷり可愛がられる睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: Wu8a12zzaG0)
-動画ID HWxqW1mx1VA の詳細情報を取得中...
-ERROR: [youtube] pa0bRTf5DCI: Join this channel to get access to members-only content like this video, and other exclusive perks.
-ERROR: [youtube] oyCTvp9HYo4: Join this channel to get access to members-only content like this video, and other exclusive perks.
-  → ✓ 取得完了: ✦  呪われたデジカメ┊霊を写す不思議なカメラを手に入れたみたいです..👻📸 (ID: HWxqW1mx1VA)
-動画ID fkmGii6eKts の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊「すき♡すき..♡♡」耳元で超濃厚すき攻め♡今年初のASMR🤍愛情たっぷり可愛がられる睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: fkmGii6eKts)
-動画ID JYXhQHfgwCI の詳細情報を取得中...
-  → ✓ 取得完了: ✦  DON'T SCREAM┊叫んじゃだめ..。 うっ😭 (ID: JYXhQHfgwCI)
-動画ID u3MSmkew96E の詳細情報を取得中...
-  → ✓ 取得完了: ✦ TAKIBI × Chatting┊ただいまぁ 🤍 (ID: u3MSmkew96E)
-動画ID mTlIyuGsUcg の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊2024年配信納め♡ 吐息でぽかぽか ♡ミルクみたいにあまい密着囁き🍼💗 (ID: mTlIyuGsUcg)
-動画ID 1q6NYwBvZsw の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊「上手♡がんばれ♡がんばれ♡」今年最後にせっせと尽くされる..♡愛情たっぷり可愛がられる睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: 1q6NYwBvZsw)
-動画ID l0uoNXP3i9s の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊聖なる夜..♡いっしょすごすよね？⛄のんびり編🎅🎄 (ID: l0uoNXP3i9s)
-動画ID s8fJpMtIY5U の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊ 新モデルお披露目❤︎ ずーっとこっちみてて..？♡ (ID: s8fJpMtIY5U)
-動画ID 4NEqm-KMVaQ の詳細情報を取得中...
-  → ✓ 取得完了: ✦ karaoke ┊ただいま⛄新居から𐔌՞･·･՞𐦯⊹今年最後の激レア歌枠。精一杯かわいく歌うの🎧 (ID: 4NEqm-KMVaQ)
-動画ID 6tLew7b4zaQ の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊んっ..♡気持ち良すぎてやばぁ..💗ずっと共依存♡体温感じながらたっぷり可愛がられる睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: 6tLew7b4zaQ)
-動画ID uqG5IadSN1k の詳細情報を取得中...
-  → ✓ 取得完了: ✦ ＃4┊ドラクエ3リメイク┊完全初見🗡️ピラミッド攻略後から！関所いくぞおぉぉ！！！₊⁺ ⚠ネタバレあり (ID: uqG5IadSN1k)
-動画ID pa0bRTf5DCI の詳細情報を取得中...
-  → ✗ 詳細取得失敗: ID: pa0bRTf5DCI - 動画情報の取得に失敗しました
-    → 基本情報のみで処理を続行します
-動画ID UyUChkxbUD8 の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊囁き多め♡ミルクみたいにあまい..🍼💗耳はむはむ♡体温感じながらたっぷり可愛がられる睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: UyUChkxbUD8)
-動画ID r9niYqaiaOA の詳細情報を取得中...
-  → ✓ 取得完了: ✦ ＃3┊ドラクエ3リメイク┊完全初見🗡️新衣装で💗初めてのボス、カンダタ倒したところから！₊⁺ ⚠ネタバレあり (ID: r9niYqaiaOA)
-動画ID jXAzR-N3R04 の詳細情報を取得中...
-  → ✓ 取得完了: ✦ 新衣装お披露目┊いっぱいかわいいっていわれたいの💗.ᐟ (ID: jXAzR-N3R04)
-動画ID uSMc6SdE9x0 の詳細情報を取得中...
-  → ✓ 取得完了: ✦ ＃2┊ドラクエ3リメイク┊完全初見🗡️ワガママ勇者からセクシーギャルへ…💗東の泉へ向かうところから₊⁺ ⚠ネタバレあり (ID: uSMc6SdE9x0)
-動画ID 8Ol69kMjq28 の詳細情報を取得中...
-  → ✓ 取得完了: ✦ スーパーマリオパーティ ジャンボリー┊告知あり♡ #そめいかぐら 復活🤍マリパであそぶ！！ [ #憂世いう / #神楽ゆら / #くもの上ユメミ / #水縹そまる ] (ID: 8Ol69kMjq28)
-動画ID X3o-lTh_ezY の詳細情報を取得中...
-  → ✓ 取得完了: ✦ ＃1┊ドラクエ3リメイク┊完全初見🗡️ぱふぱふしたい💗！！新たな冒険のはじまりだああ ⚠ネタバレあり (ID: X3o-lTh_ezY)
-動画ID 4bsvWpA7dWM の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊ぎゅっ…！♡おいで？♡甘やかしてあげる♡ふかぁい快眠♡体温感じながらたっぷり可愛がられる睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: 4bsvWpA7dWM)
-動画ID oyCTvp9HYo4 の詳細情報を取得中...
-  → ✗ 詳細取得失敗: ID: oyCTvp9HYo4 - 動画情報の取得に失敗しました
-    → 基本情報のみで処理を続行します
-動画ID DYAhUMwWcMY の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊ すぅき...♡ (ID: DYAhUMwWcMY)
-動画ID h9QaCzJ75kc の詳細情報を取得中...
-  → ✓ 取得完了: ✦ クロックタワーリワインド ┊名作レトロホラゲー。シザーマンから逃げきる！✂ [ #憂世いう ] (ID: h9QaCzJ75kc)
-動画ID 6St032_JFlw の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊腰ピク不可避♡本気の耳はむ。焦らし悪戯攻め♡ふかぁい快眠♡体温感じながらたっぷり可愛がられる睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: 6St032_JFlw)
-動画ID uveP1epkvX0 の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊どきどきしちゃうね...？♡あまぁい耳元囁きでふにゃふにゃん♡ (ID: uveP1epkvX0)
-動画ID 0QtB26da32I の詳細情報を取得中...
-  → ✓ 取得完了: ✦＃12┊FF10┊最終回✦ 他の誰でもない、これはお前の物語だ！⚠ネタバレあり  [ #憂世いう /  #ファイナルファンタジー10 / #ff10 ] (ID: 0QtB26da32I)
-動画ID a04AYjX76gY の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊Happy Halloween🎃可愛いくれたらご奉仕しちゃうぞっ♡ねこめいどによる甘々攻め🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: a04AYjX76gY)
-動画ID ikiPoMerGuU の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊腰動いちゃうね...？♡ぬるぬる♡甘々攻め♡ふかぁい快眠♡体温感じながらたっぷり可愛がられる睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: ikiPoMerGuU)
-動画ID MjQqzZAoVTU の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊はぁむ♡なでなで♡ぎゅぅ...♡甘々攻め…♡ふかぁい快眠♡体温感じながらたっぷり可愛がられる睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: MjQqzZAoVTU)
-動画ID yfRy17B4tiQ の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊んー♡がんばれ♡がんばれ～♡深い溺愛×密着♡甘々攻め…♡体温感じながらたっぷり可愛がられる睡眠導入🤍 [ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: yfRy17B4tiQ)
-動画ID 8TnImDvYuLw の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊よわよわで可愛いね...♡とろとろ甘やかしマッサージ♡熱々吐息…♡ぎゅっと安心⯎なでなでとんとん。 [ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: 8TnImDvYuLw)
-動画ID rAKf493SYL8 の詳細情報を取得中...
-  → ✓ 取得完了: ✦ ASMR × Gaming┊島の評価あげたり、のんびり釣りしたり。 深夜の落ち着く囁きとあつ森🌳 [ #あつ森  / #あつまれどうぶつの森  / #憂世いう ] (ID: rAKf493SYL8)
-動画ID 8bqiioHJaR0 の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊病み上がりふにゃふにゃん...♡耳元でゆったり囁き＆熱々吐息…♡ぎゅっと安心⯎なでなでとんとん。 [ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: 8bqiioHJaR0)
-動画ID bgpdRhASVIk の詳細情報を取得中...
-ERROR: [youtube] UiMUibq22Tg: Join this channel to get access to members-only content like this video, and other exclusive perks.
-ERROR: [youtube] zPtPXhWM9aI: Join this channel to get access to members-only content like this video, and other exclusive perks.
-ERROR: [youtube] 5k7hz3Yq0sM: Join this channel to get access to members-only content like this video, and other exclusive perks.
-  → ✓ 取得完了: ❤︎ ASMR KU100┊ん…♡おいで♡吐息で感じる甘々攻め…♡体温感じながら深くまでたっぷり可愛がられる睡眠導入🤍 [ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: bgpdRhASVIk)
-動画ID KZp3eL3OSsI の詳細情報を取得中...
-  → ✓ 取得完了: ✦＃11┊FF10┊飛空艇から✦ いよいよ最終章。シンをたおします...！⚠ネタバレあり  [ #憂世いう /  #ファイナルファンタジー10 / #ff10 ] (ID: KZp3eL3OSsI)
-動画ID -Qqf9gkFI9E の詳細情報を取得中...
-  → ✓ 取得完了: ✦ karaoke ┊9月おわるね。激レア歌枠。ねむれる曲おおめ🎧 [  #歌枠 / #singing / 憂世いう ] (ID: -Qqf9gkFI9E)
-動画ID 5QcjD2Tjz1o の詳細情報を取得中...
-  → ✓ 取得完了: ✦＃10┊FF10┊ガガゼト山から✦ 究極召喚を求め、ザナルカンドへ…。⚠ネタバレあり  [ #憂世いう /  #ファイナルファンタジー10 / #ff10 ] (ID: 5QcjD2Tjz1o)
-動画ID rlZJOqnQnHw の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊「ここ、好きでしょ…？♡」わからせ悪戯昇天…♡体温感じながら深くまでたっぷり可愛がられる睡眠導入🤍 [ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: rlZJOqnQnHw)
-動画ID AgwaHyKZz94 の詳細情報を取得中...
-  → ✓ 取得完了: ✦ ASMR × Gaming┊新しい住民おむかえ🤍博物館デート♩ 深夜の落ち着く囁きとあつ森🌳 [ #あつ森  / #あつまれどうぶつの森  / #憂世いう ] (ID: AgwaHyKZz94)
-動画ID osCZU7Y0PRc の詳細情報を取得中...
-  → ✓ 取得完了: ✦＃９┊FF10┊ナギ平原から✦₊⁺ チョコボで駆け抜ける🐣⚠ネタバレあり [ #憂世いう /  #ファイナルファンタジー10 / #ff10 ] (ID: osCZU7Y0PRc)
-動画ID UiMUibq22Tg の詳細情報を取得中...
-  → ✗ 詳細取得失敗: ID: UiMUibq22Tg - 動画情報の取得に失敗しました
-    → 基本情報のみで処理を続行します
-動画ID uI5dquu1lO4 の詳細情報を取得中...
-  → ✓ 取得完了: ✦ ASMR × Gaming┊おさんぽしよ？🤍 深夜の落ち着く囁きとあつ森🌳 [ #あつ森  / #あつまれどうぶつの森  / #憂世いう ] (ID: uI5dquu1lO4)
-動画ID OJtE2XIeSbE の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊やっばぁ…♡とろとろ...♡体温感じながら深くまでじっくり…🤍たっぷり可愛がられる睡眠導入🤍 [ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: OJtE2XIeSbE)
-動画ID 8E91UoetLJU の詳細情報を取得中...
-  → ✓ 取得完了: ✦＃8┊FF10┊ベベル宮で仲間を救う！✦₊⁺ 2回目のシーモア戦👊！！！！⚠ネタバレあり [ #憂世いう /  #ファイナルファンタジー10 / #ff10 ] (ID: 8E91UoetLJU)
-動画ID zPtPXhWM9aI の詳細情報を取得中...
-  → ✗ 詳細取得失敗: ID: zPtPXhWM9aI - 動画情報の取得に失敗しました
-    → 基本情報のみで処理を続行します
-動画ID ZMj71HHufbA の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊隣にいてもいいかな…？🤍愛情特濃🍼甘えん坊彼女といちゃ甘しよ？♡とろとろ特濃睡眠導入🤍 [ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: ZMj71HHufbA)
-動画ID P5_H7lUuns0 の詳細情報を取得中...
-  → ✓ 取得完了: ✦＃7┊FF10┊飛空艇GET✦₊⁺ ユウナを探す！！！！⚠ネタバレあり [ 憂世いう ,  #ファイナルファンタジー10 , #ff10 ] (ID: P5_H7lUuns0)
-動画ID 5yuMO2IbBtw の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊新PCから♡落ち着く雨音と耳元囁き＆吐息…♡ぎゅっと安心⯎なでなでとんとん。 [ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: 5yuMO2IbBtw)
-動画ID G23tVZFeZ6E の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊ほーら、まけちゃえ♡まけちゃえ～♡完全敗北...♥とろとろ特濃睡眠導入🤍 [ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: G23tVZFeZ6E)
-動画ID s6YXp6Qeh0Q の詳細情報を取得中...
-  → ✓ 取得完了: ✦＃6┊FF10┊マカラーニャ寺院でシーモア老師を倒したところから👊 ✦₊⁺⚠ネタバレあり [ 憂世いう ,  #ファイナルファンタジー10 , #ff10 ] (ID: s6YXp6Qeh0Q)
-動画ID uF8XkhnnSKA の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊囁き特化♡♡添い寝しながらとろとろになろ？♥ [ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: uF8XkhnnSKA)
-動画ID OFoeCvH5So4 の詳細情報を取得中...
-  → ✓ 取得完了: ✦ Minecraft ~3日目~┊だいやっ♡だいやっ♡だいやーっ♡ [ #憂世いう ,  #minecraft  , #マイクラ #マインクラフト   ] (ID: OFoeCvH5So4)
-動画ID uRQQKU8fqLE の詳細情報を取得中...
-  → ✓ 取得完了: ✦ Pルート┊アンダーテール┊ニンゲンもモンスターも、しあわせになれますように！！！！ [ 憂世いう , #undertale ] (ID: uRQQKU8fqLE)
-動画ID dAwES2avL7Q の詳細情報を取得中...
-  → ✓ 取得完了: ✦＃5┊FF10┊シパーフで幻光河渡ったところなのね～ん ✦₊⁺⚠ネタバレあり [ 憂世いう ,  #ファイナルファンタジー10 , #ff10 ] (ID: dAwES2avL7Q)
-動画ID dAI0vwO8y8s の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊ぎゅっ♡ぎゅっ♡ぎゅぅぅぅ♡密着×拘束...♥とろとろ特濃睡眠導入🤍 [ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: dAI0vwO8y8s)
-動画ID aj69fnAKe2I の詳細情報を取得中...
-  → ✓ 取得完了: ✦ Minecraft ~2日目~┊でぇやもんどがほしいの⛏💎 [ #憂世いう ,  #minecraft  , #マイクラ #マインクラフト   ] (ID: aj69fnAKe2I)
-動画ID CfSGBe7mjLc の詳細情報を取得中...
-  → ✓ 取得完了: ✦＃4┊FF10┊ミヘンセッションを見届けて、ジョゼ寺院へ向かうところから .°⚠ネタバレあり [ 憂世いう ,  #ファイナルファンタジー10 , #ff10 ] (ID: CfSGBe7mjLc)
-動画ID UtXk60jj7c8 の詳細情報を取得中...
-  → ✓ 取得完了: ✦ Minecraft ~1日目~┊今年もソロハードコアちゃれんじ！！生き残れるかなー？！？！⛏💎 [ 憂世いう ,  #minecraft  , #マイクラ #マインクラフト   ] (ID: UtXk60jj7c8)
-動画ID iTe1INuMgNM の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊「おいで？♡」誘惑×独占...♥独占欲強めの小悪魔彼女に支配される🤍とろとろ特濃睡眠導入♡ [ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: iTe1INuMgNM)
-動画ID SHdbWJ5bXUw の詳細情報を取得中...
-  → ✓ 取得完了: ✦＃3┊FF10┊のんびりジョゼ寺院に向かうところから✦₊⁺⚠ネタバレあり [ 憂世いう ,  #ファイナルファンタジー10 , #ff10 ] (ID: SHdbWJ5bXUw)
-動画ID 5k7hz3Yq0sM の詳細情報を取得中...
-  → ✗ 詳細取得失敗: ID: 5k7hz3Yq0sM - 動画情報の取得に失敗しました
-    → 基本情報のみで処理を続行します
-動画ID v3eCUV2sK88 の詳細情報を取得中...
-  → ✓ 取得完了: ✦＃２┊FF10┊美しくて切ない、異界送りを見届けたところから✦₊⁺⚠ネタバレあり [ 憂世いう ,  #ファイナルファンタジー10 , #ff10 ] (ID: v3eCUV2sK88)
-動画ID B-Mre1e2Kd8 の詳細情報を取得中...
-  → ✓ 取得完了: ✦ The Game Of sisyphus┊タマ(岩)転がしちゃおっかな～？🤍…転がされちゃうかも。 [ 憂世いう ,  #岩おじ , #thegameofsisyphus  ] (ID: B-Mre1e2Kd8)
-動画ID URhMEKUaEBE の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊ぬぷっと奥まで…🤍耳奥ゾクゾクご奉仕♡極上睡眠導入♡ [ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: URhMEKUaEBE)
-動画ID 9ZjaB6fu9Uc の詳細情報を取得中...
-ERROR: [youtube] FZOBSoaCAKE: Join this channel to get access to members-only content like this video, and other exclusive perks.
-  → ✓ 取得完了: ✦＃1┊FF10┊不朽の名作やります 。「最後かもしれないだろ。だから 全部話しておきたいんだ」⚠ネタバレあり [ 憂世いう ,  #ファイナルファンタジー10 , #ff10 ] (ID: 9ZjaB6fu9Uc)
-動画ID FZOBSoaCAKE の詳細情報を取得中...
-  → ✗ 詳細取得失敗: ID: FZOBSoaCAKE - 動画情報の取得に失敗しました
-    → 基本情報のみで処理を続行します
-動画ID m75jGO5MrkI の詳細情報を取得中...
-  → ✓ 取得完了: ✦ Chained Together┊落ちるときは…一緒だよ？♡៸៸可愛すぎる4人組で鎖で繋がれちゃう⛓🤍 [ #憂世いう / #神楽ゆら / #憩居ももあ / #天使しゃる ] (ID: m75jGO5MrkI)
-動画ID qeZoE47YJfo の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊たっぷり愛情行為🤍ドロドロに溶け合っちゃおっか♡ [ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: qeZoE47YJfo)
-動画ID b66BhdBi9Ec の詳細情報を取得中...
-  → ✓ 取得完了: ✦＃5┊アンダーテール┊メタトンEXと戦うとこから🤖ねぇ。わたしたち、きっと分かりあえるよね…？ [ 憂世いう , #undertale ] (ID: b66BhdBi9Ec)
-動画ID BzWoorly3a4 の詳細情報を取得中...
-  → ✓ 取得完了: ✦＃4┊アンダーテール┊ロイヤルガードのいちゃいちゃを見届けたところから♛ [ 憂世いう , #undertale ] (ID: BzWoorly3a4)
-動画ID MOfIHUEkkyc の詳細情報を取得中...
-  → ✓ 取得完了: ✦＃3┊アンダーテール┊ぷんすかマネキン倒しておばけのお家に向かうよ👻 [ 憂世いう , #undertale ] (ID: MOfIHUEkkyc)
-動画ID nPLXwim8UOg の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊ぐっぽり密着音圧🤍甘えた彼女といっぱいぎゅーしよ？♡ [ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: nPLXwim8UOg)
-動画ID 3oyYgWNHbT8 の詳細情報を取得中...
-  → ✓ 取得完了: ✦＃2┊アンダーテール┊パピルス倒したところから！💀 [ 憂世いう , #undertale ] (ID: 3oyYgWNHbT8)
-動画ID j78BP56Ja84 の詳細情報を取得中...
-  → ✓ 取得完了: ✦＃1┊アンダーテール┊完全初見🎮神ゲーと噂のUndertaleやってみるよ！💀 [ 憂世いう , #undertale ] (ID: j78BP56Ja84)
-動画ID qNPhioMNqy8 の詳細情報を取得中...
-  → ✓ 取得完了: ✦ #karaoke ┊4万人記念♡1年ぶりの激レア歌枠。いっしょうけんめいうたってみます🎧 [ #歌枠 / #singing  / 憂世いう ] (ID: qNPhioMNqy8)
-動画ID aHQwUvFGeoU の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊「近くてどきどきしちゃうね♡」脳とろ♡ぐっぽり音圧で甘やかし彼女がお耳の奥まで癒す🤍 [ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: aHQwUvFGeoU)
-動画ID 8VAyGNrQdsE の詳細情報を取得中...
-  → ✓ 取得完了: ✦ binaural × Gaming┊ねぇ。chillしよ…？🤍 落ち着くゆるふわ癒しの音ゲー☁ [ Melatonin / 憂世いう ] (ID: 8VAyGNrQdsE)
-動画ID sWeWNDuPOR4 の詳細情報を取得中...
-  → ✓ 取得完了: ✦ 僕、アルバイトォォ！！┊わるいこは、拘束 × ねこぱんち👊 [ 憂世いう ] (ID: sWeWNDuPOR4)
-動画ID epY_ASJ6RLI の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊とろとろお手手でニギニギされてマンゾク♡ナマ質感🤍優しい眠りにつける睡眠導入♡ [ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: epY_ASJ6RLI)
-動画ID kzl_Sh4Z_vI の詳細情報を取得中...
-  → ✓ 取得完了: ✦ #8番のりば ┊ホラーゲームやってみます。う...怖い👻💦[ 憂世いう ] (ID: kzl_Sh4Z_vI)
-動画ID uRiGKsBfIFQ の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊誕生日晩酌ASMR♡パジャマぱーてぃー🤍[ 耳はむ 吐息 ear cleaning Mouthsound] (ID: uRiGKsBfIFQ)
-動画ID aIi9Hge5rkc の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊「ほら…ここがイイの…？🤍」溺愛沼らせお耳開発♡ [ 耳はむ 吐息 ear cleaning Mouthsound ] (ID: aIi9Hge5rkc)
-動画ID XSFdwgK3LVM の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊溺愛彼女♡耳元ですきすき🤍きもちい〜い圧迫感♡グズグズに甘やかしてご奉仕します♡[ 耳はむ 吐息 ear cleaning Mouthsound] (ID: XSFdwgK3LVM)
-動画ID sDbd4vz8zHE の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊囁きASMR♡きて？♡寝る前のベッドでこしょこしょ話♡[ 耳はむ 吐息 ear cleaning Mouthsound] (ID: sDbd4vz8zHE)
-動画ID FvLpjFjuyR4 の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊んまんま…ッ♡絶頂音圧♡気持ちいの詰め合わせ♡耳元はむはむぎゅぅっと愛されご奉仕♡[ 耳はむ 吐息 ear cleaning Mouthsound] (ID: FvLpjFjuyR4)
-動画ID 3yvyA-PNmls の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR ┊コシコシ...ぐりぐり♡新機材であまあま耳かき＆指かきOnly♡ゴリゴリ耳奥刺激責め♡ 耳かき 綿棒 指かき ear cleaning Mouthsound (ID: 3yvyA-PNmls)
-動画ID EemceeZU7E4 の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊拘束×馬乗り...♡「捕まえた♡」独占欲強め彼女の愛され濃厚ご奉仕♡[ 耳はむ 吐息 ear cleaning Mouthsound] (ID: EemceeZU7E4)
-動画ID 8w4APZhLJZ4 の詳細情報を取得中...
-  → ✓ 取得完了: ❤︎ ASMR KU100┊ASMR界期待の新人です♡初配信(？) 甘々吐息♡体温感じて眠れる濃厚ご奉仕♡[ 耳はむ 吐息 ear cleaning Mouthsound] (ID: 8w4APZhLJZ4)
-
-✅ 動画情報を ../docs/youtube.json に保存しました
-📊 総動画数: 150
-
-📝 取得した動画の例:
-
-1. ❤︎ ASMR KU100┊あーむ..っ♡៸៸おくちでもぎゅっと耳はむ♡脳がとろけて骨抜きに..🩷濃厚な耳責めとろあま睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ]
-   ID: Rw6gMvJh1J8
-   説明: ⠀⠀
-　チャンネル登録・高評価おしてくれると
-　とっても励みになります ꔫ .∘
-
-　イヤフォンorヘッドフォンできいてね🎧
-　 ꔫ﹕使用機材......
-   クラス: ['schedule']
-
-2. ❤︎  #憂世いうbirthday┊ぎゅっぎゅしながらのんびりお礼♡これからもあなたのそばにいさせてね♡
-   ID: 0n8X9fQBrs0
-   説明: ⠀⠀
-　ෆ 2025年期間限定誕生日グッズ発売 ꔫ ෆ
-
-　あなたと夏のデートグッズがたくさん🐬🩵
-　▮ https://tosta.jp/shops/uise_iu
-
-　チャンネル登録・高評価おして...
-   メタデータ: 再生時間: 2:46:22, 視聴回数: 39.7K回, 投稿日: 2025/07/07
-   クラス: ['public']
-
-3. ❤︎ #憂世いうbirthday┊1年に1度の特別な日🎂🩷カウントダウンでいっしょにイこ？♡世界一可愛いお披露目みてみてみて♡
-   ID: XjRoJSU0Nlg
-   説明: ⠀⠀
-　ෆ 2025年期間限定誕生日グッズ発売 ꔫ ෆ
-
-　あなたと夏のデートグッズがたくさん🐬🩵
-　▮https://tosta.jp/shops/uise_iu
-
-　チャンネル登録・高評価おしてく...
-   メタデータ: 再生時間: 1:56:27, 視聴回数: 28.2K回, 投稿日: 2025/07/06
-   クラス: ['public']
-
-... 他 147 個の動画
-
-⏱ 実行時間: 0:09:52.553737
-
-🎉 処理が完了しました！
-✅ YouTube動画情報取得 - 完了
-📊 完了時刻: Fri Jul 11 00:10:00 JST 2025
-
-==================================================================================
-📺 [2/4] ニコニコ動画ライブ情報取得
-🎯 実行スクリプト: get_video_info_niconico_live.py
-⏰ 開始時刻: Fri Jul 11 00:10:00 JST 2025
-==================================================================================
-/home/kttpc/uiu-site/get_video_info_script/get_video_info_niconico_live.py:164: DeprecationWarning: The 'text' argument to find()-type methods is deprecated. Use 'string' instead.
-  timeshift_limit_element_ = ts_soup.find_all('dt', text=re.compile(r'タイムシフト視聴期限：'))
-🎬 ニコニコ動画ライブ情報取得スクリプト
-動画情報の取得を開始: https://ch.nicovideo.jp/uise-iu/live
-総ページ数: 1
-ページ 1/1 を処理中: https://ch.nicovideo.jp/uise-iu/live
-ページ 1 から 10 個の動画アイテムを検出
-ページ 2 から 10 個の動画アイテムを検出
-ページ 3 から 10 個の動画アイテムを検出
-ページ 4 から 4 個の動画アイテムを検出
-ページ 5 から 0 個の動画アイテムを検出
-ページ 5 で動画アイテムが見つかりませんでした。終了します。
-動画情報を抽出: {'title': '♥実写：耳舐め♥(無料あり)スターレイルの花火で悪戯耳舐め♡', 'video_url': 'https://live.nicovideo.jp/watch/lv348141543', 'image': 'https://listing-thumbnail.live.nicovideo.jp?image=prod-lv348141543/thumbnail_1751423637363.jpg&w=352&h=198&v=1751423637363', 'metadata': ['放送開始: 2025/07/03 (木) 00:00:00', 'タイムシフト視聴期限: 2025/12/30(火) 23:59']}
-動画情報を抽出: {'title': '♥実写：耳舐め♥(無料あり)清楚なお姉さんが深くまで愛してあげる♡甘々耳舐め♡', 'video_url': 'https://live.nicovideo.jp/watch/lv347905785', 'image': 'https://listing-thumbnail.live.nicovideo.jp?image=prod-lv347905785/thumbnail_1748789594655.jpg&w=352&h=198&v=1748789594655', 'metadata': ['放送開始: 2025/06/03 (火) 00:00:00', 'タイムシフト視聴期限: 2025/11/30(日) 23:59']}
-動画情報を抽出: {'title': '♥実写：耳舐め♥(無料あり)焦らされてねっとり♡深いとろとろ耳舐め♡', 'video_url': 'https://live.nicovideo.jp/watch/lv347701873', 'image': 'https://listing-thumbnail.live.nicovideo.jp?image=prod-lv347701873/thumbnail_1746559796674.jpg&w=352&h=198&v=1746559796674', 'metadata': ['放送開始: 2025/05/08 (木) 00:00:00', 'タイムシフト視聴期限: 2025/11/04(火) 23:59']}
-動画情報を抽出: {'title': '♥実写：耳舐め♥(無料あり)清楚にたっぷりとろとろ耳舐め♡', 'video_url': 'https://live.nicovideo.jp/watch/lv347445918', 'image': 'https://listing-thumbnail.live.nicovideo.jp?image=prod-lv347445918/thumbnail_1743865449888.png&w=352&h=198&v=1743865449888', 'metadata': ['放送開始: 2025/04/06 (日) 00:10:00', 'タイムシフト視聴期限: 2025/10/03(金) 23:59']}
-動画情報を抽出: {'title': '♥実写：耳舐め♥(無料あり)清楚に耳舐め♡メイドの甘々ご奉仕♡', 'video_url': 'https://live.nicovideo.jp/watch/lv347203320', 'image': 'https://listing-thumbnail.live.nicovideo.jp?image=prod-lv347203320/thumbnail_1741283659821.jpg&w=352&h=198&v=1741283659821', 'metadata': ['放送開始: 2025/03/08 (土) 00:00:00', 'タイムシフト視聴期限: 2025/09/04(木) 23:59']}
-動画情報を抽出: {'title': '♥実写：耳舐め♥(無料あり)もうすぐバレンタインだね♡甘々に溶け合っちゃおっか♡濃厚耳舐め♡♡', 'video_url': 'https://live.nicovideo.jp/watch/lv347013877', 'image': 'https://listing-thumbnail.live.nicovideo.jp?image=prod-lv347013877/thumbnail_1739311693882.jpg&w=352&h=198&v=1739311693882', 'metadata': ['放送開始: 2025/02/13 (木) 00:00:00', 'タイムシフト視聴期限: 2025/08/12(火) 23:59']}
-動画情報を抽出: {'title': '♥実写：耳舐め♥(無料あり)新年1発目♡甘々お姉さんと濃厚耳舐め♡♡', 'video_url': 'https://live.nicovideo.jp/watch/lv346727851', 'image': 'https://listing-thumbnail.live.nicovideo.jp?image=prod-lv346727851/thumbnail_1736324872443.jpg&w=352&h=198&v=1736324872443', 'metadata': ['放送開始: 2025/01/09 (木) 00:00:00', 'タイムシフト視聴期限: 2025/07/08(火) 23:59']}
-動画情報を抽出: {'title': '♥実写：耳舐め♥(無料あり)じゅぽッじゅぽッ♡奥まで濃厚耳舐め♡♡', 'video_url': 'https://live.nicovideo.jp/watch/lv346448517', 'image': 'https://listing-thumbnail.live.nicovideo.jp?image=prod-lv346448517/thumbnail_1733236037448.jpg&w=352&h=198&v=1733236037448', 'metadata': ['放送開始: 2024/12/05 (木) 00:00:00', 'タイムシフト視聴期限: 2025/06/03(火) 23:59']}
-動画情報を抽出: {'title': '♥実写：耳舐め♥(無料あり)スタレのむちむちッ♡トパーズコスで耳舐め♡♡♡', 'video_url': 'https://live.nicovideo.jp/watch/lv346244618', 'image': 'https://listing-thumbnail.live.nicovideo.jp?image=prod-lv346244618/thumbnail_1731029703416.jpg&w=352&h=198&v=1731029703416', 'metadata': ['放送開始: 2024/11/09 (土) 00:00:00', 'タイムシフト視聴期限: 2025/05/08(木) 23:59']}
-動画情報を抽出: {'title': '♥実写：耳舐め♥(無料あり)ゆっくり甘々耳舐めしよっか？♡♡', 'video_url': 'https://live.nicovideo.jp/watch/lv345990331', 'image': 'https://listing-thumbnail.live.nicovideo.jp?image=prod-lv345990331/thumbnail_1728292113091.jpg&w=352&h=198&v=1728292113091', 'metadata': ['放送開始: 2024/10/11 (金) 23:00:00', 'タイムシフト視聴期限: 2025/04/10(木) 23:59']}
-動画情報を抽出: {'title': '♥実写：耳舐め♥(無料あり)ぬちゅっ♡ぬちゅっ♡ねっとり甘々耳舐め♡', 'video_url': 'https://live.nicovideo.jp/watch/lv345722043', 'image': 'https://listing-thumbnail.live.nicovideo.jp?image=prod-lv345722043/thumbnail_1725487531223.jpg&w=352&h=198&v=1725487531223', 'metadata': ['放送開始: 2024/09/06 (金) 23:00:00', 'タイムシフト視聴期限: 2024/12/06(金) 23:59']}
-タイムシフト視聴期限の取得に失敗: 404 Client Error: Not Found for url: https://ch.nicovideo.jp/uise-iu/live/lv345690544?ref=WatchPage-ProgramPaymentInformation-PaymentActionMenu-NetTicketPurchaseOrChannelJoiningAnchor
-動画情報を抽出: {'title': '♥KU100：ASMR♥youtubeの代わりに全編無料♡理性ぶっトぶ耳奥舐め♡ねっとりゆっくり舐め回す♡', 'video_url': 'https://live.nicovideo.jp/watch/lv345690544', 'image': 'https://nicolive-img.cdn.nimg.jp/s/nicolive/program-pictures/prod-lv345690544/thumbnail_1725130937992.png/r352x198l.png?key=7961e51eb0dab82c9eb4849e81769e1238663d354c845e6ff28747d1a36e3c9e', 'metadata': ['放送開始: 2024/09/02 (月) 00:00:00', 'タイムシフト視聴期限: 不明']}
-動画情報を抽出: {'title': '♥実写：耳舐め♥(無料あり)清楚ワンピースで...♡ずぷずぷ甘々耳舐め♡', 'video_url': 'https://live.nicovideo.jp/watch/lv345642488', 'image': 'https://nicolive-img.cdn.nimg.jp/s/nicolive/program-pictures/prod-lv345642488/thumbnail_1724602078608.jpg/r352x198l.jpg?key=21c73773c3c0f5ab68af8f209a46e550f5c8ef9c662ffb21f3231130b76c9241', 'metadata': ['放送開始: 2024/08/27 (火) 23:00:00', 'タイムシフト視聴期限: 2024/11/26(火) 23:59']}
-タイムシフト視聴期限の取得に失敗: 404 Client Error: Not Found for url: https://ch.nicovideo.jp/uise-iu/live/lv345642499?ref=WatchPage-ProgramPaymentInformation-PaymentActionMenu-NetTicketPurchaseOrChannelJoiningAnchor
-動画情報を抽出: {'title': '♥KU100：ASMR♥youtubeの代わりに全編無料♡急所を狙い撃ちッ♡耳穴で這い回る舌に奥深くまで挿入…♡', 'video_url': 'https://live.nicovideo.jp/watch/lv345642499', 'image': 'https://nicolive-img.cdn.nimg.jp/s/nicolive/program-pictures/prod-lv345642499/thumbnail_1724602170870.jpg/r352x198l.jpg?key=93579cc17ec4082a52f8640c4b8ac1f9c465b498fa03d1198370f60eb2c4947b', 'metadata': ['放送開始: 2024/08/27 (火) 00:00:00', 'タイムシフト視聴期限: 不明']}
-動画情報を抽出: {'title': '♥実写：耳舐め♥(無料あり)お姉さんときもちいコトしませんか？♡いちゃ甘耳舐め♡', 'video_url': 'https://live.nicovideo.jp/watch/lv345435176', 'image': 'https://nicolive-img.cdn.nimg.jp/s/nicolive/program-pictures/prod-lv345435176/thumbnail_1717404004814.jpg/r352x198l.jpg?key=5c833c367991eeabc84069faeb9cb31d8e6b71a5c13a9800087c6176b634bf38', 'metadata': ['放送開始: 2024/06/07 (金) 23:00:00', 'タイムシフト視聴期限: 視聴不可']}
-動画情報を抽出: {'title': '♥実写：耳舐め♥(無料あり)甘サド攻めでマゾイき確定♡ドMくぅ～ん♡わからせてあげるね？♡ほーら、負けちゃえっ♡負けちゃえっ♡', 'video_url': 'https://live.nicovideo.jp/watch/lv345128309', 'image': 'https://nicolive-img.cdn.nimg.jp/s/nicolive/program-pictures/prod-lv345128309/thumbnail_1714800565531.jpg/r352x198l.jpg?key=a55e6348d91b453cfeb0ac577d3db425acea2aca9517f54d8c87dca023f7a77b', 'metadata': ['放送開始: 2024/05/09 (木) 23:00:00', 'タイムシフト視聴期限: 2024/11/12(火) 23:59']}
-タイムシフト視聴期限の取得に失敗: 404 Client Error: Not Found for url: https://ch.nicovideo.jp/uise-iu/live/lv345128282?ref=WatchPage-ProgramPaymentInformation-PaymentActionMenu-NetTicketPurchaseOrChannelJoiningAnchor
-動画情報を抽出: {'title': '♥KU100：ASMR♥グズグズに甘やかしてxxxなこともい～っぱいしてカラダの緊張ほぐそうね？♡', 'video_url': 'https://live.nicovideo.jp/watch/lv345128282', 'image': 'https://nicolive-img.cdn.nimg.jp/s/nicolive/program-pictures/prod-lv345128282/thumbnail_1714800387179.jpg/r352x198l.jpg?key=9d7beb930d87f69697bf4509b8e1ef7b7bfb7a50682a89bea6cfb5385d53d684', 'metadata': ['放送開始: 2024/05/07 (火) 00:00:00', 'タイムシフト視聴期限: 不明']}
-動画情報を抽出: {'title': '♥実写：耳舐め♥(無料あり)よちよち♡全肯定彼女が日頃の疲れを癒してあげますよぉ～♡', 'video_url': 'https://live.nicovideo.jp/watch/lv345004428', 'image': 'https://nicolive-img.cdn.nimg.jp/s/nicolive/program-pictures/prod-lv345004428/thumbnail_1713777660973.jpg/r352x198l.jpg?key=b58c3e54727e98709ef7be3cdb438441c002fb9e49f5387576b7701f154a656b', 'metadata': ['放送開始: 2024/04/24 (水) 23:00:00', 'タイムシフト視聴期限: 2024/10/28(月) 23:59']}
-動画情報を抽出: {'title': '♥実写：耳舐め♥(無料あり)添い寝でねっとり舐めまわす♡♡', 'video_url': 'https://live.nicovideo.jp/watch/lv344867615', 'image': 'https://nicolive-img.cdn.nimg.jp/s/nicolive/program-pictures/prod-lv344867615/thumbnail_1712619237705.jpg/r352x198l.jpg?key=23a674be59e8ce25eaf92d85b94352be5113cf3c78995e0b686916563de05915', 'metadata': ['放送開始: 2024/04/10 (水) 23:00:00', 'タイムシフト視聴期限: 2024/09/14(土) 23:59']}
-動画情報を抽出: {'title': '♥実写：耳舐め♥(無料あり)バニーガールでぴゅぅっと搾り取り♡♡', 'video_url': 'https://live.nicovideo.jp/watch/lv344674148', 'image': 'https://nicolive-img.cdn.nimg.jp/s/nicolive/program-pictures/prod-lv344674148/thumbnail_1710971634592.jpg/r352x198l.jpg?key=d353d30021e1bca1b2b0b5a7982a56faefa192943c1738ecfe0a926f0a4e7b03', 'metadata': ['放送開始: 2024/03/25 (月) 23:00:00', 'タイムシフト視聴期限: 2024/05/25(土) 23:59']}
-動画情報を抽出: {'title': '♥実写：耳舐め♥(無料あり)あなたのペットにしてくださいっ♡♡', 'video_url': 'https://live.nicovideo.jp/watch/lv344575271', 'image': 'https://nicolive-img.cdn.nimg.jp/s/nicolive/program-pictures/prod-lv344575271/thumbnail_1710117470892.jpg/r352x198l.jpg?key=914690b4eaece670c85bd48c439a21a62f77d832ee96b23ed6a2a6867a59ee35', 'metadata': ['放送開始: 2024/03/12 (火) 00:00:00', 'タイムシフト視聴期限: 視聴不可']}
-動画情報を抽出: {'title': '♥実写：耳舐め♥(無料あり)崩壊スターレイル♡ルアン・メェイコスプレでいちゃあま♡', 'video_url': 'https://live.nicovideo.jp/watch/lv344450845', 'image': 'https://nicolive-img.cdn.nimg.jp/s/nicolive/program-pictures/prod-lv344450845/thumbnail_1709027763351.jpg/r352x198l.jpg?key=f5e54f18c9b6d079aaf1db574d2e808dc008b078167d0930fdcb8ce7b87775bd', 'metadata': ['放送開始: 2024/03/03 (日) 00:15:00', 'タイムシフト視聴期限: 視聴不可']}
-動画情報を抽出: {'title': '♥実写：耳舐め♥(無料あり)バレンタイン♡いちゃあまシよ？♡♡', 'video_url': 'https://live.nicovideo.jp/watch/lv344319706', 'image': 'https://nicolive-img.cdn.nimg.jp/s/nicolive/program-pictures/prod-lv344319706/thumbnail_1707845303573.jpg/r352x198l.jpg?key=e1b0f91d4a07369de440a269d2870e67c363357b421bb6780acb104090aad0ec', 'metadata': ['放送開始: 2024/02/16 (金) 23:00:00', 'タイムシフト視聴期限: 視聴不可']}
-動画情報を抽出: {'title': '♥実写：耳舐め♥(無料あり)今夜は大人な時間です♡♡♡', 'video_url': 'https://live.nicovideo.jp/watch/lv343983602', 'image': 'https://nicolive-img.cdn.nimg.jp/s/nicolive/program-pictures/prod-lv343983602/thumbnail_1704971410798.jpg/r352x198l.jpg?key=bccc7e967d118276746a716e5b6b397238548ca3d86df564cd5c70cd4e3f59d4', 'metadata': ['放送開始: 2024/01/15 (月) 23:00:00', 'タイムシフト視聴期限: 2024/03/15(金) 23:59']}
-動画情報を抽出: {'title': '♥実写：耳舐め♥(無料あり)ニコニコ舐めはじめ♡♡♡', 'video_url': 'https://live.nicovideo.jp/watch/lv343887828', 'image': 'https://nicolive-img.cdn.nimg.jp/s/nicolive/program-pictures/prod-lv343887828/thumbnail_1704174341603.jpg/r352x198l.jpg?key=ba6b627384d3aac6f643c8b97a9004cbc0b8c34c85b11496c25d8d28feccba6a', 'metadata': ['放送開始: 2024/01/02 (火) 23:45:00', 'タイムシフト視聴期限: 2024/03/03(日) 23:59']}
-動画情報を抽出: {'title': '♥実写：耳舐め♥(無料あり)愛情たっぷり♡ホワイトクリスマス♡', 'video_url': 'https://live.nicovideo.jp/watch/lv343785020', 'image': 'https://nicolive-img.cdn.nimg.jp/s/nicolive/program-pictures/prod-lv343785020/thumbnail_1703372572913.jpg/r352x198l.jpg?key=e6da719b97c4770d6ac7d00613addd4067b70e08f748654c3474c8ab3f891faa', 'metadata': ['放送開始: 2023/12/26 (火) 00:30:00', 'タイムシフト視聴期限: 2024/01/25(木) 23:59']}
-動画情報を抽出: {'title': '♥実写：耳舐め♥(無料あり)ちょっと早めの水色サンタコス♡ぺろぺろ舐め♡', 'video_url': 'https://live.nicovideo.jp/watch/lv343738067', 'image': 'https://nicolive-img.cdn.nimg.jp/s/nicolive/program-pictures/prod-lv343738067/thumbnail_1702884759808.jpg/r352x198l.jpg?key=e90c73b1a6c40bbb5a9c2f201cb7fad3170cf47bf587ef451405af2c5da55760', 'metadata': ['放送開始: 2023/12/18 (月) 23:00:00', 'タイムシフト視聴期限: 2024/01/18(木) 23:59']}
-動画情報を抽出: {'title': '♥実写：耳舐め♥(無料あり)せんぱ～い♡雑魚耳いじめてあげるね～？♡制服コス♡', 'video_url': 'https://live.nicovideo.jp/watch/lv343638825', 'image': 'https://nicolive-img.cdn.nimg.jp/s/nicolive/program-pictures/prod-lv343638825/thumbnail_1701992541258.jpg/r352x198l.jpg?key=458ddd6a5285f249f12d60be3eda003ba672a83d64ee3f6db5cade74b070f553', 'metadata': ['放送開始: 2023/12/12 (火) 23:00:00', 'タイムシフト視聴期限: 2024/02/11(日) 23:59']}
-動画情報を抽出: {'title': '♥実写：耳舐め♥(無料あり)牛コスプレ♡乳絞りする？♡', 'video_url': 'https://live.nicovideo.jp/watch/lv343500604', 'image': 'https://nicolive-img.cdn.nimg.jp/s/nicolive/program-pictures/prod-lv343500604/thumbnail_1700779829568.jpg/r352x198l.jpg?key=4dbc334854fd673e91dfb3fe77fea9e92683e22c5543ca0e88f7349f74adb819', 'metadata': ['放送開始: 2023/11/25 (土) 00:00:00', 'タイムシフト視聴期限: 2024/01/24(水) 23:59']}
-動画情報を抽出: {'title': '♥実写：耳舐め♥(無料あり)セーラー風ランジェリーでたっぷりご奉仕♡', 'video_url': 'https://live.nicovideo.jp/watch/lv343470647', 'image': 'https://nicolive-img.cdn.nimg.jp/s/nicolive/program-pictures/prod-lv343470647/thumbnail_1700510976775.jpg/r352x198l.jpg?key=a6022fa7a7aa04612f01c4f33f36d918df6b8f37d4364cd4a7de73d5b7c13efa', 'metadata': ['放送開始: 2023/11/21 (火) 23:00:00', 'タイムシフト視聴期限: 2024/01/21(日) 23:59']}
-動画情報を抽出: {'title': '♥実写：耳舐め♥(無料あり)彼女感たっぷり♡いちゃあま耳舐め♡', 'video_url': 'https://live.nicovideo.jp/watch/lv343372419', 'image': 'https://nicolive-img.cdn.nimg.jp/s/nicolive/program-pictures/prod-lv343372419/thumbnail_1699706162820.jpg/r352x198l.jpg?key=de9b9daf163ce32fbc7958e11dc0aebbf1832c7a566b16123b8b18dcab648838', 'metadata': ['放送開始: 2023/11/12 (日) 23:00:00', 'タイムシフト視聴期限: 視聴不可']}
-動画情報を抽出: {'title': '♥実写：耳舐め♥(無料あり)ハロウィンにサキュバスちゃんで搾り取る♡', 'video_url': 'https://live.nicovideo.jp/watch/lv343236476', 'image': 'https://nicolive-img.cdn.nimg.jp/s/nicolive/program-pictures/prod-lv343236476/thumbnail_1698585154309.jpg/r352x198l.jpg?key=633871f733dfbc18665a92da4b090b0dfc2d282e5b43299ffdbfdeba1b1e38f7', 'metadata': ['放送開始: 2023/11/01 (水) 00:00:00', 'タイムシフト視聴期限: 2024/04/29(月) 23:59']}
-動画情報を抽出: {'title': '♥実写：耳舐め♥(無料あり)君のきもちいとこたっぷり舐めちゃう♡', 'video_url': 'https://live.nicovideo.jp/watch/lv343074338', 'image': 'https://nicolive-img.cdn.nimg.jp/s/nicolive/program-pictures/prod-lv343074338/thumbnail_1697211688232.jpg/r352x198l.jpg?key=6aa095db9cc0a0eb5000e7e6acff9fbacf8919925e7de922bad28c69828cc51c', 'metadata': ['放送開始: 2023/10/28 (土) 00:30:00', 'タイムシフト視聴期限: 2023/12/27(水) 23:59']}
-動画情報を抽出: {'title': '♥実写：耳舐め♥(無料あり)ニコニコ初配信♡スポーツの日に夜の大運動会する？♡', 'video_url': 'https://live.nicovideo.jp/watch/lv343014541', 'image': 'https://img.cdn.nimg.jp/s/nicochannel/live/2649077/e40f78d7-aece-4733-bbdf-788bda4421a0.jpg/128x128l_FFFFFFFF', 'metadata': ['放送開始: 2023/10/10 (火) 00:25:00', 'タイムシフト視聴期限: 2023/12/09(土) 23:59']}
-ページ 1 から 34 個の動画情報を取得
-
-合計 34 個の動画情報を取得しました
-動画情報を ../docs/niconico_l.json に保存しました
-
-取得した動画情報のサンプル:
-
---- 動画 1 ---
-タイトル: ♥実写：耳舐め♥(無料あり)スターレイルの花火で悪戯耳舐め♡
-動画URL: https://live.nicovideo.jp/watch/lv348141543
-サムネイル: https://listing-thumbnail.live.nicovideo.jp?image=prod-lv348141543/thumbnail_1751423637363.jpg&w=352&h=198&v=1751423637363
-放送開始: N/A
-
---- 動画 2 ---
-タイトル: ♥実写：耳舐め♥(無料あり)清楚なお姉さんが深くまで愛してあげる♡甘々耳舐め♡
-動画URL: https://live.nicovideo.jp/watch/lv347905785
-サムネイル: https://listing-thumbnail.live.nicovideo.jp?image=prod-lv347905785/thumbnail_1748789594655.jpg&w=352&h=198&v=1748789594655
-放送開始: N/A
-
---- 動画 3 ---
-タイトル: ♥実写：耳舐め♥(無料あり)焦らされてねっとり♡深いとろとろ耳舐め♡
-動画URL: https://live.nicovideo.jp/watch/lv347701873
-サムネイル: https://listing-thumbnail.live.nicovideo.jp?image=prod-lv347701873/thumbnail_1746559796674.jpg&w=352&h=198&v=1746559796674
-放送開始: N/A
-
-⏱ 実行時間: 0:00:09.413218
-🎉 処理が完了しました！
-✅ ニコニコ動画ライブ情報取得 - 完了
-📊 完了時刻: Fri Jul 11 00:10:09 JST 2025
-
-==================================================================================
-📺 [3/4] ファンサイト投稿情報取得
-🎯 実行スクリプト: get_video_info_secret.py
-⏰ 開始時刻: Fri Jul 11 00:10:09 JST 2025
-==================================================================================
-🎬 ファンサイト動画情報取得スクリプト
-ページを読み込み中: https://candfans.jp/iu_nyaa
-ページの初期処理を確認中...
-同意ボタンをクリック: yes
-ページの一番下までスクロール中...
-スクロール完了
-画像の遅延読み込み完了を待機中...
-ページタイトル: 憂世いう / 裏垢 | CandFans (キャンドファンズ)
-ページURL: https://candfans.jp/iu_nyaa
-セレクタ 'div.grid.grid-cols-2.gap-x-1.gap-y-3.pt-2.items-end' で 4 個の要素を発見
-子要素 12 個を持つコンテナを発見
-対象コンテナを発見: div.grid.grid-cols-2.gap-x-1.gap-y-3.pt-2.items-end
-12 個の投稿要素を発見
-
-=== 進捗: 1/12 処理中 ===
-✓ 1: [image] ぷにまんくぱぁ♡透明ディルドで潮吹きオナニー♡...
-✓ 2: [image] 顔だし配信者になります..♡（※エイプリルフール・自撮りちゅうい）...
-✓ 3: [image] えちえち2Dおなぼいす💗...
-✓ 4: [image] ド迫力おにゃに♡...
-✓ 5: [image] 今年最後に煩悩ぶしゃぁッ♡♡見せつけおにゃにー🐱💗...
-✓ 6: [image] どあっぷ♡クリイきオナニー♡...
-✓ 7: [image] 実写おにゃに―♡腰フリフリディルドオナニー♡...
-✓ 8: [image] 実写おにゃにー♡初めて耳元でおまんこの音聞かせるね…？♡...
-✓ 9: [image] 実写おにゃにー♡ 電マ当て続けてクリイき💗 おぱんちゅぐしょぐしょにしちゃってごめんなさい。。...
-✓ 10: [image] きもちいのとまんなくてたくさんぐちゅぐちゅしました...!♡ 発情期彼女もすき...？♡ <br>...
-
-=== 進捗: 11/12 処理中 ===
-✓ 11: [image] ちらっ💗 あっ。いまみえた？(՞ ܸ.ˬ.ܸ ՞)💓 <br>...
-✓ 12: [image] ⚠️久しぶりの自撮り注意っ⚠️ 左下からひょっこりお姉さん( ᎔˘꒳˘</p>᎔)💗 目元だけ＆ぼ...
-
-合計 12 個の投稿情報を取得しました
-投稿情報を ../docs/secret_ac.json に保存しました
-
-取得した投稿情報のサンプル:
-動画: 0個, 画像: 12個
-
---- 投稿 1 [image] ---
-タイトル: ぷにまんくぱぁ♡透明ディルドで潮吹きオナニー♡
-投稿URL: N/A
-サムネイル: https://video.candfans.jp/user/1189871/post/921384/secret.jpeg
-メタデータ: ['10:52']
-
---- 投稿 2 [image] ---
-タイトル: 顔だし配信者になります..♡（※エイプリルフール・自撮りちゅうい）
-投稿URL: N/A
-サムネイル: https://image.candfans.jp/user/1189871/post/888298/thumbnail.jpg
-メタデータ: ['1']
-
---- 投稿 3 [image] ---
-タイトル: えちえち2Dおなぼいす💗
-投稿URL: N/A
-サムネイル: https://video.candfans.jp/user/1189871/post/888265/secret.jpeg
-メタデータ: ['05:45']
-
-⏱ 実行時間: 0:00:48.406701
-🎉 処理が完了しました！
-✅ ファンサイト投稿情報取得 - 完了
-📊 完了時刻: Fri Jul 11 00:10:58 JST 2025
-
-==================================================================================
-📺 [4/4] ファンクラブ動画情報取得
-🎯 実行スクリプト: get_video_info_fc.py
-⏰ 開始時刻: Fri Jul 11 00:10:58 JST 2025
-==================================================================================
-🎬 ファンクラブ動画情報取得スクリプト
-ページを読み込み中: https://uise-official.com/lives
-年齢認証ダイアログを確認中...
-年齢認証ボタンをクリック: はい
-コンテンツの読み込み完了を待機中...
-ローダーが消えました
-ページの一番下までスクロール中...
-スクロール完了
-ページタイトル: いうねこないと
-ページURL: https://uise-official.com/lives
-ページ内のdiv要素数: 851
-セレクタ 'div.infinite-scroll-component.LivestreamListScreen-row2.CustomInfiniteScroll-inner' で 1 個の要素を発見
-子要素 58 個を持つコンテナを発見
-対象コンテナを発見: div.infinite-scroll-component.LivestreamListScreen-row2.CustomInfiniteScroll-inner
-58 個の動画要素を発見
-
-=== 進捗: 1/58 処理中 ===
-✓ 1: ♥実写♥脱いだらすごい..♡だる着でゆる～っとおしゃべり💗...
-料金確認のため動画ページにアクセス中: https://uise-official.com/live/smbHdsP9ZFKUHUHLH2vCo4tZ
-動画ページで年齢認証ダイアログを確認中...
-動画ページURL: https://uise-official.com/video/smbHdsP9ZFKUHUHLH2vCo4tZ
-✓ 2: ♥お風呂♥はじめてのスマホからのもちもち♡お風呂はいる♡てすとつきあって～！♡...
-✓ 3: ♥実写：耳舐め♥いっち♡にっ♡いち♡にっ..♡ご主人様を今夜は全力サポート👅💗...
-✓ 4: ♥実写：耳舐め♥ジューンブライドでむちむちスケベな花嫁ランジェリーはいかがですか？👅💗...
-✓ 5: ♥ASMR♥全編無料♡全部見て..？💗お姉さんナースの全身見せつけお披露目♡...
-✓ 6: ♥実写：耳舐め♥患者さまに見せつけ♡ナースお姉さんで包み込む耳舐め👅💗...
-✓ 7: ♥ASMR：耳舐め♥全編無料♡ぬぷぬぷ..💗深くまでじっとり耳舐め♡甘やかされたい子おいで？♡...
-✓ 8: ♥実写：耳舐め♥むっちむち♡バニーお姉さんと濃密なとろあま耳舐め♡...
-✓ 9: ♥ASMR：耳舐め♥全編無料♡声出したら負け💗舌圧でゾリゾリ快感にカラダが反応しないように耐えられる...
-✓ 10: ♥実写：耳舐め♥お姉さんがじっくりサポートしてくる耳舐め♡...
-
-=== 進捗: 11/58 処理中 ===
-✓ 11: ♥実写：耳舐め♥チラ見せお姉さんが誘惑してくる耳舐め♡...
-✓ 12: ♥実写：耳舐め♥甘々に溶かされて気持ちよくなるじっとり耳舐め♡...
-✓ 13: ♥ASMR：耳舐め♥全編無料♡FC開設1周年🩷えちえちなところも全部見てくれる？💗...
-✓ 14: ♥ASMR：耳舐め♥全編無料♡ぞりぞり..っ💗耳気持ちいでしょ♡彼女に甘やかされながら精一杯耳奥まで...
-✓ 15: ♥実写：耳舐め♥ダウナー系ジャージメイドちゃんの惰性ねっとり耳舐め♡...
-✓ 16: ♥ASMR：耳舐め♥全編無料♡ぬぷぬぷ..💗じっとり耳奥まで舌で覆う耳舐め💗...
-✓ 17: ♥実写：耳舐め♥ホワイトデーだしぷにっとおっぱいにあなたの×××ください♡...
-✓ 18: ♥実写：耳舐め♥穴あき白ニットお姉さん♡じっとりご奉仕耳舐め♡...
-✓ 19: ♥ASMR：耳舐め♥全編無料♡裏オプ..💗あなたの理性が崩壊しちゃう耳舐め💗...
-✓ 20: ♥全編無料♥てすと配信つきあって💗こしょこしょ耳元囁き♡...
-
-=== 進捗: 21/58 処理中 ===
-✓ 21: ♥実写：耳舐め♥穴あき白ニットお姉さん♡じっとりご奉仕耳舐め♡枠うまくいきますように･･！🙏🏻...
-✓ 22: ♥実写：耳舐め♥むちむち♡地雷メイドのご奉仕耳舐め♡ご主人様を舌でたっぷり癒すよ♡...
-✓ 23: ♥youtubeの代わりに全編無料♥にゃんにゃん♡囁いたり..♡ふいに耳舐めたり..♡すきすきしたり...
-✓ 24: ♥実写：耳舐め♥いいんだよ♡お姉さんが優しく甘やかす♡今月の疲れも癒そうね♡...
-✓ 25: ♥ASMR：耳舐め♥全編無料♡ほぼno talking💗ループ推奨♡耳フ♡ラで昇天💗...
-✓ 26: ♥ASMR：耳舐め♥全編無料♡新モデル全身でヘコヘコしながら..💗ご奉仕耳舐めさせていただきますっ！...
-✓ 27: ♥実写：耳舐め♥むちむちピンクナースで今年もいっぱい愛情注入♡とろける耳舐めサポート♡...
-✓ 28: ♥実写：耳舐め♥ピンクサンタコス♡性なる夜のとろける快楽責め♡...
-✓ 29: ♥実写：耳舐め♥とろける舌圧で愛されて寒い夜もムクムク復活♡♡...
-✓ 30: ♥実写：耳舐め♥ましゅまろみたいなトロける体であなたのことをご奉仕♡...
-
-=== 進捗: 31/58 処理中 ===
-✓ 31: ♥実写：耳舐め♥ゆったり奥まで小悪魔サポート耳舐め💜...
-✓ 32: ♥実写：耳舐め♥ハロウィン🎃オオカミになって襲っちゃうぅ💜...
-✓ 33: ♥ASMR：耳舐め♥全編無料♡お布団の中でこっそり抑えつけられてひたすら舐められる…💗逃げられない快...
-✓ 34: ♥実写：耳舐め♥FC開設半年記念♡耳舐めしながらあなたへ素敵なおしらせしますっ💜...
-✓ 35: ♥ASMR：耳舐め♥全編無料♡もっと...♡もっとぉ♡独占欲強めの彼女の媚び舐め…💗...
-✓ 36: ♥ASMR：耳舐め♥全編無料♡快楽堕ち♡ムラついてxxしたくなる彼女…💗...
-✓ 37: ♥実写：耳舐め♥むちむちッ♡警官コスプレ♡下アングルからカラダの隅々まで検査します♡...
-✓ 38: ♥ASMR：耳舐め♥youtubeの代わりに全編無料♡脳の奥まで響く耳舐め♡耳穴で這い回る舌に逃げら...
-✓ 39: ♥実写：耳舐め♥奥までずぼずぼッ♡耳奥まで感じるいちゃ甘耳舐め♡...
-✓ 40: ♥ASMR：耳舐め♥youtubeの代わりに全編無料♡急所を狙い撃ちッ♡耳穴で這い回る舌に奥深くまで...
-
-=== 進捗: 41/58 処理中 ===
-✓ 41: ♥free talk♥youtubeの代わりに全編無料♡寝る前にお話ししよ？♡...
-✓ 42: ♥実写：耳舐め♥乱れた浴衣で...💗じっとり耳舐め♡...
-✓ 43: ♥ASMR：耳舐め♥youtubeの代わりに全編無料♡ずぽッ♡ずぽッ♡お布団の中でこっそりね？💗...
-✓ 44: ♥実写：耳舐め♥強制密着♡あなたのこと独占させて？♡...
-✓ 45: ♥実写：耳舐め♥おにゃにーの日💗ほ～ら、おっぱい吸っていいよ～？🍼だる着で一緒に気持ちいいことシよう...
-✓ 46: ♥実写：耳舐め♥海の日だけどむちむちデニムバニー💙鼠径部丸見え♡びしょびしょになろ？💦...
-✓ 47: ♥ASMR：耳舐め♥youtubeの代わりに全編無料♡「ほーら、ここ好きだよね…？🤍」甘々奥攻め♡い...
-✓ 48: ♥実写：耳舐め♥人気の牛コスピンクver♡白くてふわふわもちもちのカラダで包んであげる♡♡...
-✓ 49: ♥実写：耳舐め♥「見られながら...恥ずかしいね？♡」♡意地悪シちゃう彼女もすき？♡♡...
-料金確認のため動画ページにアクセス中: https://uise-official.com/live/smZJA6L3NVHLXiUh3eDVJCPJ
-動画ページで年齢認証ダイアログを確認中...
-動画ページURL: https://uise-official.com/video/smZJA6L3NVHLXiUh3eDVJCPJ
-全編無料のタグリンクを発見
-✓ 50: ♥ASMR：耳舐め♥「我慢できない…🤍」舐め欲発散💗甘々攻め♡...
-
-=== 進捗: 51/58 処理中 ===
-✓ 51: ♥実写：耳舐め♥おしゃぶりちゅぱちゅぱッ♡ぎゅぅ～っとパイ圧で甘やかし♡♡...
-✓ 52: ♥実写：耳舐め♥ふにふにぃ…むちっ♡溺愛彼女が密着マッサージ♡♡...
-料金確認のため動画ページにアクセス中: https://uise-official.com/live/smxQbjxJbQEUGGZxE6MXqiLL
-動画ページで年齢認証ダイアログを確認中...
-動画ページURL: https://uise-official.com/video/smxQbjxJbQEUGGZxE6MXqiLL
-全編無料のタグリンクを発見
-✓ 53: ♥ASMR：耳舐め♥ぐっぽり音圧でお耳ぽかぽかっ🤍いっしょにゆっくりねんねしよ♩...
-料金確認のため動画ページにアクセス中: https://uise-official.com/live/sm9CfX4ry32bwJJtApJX3ZKC
-動画ページで年齢認証ダイアログを確認中...
-動画ページURL: https://uise-official.com/video/sm9CfX4ry32bwJJtApJX3ZKC
-全編無料のタグリンクを発見
-✓ 54: ♥ASMR：耳舐め♥あっ♡奥やば...っ♡ねっとりナマみたいに絡みついて気持ちい♡万年発情期彼女の求...
-✓ 55: ♥実写：耳舐め♥ナースコスであなたの敏感なカラダを奥まで精一杯診察します♡♡...
-料金確認のため動画ページにアクセス中: https://uise-official.com/live/smvQHUdBV2XrezinjBHWvaY9
-動画ページで年齢認証ダイアログを確認中...
-動画ページURL: https://uise-official.com/video/smvQHUdBV2XrezinjBHWvaY9
-全編無料のタグリンクを発見
-✓ 56: ♥ASMR：耳舐め♥寝る前にムラっとしたおっとり系彼女が××な声で耳舐めしてくる件について♡...
-✓ 57: ♥実写：耳舐め♥ノーブラで巫女様がご奉仕♡あなたの煩悩絞り取る♡♡...
-✓ 58: ♥実写：耳舐め♥fc初配信♡んぅ…っ//♡ご主人様専用の射○管理係です♡ぷるぷる下乳♡...
-
-合計 58 個の動画情報を取得しました
-動画情報を ../docs/fciu.json に保存しました
-
-取得した動画情報のサンプル:
-
---- 動画 1 ---
-タイトル: ♥実写♥脱いだらすごい..♡だる着でゆる～っとおしゃべり💗
-動画URL: https://uise-official.com/live/smQ59Eeyfx3JoMWeRuDAFXHg
-サムネイル: https://cdn.uise-official.com/public_html/contents/video_pages/57528/thumbnail_path?time=1752058463&width=282
-メタデータ: ['配信日時: 22時間前', '再生時間: 1:33:48', '視聴条件: 一部無料']
-
---- 動画 2 ---
-タイトル: ♥お風呂♥はじめてのスマホからのもちもち♡お風呂はいる♡てすとつきあって～！♡
-動画URL: https://uise-official.com/live/smbHdsP9ZFKUHUHLH2vCo4tZ
-サムネイル: https://cdn.uise-official.com/public_html/contents/video_pages/56782/thumbnail_path?time=1751104893&width=282
-メタデータ: ['配信日時: 2025/06/28', '再生時間: 31:05', '視聴条件: 会員のみ']
-
---- 動画 3 ---
-タイトル: ♥実写：耳舐め♥いっち♡にっ♡いち♡にっ..♡ご主人様を今夜は全力サポート👅💗
-動画URL: https://uise-official.com/live/smNroxF4mTFnG6SPHchgNorK
-サムネイル: https://cdn.uise-official.com/public_html/contents/video_pages/56380/thumbnail_path?time=1750526279&width=282
-メタデータ: ['配信日時: 2025/06/23', '再生時間: 1:42:19', '視聴条件: 一部無料']
-
-⏱ 実行時間: 95.38653612136841
-🎉 処理が完了しました！
-✅ ファンクラブ動画情報取得 - 完了
-📊 完了時刻: Fri Jul 11 00:12:33 JST 2025
-
-==================================================================================
-🎉 すべてのスクリプトの実行が完了しました！
-📅 実行完了時刻: Fri Jul 11 00:12:33 JST 2025
-📊 実行結果: 4/4 スクリプトが成功
-✨ すべてのスクリプトが正常に完了しました！
-
-📁 出力ファイル:
-   - ../docs/youtube.json
-   - ../docs/niconico_l.json
-   - ../docs/secret_ac.json
-   - ../docs/fciu.json
-==================================================================================
-🔄 Git コミット&プッシュを実行します...
-
-📝 変更されたファイルを確認しています...
- M docs/youtube.json
-?? get_video_info_script/logs/
-
-📦 JSON ファイルをステージングに追加します...
-💾 コミットを実行します: Update video info data - 2025-07-11 00:12:33
-[main c18d3f6] Update video info data - 2025-07-11 00:12:33
- 1 file changed, 3 insertions(+), 3 deletions(-)
-✅ コミットが完了しました
-🚀 プッシュを実行します...
-fatal: could not read Username for 'https://github.com': No such device or address
-❌ プッシュに失敗しました
-💡 手動でプッシュを実行してください: git push
-
-==================================================================================
-🎊 すべての処理が完了しました！
-📅 完了時刻: Fri Jul 11 00:12:33 JST 2025
+📅 完了時刻: Fri Jul 11 10:15:10 JST 2025
 ==================================================================================
