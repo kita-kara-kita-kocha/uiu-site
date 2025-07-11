@@ -16,7 +16,7 @@ LOG_FILE="${LOG_DIR}/cron_execution.log"
 mkdir -p "${LOG_DIR}"
 
 # Cronジョブの設定（3時間ごと: 0時、3時、6時、9時、12時、15時、18時、21時）
-CRON_JOB="0 */3 * * * cd \"${SCRIPT_DIR}\" && bash \"${RUN_SCRIPT_PATH}\" >> \"${LOG_FILE}\" 2>&1"
+CRON_JOB="0 */3 * * * cd \"${SCRIPT_DIR}\" && bash \"${RUN_SCRIPT_PATH}\" > \"${LOG_FILE}\" 2>&1"
 
 echo "📝 設定するCronジョブ:"
 echo "${CRON_JOB}"
