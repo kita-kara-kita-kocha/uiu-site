@@ -94,8 +94,8 @@ def get_detailed_video_info(video_id, ydl_opts):
                 )
             break  # 成功したらループを抜ける
         except Exception as retry_error:
-            # エラー内容にmembers-onlyが含まれている場合はメンバー限定動画
-            if 'members-only' in str(retry_error).lower():
+            # エラー文にmembers-onlyが部分一致する場合はメンバー限定動画
+            if 'members-only' in str(retry_error):
                 print(f"    メンバー限定動画: {video_id} - 詳細情報の取得をスキップします")
                 return video_info
             print(f"    試行 {attempt + 1}/3 失敗: {str(retry_error)}")
