@@ -84,6 +84,21 @@ run_script() {
     fi
 }
 
+# yt-dlpのアップデート
+echo "🔄 yt-dlpのアップデートを確認しています..."
+if command -v yt-dlp > /dev/null; then
+    if yt-dlp --update; then
+        echo "✅ yt-dlpのアップデートが完了しました"
+    else
+        echo "❌ yt-dlpのアップデートに失敗しました。手動でアップデートしてください。"
+        echo "💡 コマンド: yt-dlp --update"
+    fi
+else
+    echo "❌ yt-dlpが見つかりません。インストールしてください。"
+    echo "💡 コマンド: pip install yt-dlp"
+    exit 1
+fi
+
 # 各スクリプトを順次実行
 run_script "get_video_info_youtube.py" "YouTube動画情報取得"
 run_script "get_video_info_niconico_live.py" "ニコニコ動画ライブ情報取得"
