@@ -1,5 +1,5 @@
 🎬 動画情報取得スクリプトを開始します...
-📅 実行開始時刻: Fri Jul 11 10:05:01 JST 2025
+📅 実行開始時刻: Fri Jul 11 17:12:05 JST 2025
 📦 仮想環境をアクティベートします...
 🔍 依存関係をチェックしています...
 ✅ yt_dlp インストール済み
@@ -12,102 +12,22 @@
 🚀 すべてのスクリプトを順次実行します...
 ⏱️  予想実行時間: 約20-45分
 
+🔄 yt-dlpのアップデートを確認しています...
+Latest version: stable@2025.06.30 from yt-dlp/yt-dlp
+yt-dlp is up to date (stable@2025.06.30 from yt-dlp/yt-dlp)
+✅ yt-dlpのアップデートが完了しました
 ==================================================================================
 📺 [1/4] YouTube動画情報取得
 🎯 実行スクリプト: get_video_info_youtube.py
-⏰ 開始時刻: Fri Jul 11 10:05:01 JST 2025
+⏰ 開始時刻: Fri Jul 11 17:12:06 JST 2025
 ==================================================================================
-ERROR: [youtube] j3OsMve5rnY: This live event will begin in 12 hours.
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [youtube] 2XVJLuA0gFg: Requested format is not available. Use --list-formats for a list of available formats
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [youtube] bjo0GUqriVI: Requested format is not available. Use --list-formats for a list of available formats
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [youtube] M5TcDyLs7dA: Join this channel to get access to members-only content like this video, and other exclusive perks.
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
 🎬 YouTube動画情報取得スクリプト
 ✅ yt-dlp バージョン: 2025.06.30
 🔍 チャンネル 'https://www.youtube.com/@uise_iu_asmr' から動画情報を取得します...
 'https://www.youtube.com/@uise_iu_asmr/stream' から動画情報を取得中...
 発見された動画数: 151
 動画ID j3OsMve5rnY の詳細情報を取得中...
-  → ✗ 詳細取得失敗: ID: j3OsMve5rnY - 動画情報の取得に失敗しました
+  → ✓ 未放送枠: ID: j3OsMve5rnY - 詳細情報の取得をスキップします
     → 基本情報のみで処理を続行します
 動画ID Rw6gMvJh1J8 の詳細情報を取得中...
   → ✓ 取得完了: ❤︎ ASMR KU100┊あーむ..っ♡៸៸おくちでもぎゅっと耳はむ♡脳がとろけて骨抜きに..🩷濃厚な耳責めとろあま睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: Rw6gMvJh1J8)
@@ -122,13 +42,11 @@ ERROR: fragment 1 not found, unable to continue
 動画ID FWrQmYQLQVY の詳細情報を取得中...
   → ✓ 取得完了: ✦ #3┊メタルギアソリッド2┊見つからないようにこっそり..変装からの潜入捜査だあ🐈📦ステルス名作MGS2完全初見で潜入するっ🐾 (ID: FWrQmYQLQVY)
 動画ID 2XVJLuA0gFg の詳細情報を取得中...
-  → ✗ 詳細取得失敗: ID: 2XVJLuA0gFg - 動画情報の取得に失敗しました
-    → 基本情報のみで処理を続行します
+  → ✓ 取得完了: ❤︎ ASMR KU100┊よわよわぁ..っ♡ヒミツの甘やかしタイム♡甘ったるい夜にしよ？🩷濃密な耳責めとろあま睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: 2XVJLuA0gFg)
 動画ID ESsE39PV0Tc の詳細情報を取得中...
   → ✓ 取得完了: ✦ #2┊メタルギアソリッド2┊爆弾処理班いきます..！！！🐈📦ステルス名作MGS2完全初見で潜入するっ🐾 (ID: ESsE39PV0Tc)
 動画ID bjo0GUqriVI の詳細情報を取得中...
-  → ✗ 詳細取得失敗: ID: bjo0GUqriVI - 動画情報の取得に失敗しました
-    → 基本情報のみで処理を続行します
+  → ✓ 取得完了: ✦ #1┊メタルギアソリッド2┊ダンボール箱を上手く使いこなすことが任務の要..🐈📦ステルス名作MGS2完全初見で潜入するっ🐾 (ID: bjo0GUqriVI)
 動画ID KkUXmzlNB94 の詳細情報を取得中...
   → ✓ 取得完了: ❤︎ ASMR KU100┊びくびく..っ♡負け癖治りませんね♡甘サド×からかい上手な敬語彼女🩷濃密な耳責めとろあま睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: KkUXmzlNB94)
 動画ID zbntJpr-em0 の詳細情報を取得中...
@@ -136,7 +54,7 @@ ERROR: fragment 1 not found, unable to continue
 動画ID 3OjNEQR7WVw の詳細情報を取得中...
   → ✓ 取得完了: ❤︎ ASMR KU100┊ぐっぽり..っ♡本気の耳はむ♡ぽかぽかあちゅあちゅになろ..？🩷濃密な耳責めとろあま睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: 3OjNEQR7WVw)
 動画ID M5TcDyLs7dA の詳細情報を取得中...
-  → ✗ 詳細取得失敗: ID: M5TcDyLs7dA - 動画情報の取得に失敗しました
+  → ✓ メンバー限定動画: ID: M5TcDyLs7dA - 詳細情報の取得をスキップします
     → 基本情報のみで処理を続行します
 動画ID Xw4B0obGMBM の詳細情報を取得中...
   → ✓ 取得完了: ❤︎ ASMR KU100┊腰ビク..っ♡献身的な専属あまあまナースに一生お世話されちゃえ..🩷濃密な耳責めとろあま睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: Xw4B0obGMBM)
@@ -173,39 +91,6 @@ ERROR: fragment 1 not found, unable to continue
 動画ID fveJ1wRl--I の詳細情報を取得中...
   → ✓ 取得完了: ✦  港詭實錄 ParanormalHK┊過去一怖そう...うぅ… (ID: fveJ1wRl--I)
 動画ID 9-ERpCap2F4 の詳細情報を取得中...
-ERROR: [youtube] 6MJlqK0u5lg: Join this channel to get access to members-only content like this video, and other exclusive perks.
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [download] Got error: HTTP Error 403: Forbidden
-ERROR: fragment 1 not found, unable to continue
-ERROR: [youtube] ygvaFBVPzmE: Requested format is not available. Use --list-formats for a list of available formats
-ERROR: [youtube] bq4EJpII7Mg: Join this channel to get access to members-only content like this video, and other exclusive perks.
   → ✓ 取得完了: ❤︎ ASMR KU100┊よく我慢できたね..♡しっとり包まれてぽかぽか🩷今日も甘々完全敗北しようね🖤濃密な耳責め睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: 9-ERpCap2F4)
 動画ID RBfuNw3J9Jg の詳細情報を取得中...
   → ✓ 取得完了: ✦ Minecraft ~7日目~┊ゆったり深夜のはーどこあ🩷ブレイズロッド集めからのエンドラへ…最終回!?🌳癒される波の音🧊💤 (ID: RBfuNw3J9Jg)
@@ -230,7 +115,7 @@ ERROR: [youtube] bq4EJpII7Mg: Join this channel to get access to members-only co
 動画ID aV4NF69X638 の詳細情報を取得中...
   → ✓ 取得完了: ❤︎ ASMR KU100┊ずぽずぽ..っ♡反応したら負け🩷抗えない心地よさに耐えられる..？🩷鼓膜まで濃密な耳責め睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: aV4NF69X638)
 動画ID 6MJlqK0u5lg の詳細情報を取得中...
-  → ✗ 詳細取得失敗: ID: 6MJlqK0u5lg - 動画情報の取得に失敗しました
+  → ✓ メンバー限定動画: ID: 6MJlqK0u5lg - 詳細情報の取得をスキップします
     → 基本情報のみで処理を続行します
 動画ID WFuiTttezMc の詳細情報を取得中...
   → ✓ 取得完了: ❤︎ ASMR KU100┊さわさわ..っ♡容赦なく襲ってくる鼓膜癒しで完堕ちさせられる..💗鼓膜まで濃密な耳責め睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: WFuiTttezMc)
@@ -255,8 +140,7 @@ ERROR: [youtube] bq4EJpII7Mg: Join this channel to get access to members-only co
 動画ID IAibU03BjM4 の詳細情報を取得中...
   → ✓ 取得完了: ❤︎ ASMR KU100┊むぎゅ..♡むにっ..♡眠る前にすきが溢れて幸せいっぱい沼らせる💗鼓膜まで濃密な耳責め睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: IAibU03BjM4)
 動画ID ygvaFBVPzmE の詳細情報を取得中...
-  → ✗ 詳細取得失敗: ID: ygvaFBVPzmE - 動画情報の取得に失敗しました
-    → 基本情報のみで処理を続行します
+  → ✓ 取得完了: ❤︎ Happy Valentine🍫┊甘々彼女はいかがですか..？♡ (ID: ygvaFBVPzmE)
 動画ID cNct2iLPxUM の詳細情報を取得中...
   → ✓ 取得完了: ❤︎ ASMR KU100┊チョコよりもあま～い誘惑耐えられる？💗ぽかぽか吐息で温める♡鼓膜まで幸せいっぱい睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: cNct2iLPxUM)
 動画ID QU9TSzdS1rE の詳細情報を取得中...
@@ -264,7 +148,7 @@ ERROR: [youtube] bq4EJpII7Mg: Join this channel to get access to members-only co
 動画ID _F-xIGvH9lg の詳細情報を取得中...
   → ✓ 取得完了: ❤︎ ASMR KU100┊ほら..♡こっちおいで？💗ふにゃふにゃあまあま🤍ぽかぽか吐息で温める♡たっぷり可愛がられる睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: _F-xIGvH9lg)
 動画ID bq4EJpII7Mg の詳細情報を取得中...
-  → ✗ 詳細取得失敗: ID: bq4EJpII7Mg - 動画情報の取得に失敗しました
+  → ✓ メンバー限定動画: ID: bq4EJpII7Mg - 詳細情報の取得をスキップします
     → 基本情報のみで処理を続行します
 動画ID TScRkSTmuA0 の詳細情報を取得中...
   → ✓ 取得完了: ✦ ＃6┊ドラクエ3リメイク┊完全初見🗡️テドンでボス戦！！ジパングのおろち倒しにいくぞおおお！！！！₊⁺ ⚠ネタバレあり (ID: TScRkSTmuA0)
@@ -273,8 +157,6 @@ ERROR: [youtube] bq4EJpII7Mg: Join this channel to get access to members-only co
 動画ID GEBuU4TiTXk の詳細情報を取得中...
   → ✓ 取得完了: ✦ ＃5┊ドラクエ3リメイク┊完全初見🗡️久しぶり！オーブ集めの旅だああああ！！！₊⁺ ⚠ネタバレあり (ID: GEBuU4TiTXk)
 動画ID Wu8a12zzaG0 の詳細情報を取得中...
-ERROR: [youtube] pa0bRTf5DCI: Join this channel to get access to members-only content like this video, and other exclusive perks.
-ERROR: [youtube] oyCTvp9HYo4: Join this channel to get access to members-only content like this video, and other exclusive perks.
   → ✓ 取得完了: ❤︎ ASMR KU100┊もうだめ..♡あなたの全部ちょーだい💗熱い吐息で精一杯搾り取り🤍愛情たっぷり可愛がられる睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: Wu8a12zzaG0)
 動画ID HWxqW1mx1VA の詳細情報を取得中...
   → ✓ 取得完了: ✦  呪われたデジカメ┊霊を写す不思議なカメラを手に入れたみたいです..👻📸 (ID: HWxqW1mx1VA)
@@ -299,7 +181,7 @@ ERROR: [youtube] oyCTvp9HYo4: Join this channel to get access to members-only co
 動画ID uqG5IadSN1k の詳細情報を取得中...
   → ✓ 取得完了: ✦ ＃4┊ドラクエ3リメイク┊完全初見🗡️ピラミッド攻略後から！関所いくぞおぉぉ！！！₊⁺ ⚠ネタバレあり (ID: uqG5IadSN1k)
 動画ID pa0bRTf5DCI の詳細情報を取得中...
-  → ✗ 詳細取得失敗: ID: pa0bRTf5DCI - 動画情報の取得に失敗しました
+  → ✓ メンバー限定動画: ID: pa0bRTf5DCI - 詳細情報の取得をスキップします
     → 基本情報のみで処理を続行します
 動画ID UyUChkxbUD8 の詳細情報を取得中...
   → ✓ 取得完了: ❤︎ ASMR KU100┊囁き多め♡ミルクみたいにあまい..🍼💗耳はむはむ♡体温感じながらたっぷり可愛がられる睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: UyUChkxbUD8)
@@ -316,7 +198,7 @@ ERROR: [youtube] oyCTvp9HYo4: Join this channel to get access to members-only co
 動画ID 4bsvWpA7dWM の詳細情報を取得中...
   → ✓ 取得完了: ❤︎ ASMR KU100┊ぎゅっ…！♡おいで？♡甘やかしてあげる♡ふかぁい快眠♡体温感じながらたっぷり可愛がられる睡眠導入🤍[ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: 4bsvWpA7dWM)
 動画ID oyCTvp9HYo4 の詳細情報を取得中...
-  → ✗ 詳細取得失敗: ID: oyCTvp9HYo4 - 動画情報の取得に失敗しました
+  → ✓ メンバー限定動画: ID: oyCTvp9HYo4 - 詳細情報の取得をスキップします
     → 基本情報のみで処理を続行します
 動画ID DYAhUMwWcMY の詳細情報を取得中...
   → ✓ 取得完了: ❤︎ ASMR KU100┊ すぅき...♡ (ID: DYAhUMwWcMY)
@@ -341,9 +223,6 @@ ERROR: [youtube] oyCTvp9HYo4: Join this channel to get access to members-only co
 動画ID rAKf493SYL8 の詳細情報を取得中...
   → ✓ 取得完了: ✦ ASMR × Gaming┊島の評価あげたり、のんびり釣りしたり。 深夜の落ち着く囁きとあつ森🌳 [ #あつ森  / #あつまれどうぶつの森  / #憂世いう ] (ID: rAKf493SYL8)
 動画ID 8bqiioHJaR0 の詳細情報を取得中...
-ERROR: [youtube] UiMUibq22Tg: Join this channel to get access to members-only content like this video, and other exclusive perks.
-ERROR: [youtube] zPtPXhWM9aI: Join this channel to get access to members-only content like this video, and other exclusive perks.
-ERROR: [youtube] 5k7hz3Yq0sM: Join this channel to get access to members-only content like this video, and other exclusive perks.
   → ✓ 取得完了: ❤︎ ASMR KU100┊病み上がりふにゃふにゃん...♡耳元でゆったり囁き＆熱々吐息…♡ぎゅっと安心⯎なでなでとんとん。 [ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: 8bqiioHJaR0)
 動画ID bgpdRhASVIk の詳細情報を取得中...
   → ✓ 取得完了: ❤︎ ASMR KU100┊ん…♡おいで♡吐息で感じる甘々攻め…♡体温感じながら深くまでたっぷり可愛がられる睡眠導入🤍 [ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: bgpdRhASVIk)
@@ -360,7 +239,7 @@ ERROR: [youtube] 5k7hz3Yq0sM: Join this channel to get access to members-only co
 動画ID osCZU7Y0PRc の詳細情報を取得中...
   → ✓ 取得完了: ✦＃９┊FF10┊ナギ平原から✦₊⁺ チョコボで駆け抜ける🐣⚠ネタバレあり [ #憂世いう /  #ファイナルファンタジー10 / #ff10 ] (ID: osCZU7Y0PRc)
 動画ID UiMUibq22Tg の詳細情報を取得中...
-  → ✗ 詳細取得失敗: ID: UiMUibq22Tg - 動画情報の取得に失敗しました
+  → ✓ メンバー限定動画: ID: UiMUibq22Tg - 詳細情報の取得をスキップします
     → 基本情報のみで処理を続行します
 動画ID uI5dquu1lO4 の詳細情報を取得中...
   → ✓ 取得完了: ✦ ASMR × Gaming┊おさんぽしよ？🤍 深夜の落ち着く囁きとあつ森🌳 [ #あつ森  / #あつまれどうぶつの森  / #憂世いう ] (ID: uI5dquu1lO4)
@@ -369,7 +248,7 @@ ERROR: [youtube] 5k7hz3Yq0sM: Join this channel to get access to members-only co
 動画ID 8E91UoetLJU の詳細情報を取得中...
   → ✓ 取得完了: ✦＃8┊FF10┊ベベル宮で仲間を救う！✦₊⁺ 2回目のシーモア戦👊！！！！⚠ネタバレあり [ #憂世いう /  #ファイナルファンタジー10 / #ff10 ] (ID: 8E91UoetLJU)
 動画ID zPtPXhWM9aI の詳細情報を取得中...
-  → ✗ 詳細取得失敗: ID: zPtPXhWM9aI - 動画情報の取得に失敗しました
+  → ✓ メンバー限定動画: ID: zPtPXhWM9aI - 詳細情報の取得をスキップします
     → 基本情報のみで処理を続行します
 動画ID ZMj71HHufbA の詳細情報を取得中...
   → ✓ 取得完了: ❤︎ ASMR KU100┊隣にいてもいいかな…？🤍愛情特濃🍼甘えん坊彼女といちゃ甘しよ？♡とろとろ特濃睡眠導入🤍 [ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: ZMj71HHufbA)
@@ -402,19 +281,18 @@ ERROR: [youtube] 5k7hz3Yq0sM: Join this channel to get access to members-only co
 動画ID SHdbWJ5bXUw の詳細情報を取得中...
   → ✓ 取得完了: ✦＃3┊FF10┊のんびりジョゼ寺院に向かうところから✦₊⁺⚠ネタバレあり [ 憂世いう ,  #ファイナルファンタジー10 , #ff10 ] (ID: SHdbWJ5bXUw)
 動画ID 5k7hz3Yq0sM の詳細情報を取得中...
-  → ✗ 詳細取得失敗: ID: 5k7hz3Yq0sM - 動画情報の取得に失敗しました
+  → ✓ メンバー限定動画: ID: 5k7hz3Yq0sM - 詳細情報の取得をスキップします
     → 基本情報のみで処理を続行します
 動画ID v3eCUV2sK88 の詳細情報を取得中...
   → ✓ 取得完了: ✦＃２┊FF10┊美しくて切ない、異界送りを見届けたところから✦₊⁺⚠ネタバレあり [ 憂世いう ,  #ファイナルファンタジー10 , #ff10 ] (ID: v3eCUV2sK88)
 動画ID B-Mre1e2Kd8 の詳細情報を取得中...
   → ✓ 取得完了: ✦ The Game Of sisyphus┊タマ(岩)転がしちゃおっかな～？🤍…転がされちゃうかも。 [ 憂世いう ,  #岩おじ , #thegameofsisyphus  ] (ID: B-Mre1e2Kd8)
 動画ID URhMEKUaEBE の詳細情報を取得中...
-ERROR: [youtube] FZOBSoaCAKE: Join this channel to get access to members-only content like this video, and other exclusive perks.
   → ✓ 取得完了: ❤︎ ASMR KU100┊ぬぷっと奥まで…🤍耳奥ゾクゾクご奉仕♡極上睡眠導入♡ [ 睡眠導入 吐息 ear cleaning Mouthsound ] (ID: URhMEKUaEBE)
 動画ID 9ZjaB6fu9Uc の詳細情報を取得中...
   → ✓ 取得完了: ✦＃1┊FF10┊不朽の名作やります 。「最後かもしれないだろ。だから 全部話しておきたいんだ」⚠ネタバレあり [ 憂世いう ,  #ファイナルファンタジー10 , #ff10 ] (ID: 9ZjaB6fu9Uc)
 動画ID FZOBSoaCAKE の詳細情報を取得中...
-  → ✗ 詳細取得失敗: ID: FZOBSoaCAKE - 動画情報の取得に失敗しました
+  → ✓ メンバー限定動画: ID: FZOBSoaCAKE - 詳細情報の取得をスキップします
     → 基本情報のみで処理を続行します
 動画ID m75jGO5MrkI の詳細情報を取得中...
   → ✓ 取得完了: ✦ Chained Together┊落ちるときは…一緒だよ？♡៸៸可愛すぎる4人組で鎖で繋がれちゃう⛓🤍 [ #憂世いう / #神楽ゆら / #憩居ももあ / #天使しゃる ] (ID: m75jGO5MrkI)
@@ -486,7 +364,7 @@ ERROR: [youtube] FZOBSoaCAKE: Join this channel to get access to members-only co
 　▮ https://tosta.jp/shops/uise_iu
 
 　チャンネル登録・高評価おして...
-   メタデータ: 再生時間: 1:59:22, 視聴回数: 29.7K回, 投稿日: 2025/07/10
+   メタデータ: 再生時間: 1:59:22, 視聴回数: 35.0K回, 投稿日: 2025/07/10
    クラス: ['public']
 
 3. ❤︎  #憂世いうbirthday┊ぎゅっぎゅしながらのんびりお礼♡これからもあなたのそばにいさせてね♡
@@ -498,21 +376,21 @@ ERROR: [youtube] FZOBSoaCAKE: Join this channel to get access to members-only co
 　▮ https://tosta.jp/shops/uise_iu
 
 　チャンネル登録・高評価おして...
-   メタデータ: 再生時間: 2:46:22, 視聴回数: 40.4K回, 投稿日: 2025/07/07
+   メタデータ: 再生時間: 2:46:22, 視聴回数: 40.6K回, 投稿日: 2025/07/07
    クラス: ['public']
 
 ... 他 148 個の動画
 
-⏱ 実行時間: 0:07:39.616740
+⏱ 実行時間: 0:08:19.260879
 
 🎉 処理が完了しました！
 ✅ YouTube動画情報取得 - 完了
-📊 完了時刻: Fri Jul 11 10:12:41 JST 2025
+📊 完了時刻: Fri Jul 11 17:20:25 JST 2025
 
 ==================================================================================
 📺 [2/4] ニコニコ動画ライブ情報取得
 🎯 実行スクリプト: get_video_info_niconico_live.py
-⏰ 開始時刻: Fri Jul 11 10:12:41 JST 2025
+⏰ 開始時刻: Fri Jul 11 17:20:25 JST 2025
 ==================================================================================
 /home/kttpc/uiu-site/get_video_info_script/get_video_info_niconico_live.py:164: DeprecationWarning: The 'text' argument to find()-type methods is deprecated. Use 'string' instead.
   timeshift_limit_element_ = ts_soup.find_all('dt', text=re.compile(r'タイムシフト視聴期限：'))
@@ -588,15 +466,15 @@ ERROR: [youtube] FZOBSoaCAKE: Join this channel to get access to members-only co
 サムネイル: https://listing-thumbnail.live.nicovideo.jp?image=prod-lv347701873/thumbnail_1746559796674.jpg&w=352&h=198&v=1746559796674
 放送開始: N/A
 
-⏱ 実行時間: 0:00:15.836071
+⏱ 実行時間: 0:00:11.921616
 🎉 処理が完了しました！
 ✅ ニコニコ動画ライブ情報取得 - 完了
-📊 完了時刻: Fri Jul 11 10:12:57 JST 2025
+📊 完了時刻: Fri Jul 11 17:20:37 JST 2025
 
 ==================================================================================
 📺 [3/4] ファンサイト投稿情報取得
 🎯 実行スクリプト: get_video_info_secret.py
-⏰ 開始時刻: Fri Jul 11 10:12:57 JST 2025
+⏰ 開始時刻: Fri Jul 11 17:20:37 JST 2025
 ==================================================================================
 🎬 ファンサイト動画情報取得スクリプト
 ページを読み込み中: https://candfans.jp/iu_nyaa
@@ -652,15 +530,15 @@ ERROR: [youtube] FZOBSoaCAKE: Join this channel to get access to members-only co
 サムネイル: https://video.candfans.jp/user/1189871/post/888265/secret.jpeg
 メタデータ: ['05:45']
 
-⏱ 実行時間: 0:00:42.338154
+⏱ 実行時間: 0:00:44.078868
 🎉 処理が完了しました！
 ✅ ファンサイト投稿情報取得 - 完了
-📊 完了時刻: Fri Jul 11 10:13:40 JST 2025
+📊 完了時刻: Fri Jul 11 17:21:21 JST 2025
 
 ==================================================================================
 📺 [4/4] ファンクラブ動画情報取得
 🎯 実行スクリプト: get_video_info_fc.py
-⏰ 開始時刻: Fri Jul 11 10:13:40 JST 2025
+⏰ 開始時刻: Fri Jul 11 17:21:21 JST 2025
 ==================================================================================
 🎬 ファンクラブ動画情報取得スクリプト
 ページを読み込み中: https://uise-official.com/lives
@@ -790,14 +668,14 @@ ERROR: [youtube] FZOBSoaCAKE: Join this channel to get access to members-only co
 サムネイル: https://cdn.uise-official.com/public_html/contents/video_pages/56380/thumbnail_path?time=1750526279&width=282
 メタデータ: ['配信日時: 2025/06/23', '再生時間: 1:42:19', '視聴条件: 一部無料']
 
-⏱ 実行時間: 90.36545395851135
+⏱ 実行時間: 95.17504572868347
 🎉 処理が完了しました！
 ✅ ファンクラブ動画情報取得 - 完了
-📊 完了時刻: Fri Jul 11 10:15:10 JST 2025
+📊 完了時刻: Fri Jul 11 17:22:57 JST 2025
 
 ==================================================================================
 🎉 すべてのスクリプトの実行が完了しました！
-📅 実行完了時刻: Fri Jul 11 10:15:10 JST 2025
+📅 実行完了時刻: Fri Jul 11 17:22:57 JST 2025
 📊 実行結果: 4/4 スクリプトが成功
 ✨ すべてのスクリプトが正常に完了しました！
 
@@ -810,28 +688,7 @@ ERROR: [youtube] FZOBSoaCAKE: Join this channel to get access to members-only co
 🔄 Git コミット&プッシュを実行します...
 
 📝 変更されたファイルを確認しています...
- M docs/fciu.json
  M docs/youtube.json
  M get_video_info_script/logs/cron_execution.log
 
 📦 JSON ファイルをステージングに追加します...
-fatal: pathspec 'get_video_info_script/logs/cron_execution.logs' did not match any files
-💾 コミットを実行します: Update video info data - 2025-07-11 10:15:10
-On branch main
-Your branch is up to date with 'origin/main'.
-
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git restore <file>..." to discard changes in working directory)
-	modified:   docs/fciu.json
-	modified:   docs/youtube.json
-	modified:   get_video_info_script/logs/cron_execution.log
-
-no changes added to commit (use "git add" and/or "git commit -a")
-❌ コミットに失敗しました
-💡 手動でコミットしてください
-
-==================================================================================
-🎊 すべての処理が完了しました！
-📅 完了時刻: Fri Jul 11 10:15:10 JST 2025
-==================================================================================
