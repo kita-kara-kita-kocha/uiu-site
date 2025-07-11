@@ -151,15 +151,15 @@ else
         
         # JSON ファイルのみをステージングに追加
         echo "📦 JSON ファイルをステージングに追加します..."
-        git add docs/youtube.json docs/niconico_l.json docs/secret_ac.json docs/fciu.json get_video_info_script/logs/cron_execution.logs
-        
+        git add docs/youtube.json docs/niconico_l.json docs/secret_ac.json docs/fciu.json get_video_info_script/logs/cron_execution.log
+
         # コミット
         commit_message="Update video info data - $(date '+%Y-%m-%d %H:%M:%S')"
         echo "💾 コミットを実行します: $commit_message"
-        
+
         if git commit -m "$commit_message"; then
             echo "✅ コミットが完了しました"
-            
+
             # プッシュ
             echo "🚀 プッシュを実行します..."
             if git push; then
@@ -168,10 +168,14 @@ else
             else
                 echo "❌ プッシュに失敗しました"
                 echo "💡 手動でプッシュを実行してください: git push"
+                echo "🔍 詳細なエラー情報を確認するには以下を実行してください:"
+                echo "   git log -1 --stat"
             fi
         else
             echo "❌ コミットに失敗しました"
             echo "💡 手動でコミットしてください"
+            echo "🔍 詳細なエラー情報を確認するには以下を実行してください:"
+            echo "   git status"
         fi
     fi
 fi
