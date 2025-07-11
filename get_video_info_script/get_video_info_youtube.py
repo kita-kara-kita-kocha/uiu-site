@@ -94,6 +94,10 @@ def get_detailed_video_info(video_id, ydl_opts):
                 )
             break  # 成功したらループを抜ける
         except Exception as retry_error:
+            # エラー内容にmembers-onlyが含まれている場合はメンバー限定動画
+            if 'members-only' in str(retry_error).lower():
+                print(f"    メンバー限定動画: {video_id} - 詳細情報の取得をスキップします")
+                return video_info
             print(f"    試行 {attempt + 1}/3 失敗: {str(retry_error)}")
             if attempt < 2:  # 最後の試行でなければ待機
                 time.sleep(5)  # 5秒待機
@@ -185,7 +189,7 @@ def process_video_entry(entry, ydl_opts):
         video_info = get_detailed_video_info(video_id, ydl_opts)
 
         if not video_info:
-            raise Exception("動画情報の取得に失敗しました")
+            raise Exception("動画情報の取得に失敗しました(メン限か放送予定枠の可能性があります)")
 
         # 動画情報を整形
         video_data = create_video_data_from_detailed_info(video_info, video_id)
@@ -195,7 +199,7 @@ def process_video_entry(entry, ydl_opts):
         
     except Exception as e:
         # 個別動画の取得に失敗した場合は放送予定枠かメン限枠なので動画情報を整形する
-        print(f"  → ✗ 詳細取得失敗: ID: {video_id} - {str(e)}")
+        print(f"  → ✗ 詳細取得情報なし: ID: {video_id} - {str(e)}")
         print(f"    → 基本情報のみで処理を続行します")
         
         return create_video_data_from_basic_info(entry)
