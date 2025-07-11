@@ -97,7 +97,15 @@ def get_detailed_video_info(video_id, ydl_opts):
             # エラー文にmembers-onlyが部分一致する場合はメンバー限定動画
             if 'members-only' in str(retry_error):
                 print(f"    メンバー限定動画: {video_id} - 詳細情報の取得をスキップします")
-                return video_info
+                return {
+                    "addAdditionalClass": ["subscriber_only"]
+                }
+            # エラー文に"This live event will"が含まれている場合は未放送枠
+            if "This live event will" in str(retry_error):
+                print(f"    未放送枠: {video_id} - 詳細情報の取得をスキップします")
+                return {
+                    "addAdditionalClass": ["schedule"]
+                }
             print(f"    試行 {attempt + 1}/3 失敗: {str(retry_error)}")
             if attempt < 2:  # 最後の試行でなければ待機
                 time.sleep(5)  # 5秒待機
@@ -189,7 +197,13 @@ def process_video_entry(entry, ydl_opts):
         video_info = get_detailed_video_info(video_id, ydl_opts)
 
         if not video_info:
-            raise Exception("動画情報の取得に失敗しました(メン限か放送予定枠の可能性があります)")
+            raise Exception("動画情報の取得に失敗しました")
+        if video_info.get('addAdditionalClass') == 'subscriber_only':
+            print(f"  → ✗ メンバー限定動画: ID: {video_id} - 詳細情報の取得をスキップします")
+            return create_video_data_from_basic_info(entry)
+        if video_info.get('addAdditionalClass') == 'schedule':
+            print(f"  → ✗ 未放送枠: ID: {video_id} - 詳細情報の取得をスキップします")
+            return create_video_data_from_basic_info(entry)
 
         # 動画情報を整形
         video_data = create_video_data_from_detailed_info(video_info, video_id)
@@ -199,7 +213,7 @@ def process_video_entry(entry, ydl_opts):
         
     except Exception as e:
         # 個別動画の取得に失敗した場合は放送予定枠かメン限枠なので動画情報を整形する
-        print(f"  → ✗ 詳細取得情報なし: ID: {video_id} - {str(e)}")
+        print(f"  → ✗ 詳細情報取得失敗: ID: {video_id} - {str(e)}")
         print(f"    → 基本情報のみで処理を続行します")
         
         return create_video_data_from_basic_info(entry)
