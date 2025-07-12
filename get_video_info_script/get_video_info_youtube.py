@@ -166,15 +166,21 @@ def create_video_data_from_detailed_info(video_info, video_id):
         dict: 整形された動画データ
     """
     timestamps = extract_timestamps_from_comments(video_info)
+    # タイトルからタグ情報を抽出
+    title = video_info.get('title', '')
+    # 「#」で始まるタグを抽出
+    tags = re.findall(r'#(\w+) ', title)
+    # タグを重複なく保持
+    tags = list(set(tags))
     
     return {
-        "title": video_info.get('title', 'タイトル不明'),
+        "title": title,
         "image": f"https://i.ytimg.com/vi/{video_id}/maxresdefault.jpg",
         "alt": video_info.get('title', 'タイトル不明'),
         "description": video_info.get('description', '')[:100] + "..." if video_info.get('description') else "説明なし",
         "videoId": video_id,
         "video_url": f"https://www.youtube.com/watch?v={video_id}",
-        "tags": video_info.get('tags', []),
+        "tags": tags,
         "timestamps": timestamps,
         "metadata": [
             f"再生時間: {format_duration(video_info.get('duration', 0))}",
@@ -199,16 +205,22 @@ def create_video_data_from_basic_info(entry):
     # availability情報の取得を試行
     availability = entry.get('availability', 'unknown')
     add_class = []
-    
+
+    title = entry.get('title', 'タイトル不明')
+
+    # 「#」で始まるタグを抽出
+    tags = re.findall(r'#(\w+) ', title)
+
     if availability == 'subscriber_only':
         add_class = ['subscriber_only']
+        tags.append('#メン限')
     elif entry.get('live_status') == 'is_upcoming':
         add_class = ['schedule']
     else:
         add_class = ['unavailable']
     
     return {
-        "title": entry.get('title', 'タイトル不明'),
+        "title": title,
         "image": f"https://i.ytimg.com/vi/{video_id}/maxresdefault.jpg",
         "alt": entry.get('title', 'タイトル不明'),
         "description": entry.get('description')[:100] + "..." if entry.get('description') else "説明なし",
@@ -371,10 +383,21 @@ def save_to_json(videos, output_file):
     # 出力ディレクトリを作成（存在しない場合）
     output_path = Path(output_file)
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    
+
+    # 存在するタグを抽出
+    # 頻度の高さでソート
+    tags = {}
+    for video in videos:
+        for tag in video.get('tags', []):
+            if tag not in tags:
+                tags[tag] = 0
+            tags[tag] += 1
+    tags = sorted(tags.items(), key=lambda x: x[1], reverse=True)
+
     # JSON形式でデータを構築
     json_data = {
         "items": videos,
+        "tags": [tag[0] for tag in tags],  # タグのリスト
         "last_updated": datetime.now().isoformat(),
         "total_videos": len(videos)
     }
