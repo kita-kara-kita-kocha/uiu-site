@@ -552,6 +552,93 @@ header h1 {
     margin-bottom: 0;
 }
 
+/* フィルタコントロール */
+.filter-controls {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin: 0 20px 20px 20px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.filter-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.filter-toggle {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #495057;
+}
+
+.filter-toggle input[type="checkbox"] {
+    display: none;
+}
+
+.filter-slider {
+    position: relative;
+    width: 50px;
+    height: 26px;
+    background: #ccc;
+    border-radius: 26px;
+    transition: all 0.3s ease;
+    margin-right: 12px;
+}
+
+.filter-slider::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 22px;
+    height: 22px;
+    background: white;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.filter-toggle input[type="checkbox"]:checked + .filter-slider {
+    background: #ff6b6b;
+}
+
+.filter-toggle input[type="checkbox"]:checked + .filter-slider::before {
+    transform: translateX(24px);
+}
+
+.filter-label {
+    font-family: 'Kosugi Maru', cursive;
+}
+
+.filter-toggle:hover .filter-slider {
+    box-shadow: 0 0 8px rgba(255, 107, 107, 0.3);
+}
+
+.filter-info {
+    margin-top: 12px;
+    padding: 8px 12px;
+    background: rgba(255, 107, 107, 0.1);
+    border: 1px solid rgba(255, 107, 107, 0.3);
+    border-radius: 6px;
+    font-size: 0.85rem;
+    color: #d63031;
+    text-align: center;
+    font-weight: 500;
+}
+
+/* フィルタコントロールの表示制御 */
+.tab-content:not(.active) .filter-controls {
+    display: none;
+}
+
 /* レスポンシブ対応 */
 @media (max-width: 768px) {
     .container {

@@ -4,6 +4,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const tabButtons = document.querySelectorAll('.tab-button');
     const tabContents = document.querySelectorAll('.tab-content');
     
+    // フィルタ状態を管理するオブジェクト
+    const filterState = {
+        youtube: {
+            subscriberOnly: false
+        }
+    };
+    
     // JSONデータ読み込み関数
     async function loadTabData(tabName) {
         try {
@@ -43,10 +50,14 @@ document.addEventListener('DOMContentLoaded', function() {
             // timestampsが存在する場合のみjoinメソッドを使用
             const timestampsStr = item.timestamps && Array.isArray(item.timestamps) ? item.timestamps.join(', ') : '';
             // YouTube動画の再生ボタン
-            playButton = `<button class="play-button" onclick="openVideoModal('${item.videoId}', '${item.title.replace(/'/g, "\\'")}', '${timestampsStr}')"></button>`;
+            playButton = ""
             // item.addAdditionalClassが0個以上あればadditionalClassを追加
-            if (item.addAdditionalClass.length > 0) {
+            if (item.addAdditionalClass && item.addAdditionalClass.length > 0) {
                 additionalClass += ' ' + item.addAdditionalClass.join(' ');
+                if (!item.addAdditionalClass.includes('subscriber_only')) {
+                    playButton = `<button class="play-button" onclick="openVideoModal('${item.videoId}', '${item.title.replace(/'/g, "\\'")}', '${timestampsStr}')"></button>`;
+                }
+
             }
         }
         // ニコニコ生放送の場合
@@ -96,6 +107,24 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
     }
     
+    // アイテムをフィルタリングする関数
+    function filterItems(items, tabType) {
+        if (tabType !== 'youtube') {
+            return items;
+        }
+        
+        const filters = filterState.youtube;
+        
+        if (filters.subscriberOnly) {
+            return items.filter(item => {
+                return item.addAdditionalClass && 
+                       item.addAdditionalClass.includes('subscriber_only');
+            });
+        }
+        
+        return items;
+    }
+    
     // タブコンテンツを更新する関数
     async function updateTabContent(tabName) {
         const data = await loadTabData(tabName);
@@ -103,12 +132,18 @@ document.addEventListener('DOMContentLoaded', function() {
         const thumbnailGrid = tabContent.querySelector('.thumbnail-grid');
         
         if (data.items && data.items.length > 0) {
-            thumbnailGrid.innerHTML = data.items.map(item => 
+            // フィルタリングを適用
+            const filteredItems = filterItems(data.items, tabName);
+            
+            thumbnailGrid.innerHTML = filteredItems.map(item => 
                 createThumbnailHTML(item, tabName)
             ).join('');
             
             // 新しく追加されたアイテムにもイベントリスナーを追加
             addThumbnailEventListeners(thumbnailGrid);
+            
+            // フィルタ結果の表示・非表示
+            updateFilterVisibility(tabName, filteredItems.length, data.items.length);
         }
     }
     
@@ -182,6 +217,24 @@ document.addEventListener('DOMContentLoaded', function() {
         const initialTab = activeTab.getAttribute('data-tab');
         updateTabContent(initialTab);
     }
+    
+    // フィルタイベントリスナーを設定
+    function setupFilterEventListeners() {
+        const subscriberOnlyFilter = document.getElementById('subscriberOnlyFilter');
+        if (subscriberOnlyFilter) {
+            subscriberOnlyFilter.addEventListener('change', function() {
+                filterState.youtube.subscriberOnly = this.checked;
+                // YouTubeタブがアクティブな場合のみ更新
+                const activeTabContent = document.querySelector('.tab-content.active');
+                if (activeTabContent && activeTabContent.id === 'youtube') {
+                    updateTabContent('youtube');
+                }
+            });
+        }
+    }
+    
+    // フィルタイベントリスナーを設定
+    setupFilterEventListeners();
     
     // 各サムネイルにクリックイベントを追加（初期読み込み時のサムネイル用）
     thumbnailItems.forEach((item, index) => {
@@ -387,6 +440,30 @@ function jumpToTime(iframe, seconds) {
             iframe.src = newSrc;
         }
     }, 100);
+}
+
+// フィルタ結果の表示・非表示を更新する関数
+function updateFilterVisibility(tabName, filteredCount, totalCount) {
+    if (tabName === 'youtube') {
+        const filterControls = document.getElementById('youtube-filters');
+        if (filterControls) {
+            // フィルタが有効で結果が少ない場合に情報を表示
+            let infoElement = filterControls.querySelector('.filter-info');
+            
+            if (filterState.youtube.subscriberOnly) {
+                if (!infoElement) {
+                    infoElement = document.createElement('div');
+                    infoElement.className = 'filter-info';
+                    filterControls.appendChild(infoElement);
+                }
+                infoElement.textContent = `${filteredCount}件のメンバー限定コンテンツを表示中 (全${totalCount}件)`;
+            } else {
+                if (infoElement) {
+                    infoElement.remove();
+                }
+            }
+        }
+    }
 }
 
 // ユーティリティ関数
