@@ -50,14 +50,14 @@ document.addEventListener('DOMContentLoaded', function() {
             // timestampsが存在する場合のみjoinメソッドを使用
             const timestampsStr = item.timestamps && Array.isArray(item.timestamps) ? item.timestamps.join(', ') : '';
             // YouTube動画の再生ボタン
-            playButton = ""
+            playButton = `<button class="play-button" onclick="openVideoModal('${item.videoId}', '${item.title.replace(/'/g, "\\'")}', '${timestampsStr}')"></button>`;
             // item.addAdditionalClassが0個以上あればadditionalClassを追加
             if (item.addAdditionalClass && item.addAdditionalClass.length > 0) {
                 additionalClass += ' ' + item.addAdditionalClass.join(' ');
-                if (!item.addAdditionalClass.includes('subscriber_only')) {
-                    playButton = `<button class="play-button" onclick="openVideoModal('${item.videoId}', '${item.title.replace(/'/g, "\\'")}', '${timestampsStr}')"></button>`;
+                // 'メンバー限定'が含まれている場合はplayButtonを空文字化
+                if (item.addAdditionalClass.includes('subscriber_only')) {
+                    playButton = '';
                 }
-
             }
         }
         // ニコニコ生放送の場合
@@ -114,12 +114,17 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         const filters = filterState.youtube;
+        console.log('フィルタ状態:', filters.subscriberOnly);
         
         if (filters.subscriberOnly) {
-            return items.filter(item => {
-                return item.addAdditionalClass && 
+            const filteredItems = items.filter(item => {
+                const hasSubscriberOnly = item.addAdditionalClass && 
                        item.addAdditionalClass.includes('subscriber_only');
+                console.log('アイテム:', item.title, 'subscriber_only:', hasSubscriberOnly);
+                return hasSubscriberOnly;
             });
+            console.log('フィルタ後のアイテム数:', filteredItems.length, '/ 全体:', items.length);
+            return filteredItems;
         }
         
         return items;
@@ -139,8 +144,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 createThumbnailHTML(item, tabName)
             ).join('');
             
-            // 新しく追加されたアイテムにもイベントリスナーを追加
-            addThumbnailEventListeners(thumbnailGrid);
+            // 新しく追加されたアイテムにもイベントリスナーを追加（フィルタリング後のデータを渡す）
+            addThumbnailEventListeners(thumbnailGrid, filteredItems, tabName);
             
             // フィルタ結果の表示・非表示
             updateFilterVisibility(tabName, filteredItems.length, data.items.length);
@@ -148,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // サムネイルにイベントリスナーを追加
-    function addThumbnailEventListeners(container) {
+    function addThumbnailEventListeners(container, filteredItems, tabName) {
         const items = container.querySelectorAll('.thumbnail-item');
         items.forEach((item, index) => {
             item.addEventListener('click', function(e) {
@@ -158,24 +163,39 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 
                 const title = this.querySelector('h3').textContent;
-                const thumbnailGrid = this.closest('.thumbnail-grid');
-                const tabContent = thumbnailGrid.closest('.tab-content');
-                const tabId = tabContent.id;
                 
-                // JSONデータから該当アイテムを探す
-                loadTabData(tabId).then(data => {
-                    if (data.items) {
-                        const itemData = data.items[index];
-                        if (itemData && itemData.video_url) {
-                            // video_urlがあれば新しいタブで開く
-                            window.open(itemData.video_url, '_blank');
-                        } else {
-                            // video_urlがない場合は従来のアラート表示
-                            const imageSrc = this.querySelector('.thumbnail-image').src;
-                            alert(`URL情報がありません。バグです。\nタイトル: ${title}\n画像: ${imageSrc}`);
-                        }
+                // フィルタリング後のデータから該当アイテムを取得
+                if (filteredItems && filteredItems[index]) {
+                    const itemData = filteredItems[index];
+                    if (itemData && itemData.video_url) {
+                        // video_urlがあれば新しいタブで開く
+                        window.open(itemData.video_url, '_blank');
+                    } else {
+                        // video_urlがない場合は従来のアラート表示
+                        const imageSrc = this.querySelector('.thumbnail-image').src;
+                        alert(`URL情報がありません。バグです。\nタイトル: ${title}\n画像: ${imageSrc}`);
                     }
-                });
+                } else {
+                    // フィルタリング後のデータがない場合のフォールバック
+                    const thumbnailGrid = this.closest('.thumbnail-grid');
+                    const tabContent = thumbnailGrid.closest('.tab-content');
+                    const tabId = tabContent.id;
+                    
+                    // JSONデータから該当アイテムを探す
+                    loadTabData(tabId).then(data => {
+                        if (data.items) {
+                            const itemData = data.items[index];
+                            if (itemData && itemData.video_url) {
+                                // video_urlがあれば新しいタブで開く
+                                window.open(itemData.video_url, '_blank');
+                            } else {
+                                // video_urlがない場合は従来のアラート表示
+                                const imageSrc = this.querySelector('.thumbnail-image').src;
+                                alert(`URL情報がありません。バグです。\nタイトル: ${title}\n画像: ${imageSrc}`);
+                            }
+                        }
+                    });
+                }
             });
             
             item.addEventListener('mouseenter', function() {
