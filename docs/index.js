@@ -26,6 +26,20 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
+    // 文字列をJavaScript内で安全に使用できるようにエスケープする関数
+    function escapeForJS(str) {
+        if (!str) return '';
+        return str
+            .replace(/\\/g, '\\\\')    // バックスラッシュをエスケープ
+            .replace(/'/g, "\\'")      // シングルクォートをエスケープ
+            .replace(/"/g, '\\"')      // ダブルクォートをエスケープ
+            .replace(/\n/g, '\\n')     // 改行をエスケープ
+            .replace(/\r/g, '\\r')     // キャリッジリターンをエスケープ
+            .replace(/\t/g, '\\t')     // タブをエスケープ
+            .replace(/\u2028/g, '\\u2028')  // ラインセパレーターをエスケープ
+            .replace(/\u2029/g, '\\u2029'); // パラグラフセパレーターをエスケープ
+    }
+
     // サムネイルHTMLを生成する関数
     function createThumbnailHTML(item, tabType) {
         let additionalClass = '';
@@ -49,8 +63,10 @@ document.addEventListener('DOMContentLoaded', function() {
             additionalClass = 'youtube';       
             // timestampsが存在する場合のみjoinメソッドを使用
             const timestampsStr = item.timestamps && Array.isArray(item.timestamps) ? item.timestamps.join(', ') : '';
-            // YouTube動画の再生ボタン
-            playButton = `<button class="play-button" onclick="openVideoModal('${item.videoId}', '${item.title.replace(/'/g, "\\'")}', '${timestampsStr}')"></button>`;
+            
+            // YouTube動画の再生ボタン（data属性を使用）
+            playButton = `<button class="play-button" data-video-id="${item.videoId}" data-title="${item.title}" data-timestamps="${timestampsStr}"></button>`;
+            
             // item.addAdditionalClassが0個以上あればadditionalClassを追加
             if (item.addAdditionalClass && item.addAdditionalClass.length > 0) {
                 additionalClass += ' ' + item.addAdditionalClass.join(' ');
@@ -156,6 +172,22 @@ document.addEventListener('DOMContentLoaded', function() {
     function addThumbnailEventListeners(container, filteredItems, tabName) {
         const items = container.querySelectorAll('.thumbnail-item');
         items.forEach((item, index) => {
+            // 再生ボタンのイベントリスナーを追加
+            const playButton = item.querySelector('.play-button');
+            if (playButton) {
+                playButton.addEventListener('click', function(e) {
+                    e.stopPropagation(); // 親のクリックイベントを防ぐ
+                    
+                    const videoId = this.dataset.videoId;
+                    const title = this.dataset.title;
+                    const timestamps = this.dataset.timestamps;
+                    
+                    if (videoId && title) {
+                        openVideoModal(videoId, title, timestamps);
+                    }
+                });
+            }
+            
             item.addEventListener('click', function(e) {
                 // 再生ボタンがクリックされた場合は処理しない
                 if (e.target.classList.contains('play-button')) {
@@ -250,6 +282,30 @@ document.addEventListener('DOMContentLoaded', function() {
                     updateTabContent('youtube');
                 }
             });
+        }
+    }
+    
+    // フィルタ結果の表示・非表示を更新する関数
+    function updateFilterVisibility(tabName, filteredCount, totalCount) {
+        if (tabName === 'youtube') {
+            const filterControls = document.getElementById('youtube-filters');
+            if (filterControls) {
+                // フィルタが有効で結果が少ない場合に情報を表示
+                let infoElement = filterControls.querySelector('.filter-info');
+                
+                if (filterState.youtube.subscriberOnly) {
+                    if (!infoElement) {
+                        infoElement = document.createElement('div');
+                        infoElement.className = 'filter-info';
+                        filterControls.appendChild(infoElement);
+                    }
+                    infoElement.textContent = `${filteredCount}件のメンバー限定コンテンツを表示中 (全${totalCount}件)`;
+                } else {
+                    if (infoElement) {
+                        infoElement.remove();
+                    }
+                }
+            }
         }
     }
     
@@ -460,30 +516,6 @@ function jumpToTime(iframe, seconds) {
             iframe.src = newSrc;
         }
     }, 100);
-}
-
-// フィルタ結果の表示・非表示を更新する関数
-function updateFilterVisibility(tabName, filteredCount, totalCount) {
-    if (tabName === 'youtube') {
-        const filterControls = document.getElementById('youtube-filters');
-        if (filterControls) {
-            // フィルタが有効で結果が少ない場合に情報を表示
-            let infoElement = filterControls.querySelector('.filter-info');
-            
-            if (filterState.youtube.subscriberOnly) {
-                if (!infoElement) {
-                    infoElement = document.createElement('div');
-                    infoElement.className = 'filter-info';
-                    filterControls.appendChild(infoElement);
-                }
-                infoElement.textContent = `${filteredCount}件のメンバー限定コンテンツを表示中 (全${totalCount}件)`;
-            } else {
-                if (infoElement) {
-                    infoElement.remove();
-                }
-            }
-        }
-    }
 }
 
 // ユーティリティ関数
