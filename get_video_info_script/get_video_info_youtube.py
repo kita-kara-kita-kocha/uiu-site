@@ -181,6 +181,7 @@ def create_video_data_from_detailed_info(video_info, video_id):
         "videoId": video_id,
         "video_url": f"https://www.youtube.com/watch?v={video_id}",
         "tags": tags,
+        "view_count": video_info.get('view_count', 0),
         "timestamps": timestamps,
         "metadata": [
             f"再生時間: {format_duration(video_info.get('duration', 0))}",
