@@ -1,3 +1,8 @@
+# 実行コマンド
+# source get_video_info_script/venv/bin/activate
+# python createDlCmd/menbership.py
+
+
 import json
 import os
 from datetime import datetime
