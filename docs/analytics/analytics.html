@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Analytics Dashboard</title>
+    <link rel="stylesheet" href="analytics.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>YouTube Analytics Dashboard</h1>
+            <div class="last-updated">
+                <span id="lastUpdated">データ読み込み中...</span>
+            </div>
+        </header>
+
+        <div class="summary-cards">
+            <div class="card">
+                <div class="card-title">総動画数</div>
+                <div class="card-value" id="totalVideos">-</div>
+            </div>
+            <div class="card">
+                <div class="card-title">総再生回数</div>
+                <div class="card-value" id="totalViews">-</div>
+            </div>
+            <div class="card">
+                <div class="card-title">平均再生回数</div>
+                <div class="card-value" id="avgViews">-</div>
+            </div>
+        </div>
+
+        <div class="charts-container">
+            <div class="chart-section">
+                <h2>再生回数上位10動画</h2>
+                <div class="chart-wrapper">
+                    <canvas id="topVideosChart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-section">
+                <h2>再生回数分布</h2>
+                <div class="chart-wrapper">
+                    <canvas id="viewsDistributionChart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-section">
+                <h2>動画カテゴリ分析</h2>
+                <div class="chart-wrapper">
+                    <canvas id="categoryChart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-section">
+                <h2>全動画再生回数推移</h2>
+                <div class="chart-wrapper">
+                    <canvas id="totalTrendsChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="analytics.js"></script>
+</body>
+</html>
