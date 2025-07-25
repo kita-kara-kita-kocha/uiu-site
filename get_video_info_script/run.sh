@@ -40,7 +40,7 @@ check_package "webdriver_manager" "webdriver-manager"
 
 echo ""
 echo "🚀 すべてのスクリプトを順次実行します..."
-echo "⏱️  予想実行時間: 約20-45分"
+echo "⏱️  予想実行時間: 約25-50分"
 echo ""
 
 # カウンター
@@ -55,7 +55,7 @@ run_script() {
     script_count=$((script_count + 1))
     
     echo "=================================================================================="
-    echo "📺 [$script_count/4] $description"
+    echo "📺 [$script_count/5] $description"
     echo "🎯 実行スクリプト: $script_name"
     echo "⏰ 開始時刻: $(date)"
     echo "=================================================================================="
@@ -78,7 +78,7 @@ run_script() {
     echo ""
     
     # GitHub Actions環境では次のスクリプト実行前に少し待機
-    if [ "$GITHUB_ACTIONS" = "true" ] && [ $script_count -lt 4 ]; then
+    if [ "$GITHUB_ACTIONS" = "true" ] && [ $script_count -lt 5 ]; then
         echo "⏳ 次のスクリプト実行まで少し待機します..."
         sleep 5
     fi
@@ -101,6 +101,7 @@ fi
 
 # 各スクリプトを順次実行
 run_script "get_video_info_youtube.py" "YouTube動画情報取得"
+run_script "analyzer_youtube.py" "YouTube動画情報分析"
 run_script "get_video_info_niconico_live.py" "ニコニコ動画ライブ情報取得"
 run_script "get_video_info_secret.py" "ファンサイト投稿情報取得"
 run_script "get_video_info_fc.py" "ファンクラブ動画情報取得"
@@ -109,7 +110,7 @@ run_script "get_video_info_fc.py" "ファンクラブ動画情報取得"
 echo "=================================================================================="
 echo "🎉 すべてのスクリプトの実行が完了しました！"
 echo "📅 実行完了時刻: $(date)"
-echo "📊 実行結果: $success_count/4 スクリプトが成功"
+echo "📊 実行結果: $success_count/5 スクリプトが成功"
 
 if [ ${#failed_scripts[@]} -eq 0 ]; then
     echo "✨ すべてのスクリプトが正常に完了しました！"
