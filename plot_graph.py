@@ -45,8 +45,9 @@ fig.savefig('output_combined_views.png')
 print("全動画の再生回数をまとめたグラフを 'output_combined_views.png' に保存しました。")
 
 # 凡例を別ファイルに保存
-fig_legend = plt.figure(figsize=(8, 6))
-legend = fig.legend(loc='center', fontsize=8)  # 凡例を中央に配置
-fig_legend.canvas.draw()
+fig_legend = plt.figure(figsize=(8, 12))  # 縦長の画像サイズに調整
+handles, labels = ax.get_legend_handles_labels()  # 凡例情報を取得
+fig_legend.legend(handles, labels, loc='center', fontsize=8, ncol=1)  # 1列で縦方向に配置
+fig_legend.tight_layout()
 fig_legend.savefig('output_combined_views_legend.png')
 print("凡例を 'output_combined_views_legend.png' に保存しました。")
