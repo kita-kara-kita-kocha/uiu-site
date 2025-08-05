@@ -15,6 +15,14 @@
         <h1>YouTube Analytics</h1>
     </header>
     <main>
+        <div class="controls">
+            <label for="startDate">開始日:</label>
+            <input type="datetime-local" id="startDate">
+            <label for="endDate">終了日:</label>
+            <input type="datetime-local" id="endDate">
+            <button id="applyFilter">期間を適用</button>
+            <button id="resetFilter">リセット</button>
+        </div>
         <canvas id="viewChart" width="800" height="400"></canvas>
     </main>
     <script src="index.js"></script>
