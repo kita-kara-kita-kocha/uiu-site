@@ -36,7 +36,28 @@ document.addEventListener('DOMContentLoaded', function() {
         ageVerifyYes.addEventListener('click', function() {
             ageVerified = true;
             hideAgeVerificationModal();
-            // 裏垢タブのコンテンツを表示
+            
+            // 裏垢タブを正しくアクティブにする
+            const secretButton = document.querySelector('[data-tab="secret_ac"]');
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            // すべてのタブボタンからactiveクラスを削除
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            // 裏垢タブボタンにactiveクラスを追加
+            if (secretButton) {
+                secretButton.classList.add('active');
+            }
+            
+            // すべてのタブコンテンツを非表示
+            tabContents.forEach(content => content.classList.remove('active'));
+            // 裏垢タブコンテンツを表示
+            const secretContent = document.getElementById('secret_ac');
+            if (secretContent) {
+                secretContent.classList.add('active');
+            }
+            
+            // 裏垢タブのコンテンツを読み込み
             updateTabContent('secret_ac');
         });
         
