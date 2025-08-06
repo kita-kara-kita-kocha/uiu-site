@@ -11,6 +11,45 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
     
+    // 年齢認証状態を管理
+    let ageVerified = false;
+    
+    // 年齢認証モーダルを表示する関数
+    function showAgeVerificationModal() {
+        const modal = document.getElementById('ageVerificationModal');
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    }
+    
+    // 年齢認証モーダルを非表示にする関数
+    function hideAgeVerificationModal() {
+        const modal = document.getElementById('ageVerificationModal');
+        modal.classList.remove('show');
+        document.body.style.overflow = 'auto';
+    }
+    
+    // 年齢認証イベントリスナーを設定
+    function setupAgeVerification() {
+        const ageVerifyYes = document.getElementById('ageVerifyYes');
+        const ageVerifyNo = document.getElementById('ageVerifyNo');
+        
+        ageVerifyYes.addEventListener('click', function() {
+            ageVerified = true;
+            hideAgeVerificationModal();
+            // 裏垢タブのコンテンツを表示
+            updateTabContent('secret_ac');
+        });
+        
+        ageVerifyNo.addEventListener('click', function() {
+            hideAgeVerificationModal();
+            // 他のタブに戻る（YouTubeタブを選択）
+            const youtubeButton = document.querySelector('[data-tab="youtube"]');
+            if (youtubeButton) {
+                youtubeButton.click();
+            }
+        });
+    }
+    
     // JSONデータ読み込み関数
     async function loadTabData(tabName) {
         try {
@@ -248,6 +287,12 @@ document.addEventListener('DOMContentLoaded', function() {
         button.addEventListener('click', async function() {
             const targetTab = this.getAttribute('data-tab');
             
+            // 裏垢タブの場合は年齢認証をチェック
+            if (targetTab === 'secret_ac' && !ageVerified) {
+                showAgeVerificationModal();
+                return; // 年齢認証が完了するまで処理を停止
+            }
+            
             // すべてのタブボタンからactiveクラスを削除
             tabButtons.forEach(btn => btn.classList.remove('active'));
             // クリックされたボタンにactiveクラスを追加
@@ -311,6 +356,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // フィルタイベントリスナーを設定
     setupFilterEventListeners();
+    
+    // 年齢認証イベントリスナーを設定
+    setupAgeVerification();
     
     // 各サムネイルにクリックイベントを追加（初期読み込み時のサムネイル用）
     thumbnailItems.forEach((item, index) => {
