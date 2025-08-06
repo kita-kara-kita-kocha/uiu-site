@@ -55,10 +55,16 @@ class SecretVideoInfoExtractor:
                     break
                 for item in data:
                     post_id = item.get("post_id")
+                    contents_type = item.get("contents_type")
+                    image = ""
+                    if contents_type == 1:  # 画像
+                        image = f'https://image.candfans.jp{item.get("secret_file", "")}'
+                    elif contents_type == 2:  # 動画
+                        image = f'https://video.candfans.jp{item.get("secret_file", "")}'
                     self.post_list.append({
                         "title": item.get("title", "タイトル情報なし"),
                         "video_url": f'https://candfans.jp/posts/comment/show/{post_id}',
-                        "image": item.get("secret_file", "サムネイル情報なし"),
+                        "image": image,
                         "alt": item.get("title", "タイトル情報なし"),
                         "metadata": [
                             f'投稿日時: {item.get("post_date", "不明")}',
