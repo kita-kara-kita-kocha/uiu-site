@@ -754,7 +754,7 @@ header h1 {
 }
 
 .filter-toggle input[type="checkbox"]:checked + .filter-slider {
-    background: #ff6b6b;
+    background: #ff8b8b;
 }
 
 .filter-toggle input[type="checkbox"]:checked + .filter-slider::before {
@@ -766,14 +766,14 @@ header h1 {
 }
 
 .filter-toggle:hover .filter-slider {
-    box-shadow: 0 0 8px rgba(255, 107, 107, 0.3);
+    box-shadow: 0 0 8px rgba(255, 139, 139, 0.3);
 }
 
 .filter-info {
     margin-top: 12px;
     padding: 8px 12px;
-    background: rgba(255, 107, 107, 0.1);
-    border: 1px solid rgba(255, 107, 107, 0.3);
+    background: rgba(255, 139, 139, 0.1);
+    border: 1px solid rgba(255, 139, 139, 0.3);
     border-radius: 6px;
     font-size: 0.85rem;
     color: #d63031;
@@ -781,9 +781,163 @@ header h1 {
     font-weight: 500;
 }
 
+/* FCタブ専用：カラフルフィルター情報 */
+#fciu-filters .filter-info {
+    background: linear-gradient(135deg, 
+        rgba(212, 165, 116, 0.1) 0%, 
+        rgba(116, 169, 247, 0.1) 50%, 
+        rgba(126, 217, 87, 0.1) 100%);
+    border: 1px solid rgba(212, 165, 116, 0.3);
+    color: #2d5a3d;
+    font-weight: 600;
+}
+
 /* フィルタコントロールの表示制御 */
 .tab-content:not(.active) .filter-controls {
     display: none;
+}
+
+/* YouTubeタブ専用：斜めフィルターレイアウト */
+#youtube-content .filter-section {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    position: relative;
+}
+
+#youtube-content .filter-toggle {
+    transform-origin: center center;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+    transform: rotate(-12deg);
+}
+
+#youtube-content .filter-toggle:hover {
+    transform: scale(1.05) rotate(0deg);
+    z-index: 2;
+    box-shadow: 0 4px 15px rgba(255, 139, 139, 0.3);
+}
+
+/* 斜めフィルターレイアウト（FCタブ専用） */
+.diagonal-filters {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    position: relative;
+}
+
+.diagonal-filters .filter-toggle {
+    transform-origin: left center;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.diagonal-filters .filter-toggle:nth-child(1) {
+    transform: rotate(-5deg);
+    margin-left: 0px;
+}
+
+.diagonal-filters .filter-toggle:nth-child(2) {
+    transform: rotate(3deg);
+    margin-left: 0px;
+}
+
+.diagonal-filters .filter-toggle:nth-child(3) {
+    transform: rotate(-2deg);
+    margin-left: 0px;
+}
+
+.diagonal-filters .filter-toggle:hover {
+    transform: scale(1.05) rotate(0deg);
+    z-index: 2;
+}
+
+/* FCタブ専用：色付きフィルタースライダー */
+#fciu-filters .filter-toggle:nth-child(1) .filter-slider {
+    background: #e0c4a0; /* 会員のみ - 薄い茶色 */
+}
+
+#fciu-filters .filter-toggle:nth-child(1) input[type="checkbox"]:checked + .filter-slider {
+    background: #d4a574; /* 会員のみ - 指定色 */
+    box-shadow: 0 0 15px rgba(212, 165, 116, 0.4);
+}
+
+#fciu-filters .filter-toggle:nth-child(1) .filter-toggle:hover .filter-slider {
+    box-shadow: 0 0 8px rgba(212, 165, 116, 0.3);
+}
+
+#fciu-filters .filter-toggle:nth-child(2) .filter-slider {
+    background: #b8d4ff; /* 一部無料 - 薄い青色 */
+}
+
+#fciu-filters .filter-toggle:nth-child(2) input[type="checkbox"]:checked + .filter-slider {
+    background: #74a9f7; /* 一部無料 - 指定色 */
+    box-shadow: 0 0 15px rgba(116, 169, 247, 0.4);
+}
+
+#fciu-filters .filter-toggle:nth-child(2) .filter-toggle:hover .filter-slider {
+    box-shadow: 0 0 8px rgba(116, 169, 247, 0.3);
+}
+
+#fciu-filters .filter-toggle:nth-child(3) .filter-slider {
+    background: #bcf5a9; /* 全編無料 - 薄い緑色 */
+}
+
+#fciu-filters .filter-toggle:nth-child(3) input[type="checkbox"]:checked + .filter-slider {
+    background: #7ed957; /* 全編無料 - 指定色 */
+    box-shadow: 0 0 15px rgba(126, 217, 87, 0.4);
+}
+
+#fciu-filters .filter-toggle:nth-child(3) .filter-toggle:hover .filter-slider {
+    box-shadow: 0 0 8px rgba(126, 217, 87, 0.3);
+}
+
+/* FCタブ専用：スライダー内のドットも色付き */
+#fciu-filters .filter-toggle:nth-child(1) input[type="checkbox"]:checked + .filter-slider::before {
+    background: linear-gradient(135deg, #ffffff, #f5f0e8);
+}
+
+#fciu-filters .filter-toggle:nth-child(2) input[type="checkbox"]:checked + .filter-slider::before {
+    background: linear-gradient(135deg, #ffffff, #e8f2ff);
+}
+
+#fciu-filters .filter-toggle:nth-child(3) input[type="checkbox"]:checked + .filter-slider::before {
+    background: linear-gradient(135deg, #ffffff, #e8f8e8);
+}
+
+/* FCタブ専用：アクティブ時のラベル効果 */
+#fciu-filters .filter-toggle:nth-child(1) input[type="checkbox"]:checked ~ .filter-label {
+    text-shadow: 0 0 8px rgba(212, 165, 116, 0.5);
+}
+
+#fciu-filters .filter-toggle:nth-child(2) input[type="checkbox"]:checked ~ .filter-label {
+    text-shadow: 0 0 8px rgba(116, 169, 247, 0.5);
+}
+
+#fciu-filters .filter-toggle:nth-child(3) input[type="checkbox"]:checked ~ .filter-label {
+    text-shadow: 0 0 8px rgba(126, 217, 87, 0.5);
+}
+
+/* FCタブ専用：色付きフィルターラベル */
+#fciu-filters .filter-toggle:nth-child(1) .filter-label {
+    color: #8b5a3c; /* 会員のみ - 濃い茶色 */
+    font-weight: 700;
+}
+
+#fciu-filters .filter-toggle:nth-child(2) .filter-label {
+    color: #4a90e2; /* 一部無料 - 濃い青色 */
+    font-weight: 700;
+}
+
+#fciu-filters .filter-toggle:nth-child(3) .filter-label {
+    color: #50c878; /* 全編無料 - 濃い緑色 */
+    font-weight: 700;
 }
 
 /* レスポンシブ対応 */
@@ -819,6 +973,28 @@ header h1 {
         padding: 10px 15px;
         font-size: 0.85rem;
         min-width: auto; /* 自動調整 */
+    }
+    
+    /* モバイルでの斜めフィルター調整 */
+    .diagonal-filters {
+        gap: 15px;
+        padding: 15px;
+        flex-wrap: wrap;
+    }
+    
+    .diagonal-filters .filter-toggle:nth-child(1) {
+        transform: rotate(-3deg);
+        margin-left: 0px;
+    }
+    
+    .diagonal-filters .filter-toggle:nth-child(2) {
+        transform: rotate(2deg);
+        margin-left: 0px;
+    }
+    
+    .diagonal-filters .filter-toggle:nth-child(3) {
+        transform: rotate(-1deg);
+        margin-left: 0px;
     }
     
     .thumbnail-grid {
