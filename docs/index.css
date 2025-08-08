@@ -798,7 +798,7 @@ header h1 {
 }
 
 /* YouTubeタブ専用：斜めフィルターレイアウト */
-#youtube-content .filter-section {
+#youtube .filter-section {
     flex-direction: row;
     align-items: center;
     justify-content: center;
@@ -807,15 +807,20 @@ header h1 {
     position: relative;
 }
 
-#youtube-content .filter-toggle {
+#youtube .filter-toggle {
     transform-origin: center center;
     transition: all 0.3s ease;
     position: relative;
     z-index: 1;
-    transform: rotate(-12deg);
+    transform: rotate(-5deg);
 }
 
-#youtube-content .filter-toggle:hover {
+#youtube .filter-toggle .filter-label {
+    color: #ff8b8b;
+    font-weight: 700;
+}
+
+#youtube .filter-toggle:hover {
     transform: scale(1.05) rotate(0deg);
     z-index: 2;
     box-shadow: 0 4px 15px rgba(255, 139, 139, 0.3);
@@ -856,6 +861,11 @@ header h1 {
 .diagonal-filters .filter-toggle:hover {
     transform: scale(1.05) rotate(0deg);
     z-index: 2;
+}
+
+/* YouTubeタブ専用：色付きフィルタースライダー */
+#youtube .filter-toggle:nth-child(1) .filter-slider {
+    background: #ffb7c5; /* 会員のみ - 薄いピンク */
 }
 
 /* FCタブ専用：色付きフィルタースライダー */
@@ -995,6 +1005,15 @@ header h1 {
     .diagonal-filters .filter-toggle:nth-child(3) {
         transform: rotate(-1deg);
         margin-left: 0px;
+    }
+    
+    /* YouTubeタブのモバイル対応 */
+    #youtube .filter-toggle {
+        transform: rotate(-8deg);
+    }
+    
+    #youtube .filter-toggle:hover {
+        transform: scale(1.05) rotate(0deg);
     }
     
     .thumbnail-grid {
