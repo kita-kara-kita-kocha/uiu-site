@@ -111,6 +111,26 @@
         
         <!-- FC いうねこないと タブコンテンツ -->
         <main class="tab-content" id="fciu">
+            <!-- フィルタコントロール -->
+            <div class="filter-controls" id="fciu-filters">
+                <div class="filter-section diagonal-filters">
+                    <label class="filter-toggle">
+                        <input type="checkbox" id="fciuMembersOnlyFilter">
+                        <span class="filter-slider"></span>
+                        <span class="filter-label">会員のみ</span>
+                    </label>
+                    <label class="filter-toggle">
+                        <input type="checkbox" id="fciuPartialFreeFilter">
+                        <span class="filter-slider"></span>
+                        <span class="filter-label">一部無料</span>
+                    </label>
+                    <label class="filter-toggle">
+                        <input type="checkbox" id="fciuFullFreeFilter">
+                        <span class="filter-slider"></span>
+                        <span class="filter-label">全編無料</span>
+                    </label>
+                </div>
+            </div>
             <div class="thumbnail-grid">
                 <!-- JavaScriptによって動的に読み込まれます -->
             </div>

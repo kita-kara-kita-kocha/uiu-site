@@ -8,6 +8,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const filterState = {
         youtube: {
             subscriberOnly: false
+        },
+        fciu: {
+            membersOnly: false,
+            partialFree: false,
+            fullFree: false
         }
     };
     
@@ -185,22 +190,41 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // アイテムをフィルタリングする関数
     function filterItems(items, tabType) {
-        if (tabType !== 'youtube') {
-            return items;
-        }
-        
-        const filters = filterState.youtube;
-        console.log('フィルタ状態:', filters.subscriberOnly);
-        
-        if (filters.subscriberOnly) {
-            const filteredItems = items.filter(item => {
-                const hasSubscriberOnly = item.addAdditionalClass && 
-                       item.addAdditionalClass.includes('subscriber_only');
-                console.log('アイテム:', item.title, 'subscriber_only:', hasSubscriberOnly);
-                return hasSubscriberOnly;
-            });
-            console.log('フィルタ後のアイテム数:', filteredItems.length, '/ 全体:', items.length);
-            return filteredItems;
+        if (tabType === 'youtube') {
+            const filters = filterState.youtube;
+            console.log('YouTubeフィルタ状態:', filters.subscriberOnly);
+            
+            if (filters.subscriberOnly) {
+                const filteredItems = items.filter(item => {
+                    const hasSubscriberOnly = item.addAdditionalClass && 
+                           item.addAdditionalClass.includes('subscriber_only');
+                    console.log('アイテム:', item.title, 'subscriber_only:', hasSubscriberOnly);
+                    return hasSubscriberOnly;
+                });
+                console.log('フィルタ後のアイテム数:', filteredItems.length, '/ 全体:', items.length);
+                return filteredItems;
+            }
+        } else if (tabType === 'fciu') {
+            const filters = filterState.fciu;
+            console.log('FCフィルタ状態:', filters);
+            
+            // いずれかのフィルタがONの場合のみフィルタリング
+            if (filters.membersOnly || filters.partialFree || filters.fullFree) {
+                const filteredItems = items.filter(item => {
+                    const viewingCondition = item.metadata && item.metadata.find(meta => meta.startsWith('視聴条件:'));
+                    if (!viewingCondition) return false;
+                    
+                    const condition = viewingCondition.split('視聴条件: ')[1].trim();
+                    
+                    if (filters.membersOnly && condition === '会員のみ') return true;
+                    if (filters.partialFree && condition === '一部無料') return true;
+                    if (filters.fullFree && condition === '全編無料') return true;
+                    
+                    return false;
+                });
+                console.log('FCフィルタ後のアイテム数:', filteredItems.length, '/ 全体:', items.length);
+                return filteredItems;
+            }
         }
         
         return items;
@@ -338,6 +362,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // フィルタイベントリスナーを設定
     function setupFilterEventListeners() {
+        // YouTubeフィルタ
         const subscriberOnlyFilter = document.getElementById('subscriberOnlyFilter');
         if (subscriberOnlyFilter) {
             subscriberOnlyFilter.addEventListener('change', function() {
@@ -346,6 +371,41 @@ document.addEventListener('DOMContentLoaded', function() {
                 const activeTabContent = document.querySelector('.tab-content.active');
                 if (activeTabContent && activeTabContent.id === 'youtube') {
                     updateTabContent('youtube');
+                }
+            });
+        }
+        
+        // FCフィルタ
+        const fciuMembersOnlyFilter = document.getElementById('fciuMembersOnlyFilter');
+        const fciuPartialFreeFilter = document.getElementById('fciuPartialFreeFilter');
+        const fciuFullFreeFilter = document.getElementById('fciuFullFreeFilter');
+        
+        if (fciuMembersOnlyFilter) {
+            fciuMembersOnlyFilter.addEventListener('change', function() {
+                filterState.fciu.membersOnly = this.checked;
+                const activeTabContent = document.querySelector('.tab-content.active');
+                if (activeTabContent && activeTabContent.id === 'fciu') {
+                    updateTabContent('fciu');
+                }
+            });
+        }
+        
+        if (fciuPartialFreeFilter) {
+            fciuPartialFreeFilter.addEventListener('change', function() {
+                filterState.fciu.partialFree = this.checked;
+                const activeTabContent = document.querySelector('.tab-content.active');
+                if (activeTabContent && activeTabContent.id === 'fciu') {
+                    updateTabContent('fciu');
+                }
+            });
+        }
+        
+        if (fciuFullFreeFilter) {
+            fciuFullFreeFilter.addEventListener('change', function() {
+                filterState.fciu.fullFree = this.checked;
+                const activeTabContent = document.querySelector('.tab-content.active');
+                if (activeTabContent && activeTabContent.id === 'fciu') {
+                    updateTabContent('fciu');
                 }
             });
         }
@@ -366,6 +426,33 @@ document.addEventListener('DOMContentLoaded', function() {
                         filterControls.appendChild(infoElement);
                     }
                     infoElement.textContent = `${filteredCount}件のメンバー限定コンテンツを表示中 (全${totalCount}件)`;
+                } else {
+                    if (infoElement) {
+                        infoElement.remove();
+                    }
+                }
+            }
+        } else if (tabName === 'fciu') {
+            const filterControls = document.getElementById('fciu-filters');
+            if (filterControls) {
+                let infoElement = filterControls.querySelector('.filter-info');
+                
+                const filters = filterState.fciu;
+                const hasActiveFilter = filters.membersOnly || filters.partialFree || filters.fullFree;
+                
+                if (hasActiveFilter) {
+                    if (!infoElement) {
+                        infoElement = document.createElement('div');
+                        infoElement.className = 'filter-info';
+                        filterControls.appendChild(infoElement);
+                    }
+                    
+                    const activeFilters = [];
+                    if (filters.membersOnly) activeFilters.push('会員のみ');
+                    if (filters.partialFree) activeFilters.push('一部無料');
+                    if (filters.fullFree) activeFilters.push('全編無料');
+                    
+                    infoElement.textContent = `${filteredCount}件の${activeFilters.join('・')}コンテンツを表示中 (全${totalCount}件)`;
                 } else {
                     if (infoElement) {
                         infoElement.remove();
