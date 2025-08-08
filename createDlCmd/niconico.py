@@ -1,3 +1,5 @@
+# python createDlCmd/niconico.py
+
 import json
 import os
 from datetime import datetime
