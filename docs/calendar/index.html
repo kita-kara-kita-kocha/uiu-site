@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>カレンダー</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div id="calendar-container">
+        <h1>カレンダー</h1>
+        <div id="year-month"></div>
+        <div id="calendar"></div>
+    </div>
+
+    <!-- モーダルウィンドウの追加 -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <div id="modal-events"></div>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const apiUrl = 'https://script.google.com/macros/s/AKfycbyzR2KODZn0JbfJ0084RTDgHLsbV-hE9ZKd1IyBW9s4ob2bkKGSIqFYDmeYmVN-FEQp/exec';
+
+            // Fetch data from the API
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    const events = data.data;
+                    const calendarContainer = document.getElementById('calendar');
+
+                    // Remove direct rendering of events inside the calendar
+                    // Only add dots to indicate events on specific dates
+                    events.forEach(event => {
+                        const date = new Date(event.date);
+                        const dateCell = document.querySelector(`[data-date="${date.toISOString().split('T')[0]}"]`);
+                        if (dateCell) {
+                            const dot = document.createElement('span');
+                            dot.classList.add('event-dot');
+                            dateCell.appendChild(dot);
+                        }
+                    });
+
+                    // モーダルウィンドウ関連の処理
+                    const modal = document.getElementById('modal');
+                    const modalEvents = document.getElementById('modal-events');
+                    const closeButton = document.querySelector('.close-button');
+
+                    closeButton.addEventListener('click', () => {
+                        modal.style.display = 'none';
+                    });
+
+                    window.addEventListener('click', (event) => {
+                        if (event.target === modal) {
+                            modal.style.display = 'none';
+                        }
+                    });
+
+                    // Add click event to calendar days
+                    document.querySelectorAll('.day').forEach(day => {
+                        day.addEventListener('click', () => {
+                            const date = day.getAttribute('data-date');
+                            const eventsForDate = events.filter(event => new Date(event.date).toISOString().split('T')[0] === date);
+
+                            modalEvents.innerHTML = '';
+                            eventsForDate.forEach(event => {
+                                const eventElement = document.createElement('div');
+                                eventElement.classList.add('event');
+                                eventElement.innerHTML = `
+                                    <h3>${event.title}</h3>
+                                    <p>${new Date(event.date).toLocaleDateString()} ${new Date(event.time).toLocaleTimeString()}</p>
+                                    <p>${event.description || event.subscription}</p>
+                                `;
+                                modalEvents.appendChild(eventElement);
+                            });
+
+                            modal.style.display = 'block';
+                        });
+                    });
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        });
+    </script>
+</body>
+</html>
