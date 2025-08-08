@@ -26,6 +26,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const day = document.createElement('div');
         day.className = 'day';
         day.textContent = i;
+        // Add data-date attribute to each day
+        const fullDate = new Date(year, month, i);
+        day.setAttribute('data-date', fullDate.toISOString().split('T')[0]);
         if (i === date) {
             day.classList.add('current-day');
         }
