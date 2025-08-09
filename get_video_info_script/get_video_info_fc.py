@@ -17,6 +17,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from selenium.common.exceptions import TimeoutException
 from webdriver_manager.chrome import ChromeDriverManager
+from datetime import datetime, timedelta
 import time
 import sys
 
@@ -99,13 +100,15 @@ class FCVideoInfoExtractor:
             video_info.update(self._extract_title(element))
             video_info.update(self._extract_video_link(element))
             video_info.update(self._extract_thumbnail(element))
+            video_info.update(self._extract_date_info(element))
+
             
             # メタデータを取得
             metadata = []
-            metadata.extend(self._extract_date_info(element))
-            metadata.extend(self._extract_duration_info(element))
-            metadata.extend(self._extract_pricing_info(element, video_info))
-            
+            metadata.append(self._extract_date_time_info(element))
+            metadata.append(self._extract_duration_info(element))
+            metadata.append(self._extract_pricing_info(element, video_info))
+
             if metadata:
                 video_info['metadata'] = metadata
             
@@ -539,45 +542,83 @@ class FCVideoInfoExtractor:
             pass
         
         return thumbnail_info
-
-    def _extract_date_info(self, element):
+    
+    def _adjust_date(self, date_str, days=0):
+        """
+        日付文字列を調整（1日前にするなど）
+        
+        Args:
+            date_str: str - 日付文字列
+            days: int - 調整する日数（デフォルトは0）
+            
+        Returns:
+            str: 調整後の日付文字列
+        """
+        
+        try:
+            # 日付のパース
+            date_obj = datetime.strptime(date_str, "%Y/%m/%d")
+            adjusted_date = date_obj + timedelta(days=days)
+            return adjusted_date.strftime("%Y/%m/%d")
+        except ValueError:
+            print(f"日付のパースに失敗: {date_str}")
+            return date_str
+    
+    def _extract_date_info(self, element, title=None):
         """
         動画要素から配信日時情報を抽出
         
         Args:
             element: Selenium WebElement - 動画要素のDOM要素
-            
+            title: str - 動画タイトル（オプション）
+
         Returns:
-            list: 配信日時情報のリスト
+            dict: 配信日時情報 yyyy/mm/dd を含む辞書
         """
-        date_metadata = []
+        date_info = {}
         date_selectors = [
             "time", "[datetime]", ".date", ".time", ".datetime",
             "[class*='date']", "[class*='time']", "[class*='Date']", "[class*='Time']",
             "span", "div", "p"
         ]
-        
         for selector in date_selectors:
             try:
                 date_elements = element.find_elements(By.CSS_SELECTOR, selector)
                 for date_elem in date_elements:
-                    # datetime属性をチェック
-                    datetime_attr = date_elem.get_attribute('datetime')
-                    if datetime_attr:
-                        date_metadata.append(f"配信日時: {datetime_attr}")
-                        return date_metadata
-                    
                     # テキストから日時らしきものを抽出
-                    date_text = date_elem.text.strip()
-                    if date_text and any(pattern in date_text for pattern in 
-                                       ['年', '月', '日', '時', '分', '/', '-', ':', '202', '2025']):
-                        if len(date_text) < 50:  # 長すぎるテキストは除外
-                            date_metadata.append(f"配信日時: {date_text}")
-                            return date_metadata
+                    date_info['upload_date'] = date_elem.text.strip()
+                    if date_info['upload_date'] and any(pattern in date_info['upload_date'] for pattern in 
+                                       ['年', '月', '日', '時', '分', '/', '-', ':']):
+                        if len(date_info['upload_date']) < 50:  # 長すぎるテキストは除外
+                            # タイトルに「~スマホ~お風呂~」,「False」が含まれる場合はそのままreturn
+                            if title and (('スマホ' in title and 'お風呂' in title) or False):
+                                return date_info
+                            # date_info['upload_date']を1日前にする
+                            date_info['upload_date'] = self._adjust_date(date_info['upload_date'], days=-1)
+                            return date_info
             except Exception:
                 continue
+        # 日時情報が見つからない場合は空の辞書を返す
+        return date_info
+
+
+    def _extract_date_time_info(self, element, title=None):
+        """
+        動画要素から配信日時情報を抽出
         
-        return date_metadata
+        Args:
+            element: Selenium WebElement - 動画要素のDOM要素
+            title: str - 動画タイトル（オプション）
+
+        Returns:
+            str: 配信日時情報
+        """
+        try:
+            date = self._extract_date_info(element, title).get("upload_date", None)
+            return f"配信日時: {date}" if date else ""
+        except Exception as e:
+            print(f"配信日時情報の抽出でエラー: {e}")
+            return ""
 
     def _extract_duration_info(self, element):
         """
@@ -587,9 +628,8 @@ class FCVideoInfoExtractor:
             element: Selenium WebElement - 動画要素のDOM要素
             
         Returns:
-            list: 再生時間情報のリスト
+            str: 再生時間情報
         """
-        duration_metadata = []
         duration_selectors = [
             "[class*='duration']", "[class*='Duration']", "[class*='time']",
             ".length", ".runtime", "span", "div"
@@ -605,12 +645,12 @@ class FCVideoInfoExtractor:
                                            [':', '分', '秒', '時間']):
                         # 短時間フォーマットかチェック
                         if len(duration_text) < 20 and any(char.isdigit() for char in duration_text):
-                            duration_metadata.append(f"再生時間: {duration_text}")
-                            return duration_metadata
+                            return f"再生時間: {duration_text}"
+
             except Exception:
                 continue
         
-        return duration_metadata
+        return ""
 
     def _extract_pricing_info(self, element, video_info):
         """
@@ -623,7 +663,6 @@ class FCVideoInfoExtractor:
         Returns:
             list: 視聴条件情報のリスト
         """
-        pricing_metadata = []
         pricing_type = "-"  # デフォルト
         
         try:
@@ -656,12 +695,10 @@ class FCVideoInfoExtractor:
                     # リンク先にアクセスして、全編無料のタグがあるか確認
                     pricing_type = self.check_pricing_from_video_page(video_info.get('video_url'))
 
-            pricing_metadata.append(f"視聴条件: {pricing_type}")
-            
+            return f"視聴条件: {pricing_type}"
+
         except Exception:
-            pricing_metadata.append(f"視聴条件: {pricing_type}")
-        
-        return pricing_metadata
+            return f"視聴条件: {pricing_type}"
 
 def main():
     """
@@ -728,6 +765,7 @@ def _display_sample_results(all_videos):
             print(f"タイトル: {video.get('title', 'N/A')}")
             print(f"動画URL: {video.get('video_url', 'N/A')}")
             print(f"サムネイル: {video.get('image', 'N/A')}")
+            print(f"alt: {video.get('upload_date', 'N/A')}")
             if video.get('metadata'):
                 print(f"メタデータ: {video['metadata']}")
 

@@ -182,14 +182,73 @@ def create_video_data_from_detailed_info(video_info, video_id):
         "video_url": f"https://www.youtube.com/watch?v={video_id}",
         "tags": tags,
         "view_count": video_info.get('view_count', 0),
+        "upload_date": format_upload_date(video_info.get('release_timestamp', '')),
         "timestamps": timestamps,
         "metadata": [
             f"再生時間: {format_duration(video_info.get('duration', 0))}",
             f"視聴回数: {format_view_count(video_info.get('view_count', 0))}",
-            f"投稿日: {format_upload_date(video_info.get('upload_date', ''))}"
+            f"投稿日: {format_upload_date_time(video_info.get('release_timestamp', ''))}"
         ],
         "addAdditionalClass": [video_info.get('availability', '')],  # "availability": "subscriber_only"なら"subscriber_only", それ以外は"-"
     }
+
+def to_update_timestamp(timestamp):
+    """
+    タイムスタンプを更新日時形式に変換
+    
+    Args:
+        timestamp (int or str): タイムスタンプ（秒単位またはISO形式）
+    Returns:
+        str: 更新日時形式の文字列
+    """
+    if isinstance(timestamp, int):
+        # 秒単位のタイムスタンプをISO形式に変換
+        return datetime.fromtimestamp(timestamp).isoformat()
+    elif isinstance(timestamp, str):
+        # ISO形式の文字列をそのまま返す
+        return timestamp
+    else:
+        # 無効な形式の場合は空文字列を返す
+        return ""
+
+def get_live_date_info(video_url):
+    """
+    メンバー限定配信の開始日時はyt-dlpでは取得できないため、
+    youtube動画サイトにブラウジングして、配信開始日時を取得
+    セレクタは以下を利用(バクったら修正)
+    #watch7-content > span:nth-child(22) > meta:nth-child(2)
+
+    Args:
+        video_url (str): YouTube動画のURL
+    Returns:
+        str: 配信開始日時
+    """
+    # youtube動画サイト(video_url)にブラウジングアクセス
+    try:
+        # SeleniumのWebDriverを使用してブラウジング
+        from selenium import webdriver
+        from selenium.webdriver.chrome.service import Service
+        from selenium.webdriver.chrome.options import Options
+        from webdriver_manager.chrome import ChromeDriverManager
+
+        options = Options()
+        options.add_argument("--headless")  # ヘッドレスモードを使用
+        options.add_argument("--no-sandbox")
+        options.add_argument("--disable-dev-shm-usage")
+
+        driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+        driver.get(video_url)
+
+        # 配信開始日時を取得
+        start_time_element = driver.find_element("css selector", "#watch7-content > span:nth-child(22) > meta:nth-child(2)")
+        start_time = start_time_element.get_attribute("content")
+
+        driver.quit()
+        return start_time
+
+    except Exception as e:
+        print(f"エラーが発生しました: {e}")
+        return None
 
 def create_video_data_from_basic_info(entry):
     """
@@ -208,6 +267,8 @@ def create_video_data_from_basic_info(entry):
     add_class = []
 
     title = entry.get('title', 'タイトル不明')
+    video_url = entry.get('url', f"https://www.youtube.com/watch?v={video_id}")
+    upload_date = format_upload_date(entry.get('release_timestamp', ''))
 
     # 「#」で始まるタグを抽出
     tags = re.findall(r'#(\w+) ', title)
@@ -215,6 +276,7 @@ def create_video_data_from_basic_info(entry):
     if availability == 'subscriber_only':
         add_class = ['subscriber_only']
         tags.append('#メン限')
+        upload_date = format_upload_date(get_live_date_info(video_url))
     elif entry.get('live_status') == 'is_upcoming':
         add_class = ['schedule']
     else:
@@ -226,8 +288,12 @@ def create_video_data_from_basic_info(entry):
         "alt": entry.get('title', 'タイトル不明'),
         "description": entry.get('description')[:100] + "..." if entry.get('description') else "説明なし",
         "videoId": video_id,
-        "video_url": entry.get('url', f"https://www.youtube.com/watch?v={video_id}"),
+        "video_url": video_url,
+        "upload_date": upload_date,
         "addAdditionalClass": add_class,
+        "metadata": [
+            f"投稿日: {format_upload_date_time(entry.get('release_timestamp', ''))}",
+        ]
     }
 
 def process_video_entry(entry, ydl_opts):
@@ -351,26 +417,50 @@ def format_view_count(count):
     else:
         return f"{count:,}回"
 
-def format_upload_date(date_str):
+def format_upload_date_time(timestamp):
     """
     アップロード日をフォーマット
     
     Args:
-        date_str (str): YYYYMMDD形式の日付文字列
+        timestamp (int): アップロード日時のタイムスタンプ（秒単位）
     
     Returns:
-        str: フォーマットされた日付
+        str: フォーマットされたアップロード日
     """
-    if not date_str or len(date_str) != 8:
-        return "日付不明"
+    if isinstance(timestamp, int):
+        # 秒単位のタイムスタンプをISO形式に変換
+        timestamp = datetime.fromtimestamp(timestamp).isoformat()
+        # 年 月 日 時間 分をそれぞれ抽出
+        year = timestamp[:4]
+        month = timestamp[5:7]
+        day = timestamp[8:10]
+        hour = timestamp[11:13]
+        minute = timestamp[14:16]
+        # hourが00～03のときは、hourに24を足して、dayを引いて
+        if hour in ['00', '01', '02', '03']:
+            hour = str(int(hour) + 24).zfill(2)
+            day = str(int(day) - 1).zfill(2)
+        return f"{year}/{month}/{day} {hour}:{minute}"
+    else:
+        # 無効な形式の場合は空文字列を返す
+        return ""
+
+def format_upload_date(timestamp):
+    """
+    アップロード日をフォーマット
     
-    try:
-        year = date_str[:4]
-        month = date_str[4:6]
-        day = date_str[6:8]
-        return f"{year}/{month}/{day}"
-    except:
-        return "日付不明"
+    Args:
+        timestamp (int): アップロード日時のタイムスタンプ（秒単位）
+    
+    Returns:
+        str: フォーマットされたアップロード日
+    """
+    if isinstance(timestamp, int):
+        date_time = format_upload_date_time(timestamp)
+        return date_time.split(' ')[0] if date_time else ""
+    else:
+        # 無効な形式の場合は空文字列を返す
+        return ""
 
 def save_to_json(videos, output_file):
     """

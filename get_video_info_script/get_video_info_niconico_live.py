@@ -7,7 +7,7 @@ import time
 import re
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin, urlparse, parse_qs
-from datetime import datetime
+from datetime import datetime, timedelta
 import sys
 
 # 設定
@@ -140,14 +140,42 @@ class NiconicoLiveVideoInfoExtractor:
         
         # 放送開始日時の取得
         # pタグclass=dateの要素を探す
-        date_element = item.find('p', class_='date')
+        date_time_element = item.find('p', class_='date')
         # ulタグからclass=itemsの要素を探す
-        if date_element:
+        if date_time_element:
+            date_element = ""
             # date_elementの空白を削除
-            date_element = date_element.get_text(strip=True)
-            # 放送開始：2025/07/03 (木) 00:00:00から2025/07/03 (木) 00:00:00の部分を抽出
-            date_element = date_element.split('：')[-1]
-            video_info['metadata'].append(f"放送開始: {date_element}")
+            date_time_element = date_time_element.get_text(strip=True)
+            # 放送開始：2025/07/03 (木) 23:00:00 なら 2025/07/03 23:00 に変換 
+            # 放送開始：2025/07/03 (木) 00:00:00 なら 2025/07/02 24:00 に変換
+            date_time_match = re.search(r'放送開始：(\d{4}/\d{1,2}/\d{1,2} \(\w+\) \d{1,2}:\d{2})', date_time_element)
+            if date_time_match:
+                date_time_str = date_time_match.group(1)
+                # 日付と曜日と時間を分割
+                date_str, weekday_str, time_str = date_time_str.split(' ')
+                # 日付を年、月、日に分割
+                year, month, day = map(int, date_str.split('/'))
+                # 時間を時、分に分割
+                hour, minute = map(int, time_str.split(':'))
+                # 時間が00~03の場合は24を足し、日を1日引く
+                if hour < 4:
+                    # 1日引く
+                    date_time_obj = datetime(year, month, day, hour, minute) - timedelta(days=1)
+                    # 年、月、日、時、分を再設定
+                    year, month, day = date_time_obj.year, date_time_obj.month, date_time_obj.day
+                    hour += 24
+                # フォーマットされた日時を作成
+                date_time_element = f"{year:04d}/{month:02d}/{day:02d} {hour:02d}:{minute:02d}"
+                date_element = date_time_element.split(' ')[0]  # 日付部分のみを抽出
+            else:
+                print("放送開始日時の形式が不正です。")
+                date_time_element = "不明"
+                date_element = "不明"
+            video_info['metadata'].append(f"放送開始: {date_time_element}")
+            video_info['upload_date'] = date_element
+        else:
+            print("放送開始日時の要素が見つかりませんでした。")
+            video_info['metadata'].append('放送開始: 不明')
 
         # タイムシフト視聴期限の取得
         # video_info['video_url']から動画IDの抽出
@@ -246,7 +274,7 @@ def main():
                 print(f"タイトル: {video.get('title', 'N/A')}")
                 print(f"動画URL: {video.get('video_url', 'N/A')}")
                 print(f"サムネイル: {video.get('image', 'N/A')}")
-                print(f"放送開始: {video.get('broadcast_start', 'N/A')}")
+                print(f"放送開始: {video.get('upload_date', 'N/A')}")
         
     except Exception as e:
         print(f"エラーが発生しました: {e}")
