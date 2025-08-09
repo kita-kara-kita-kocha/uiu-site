@@ -521,6 +521,32 @@ header h1 {
     }
 }
 
+/* メニューのスタイル */
+.menu {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 0;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: relative; /* または absolute */
+    z-index: 10; /* 親要素より高い値を設定 */
+}
+
+.menu-item {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.menu-item:hover {
+    color: #0056b3;
+    transform: scale(1.1);
+}
+
 /* レスポンシブ対応 */
 @media (max-width: 768px) {
     .age-verification-container {
