@@ -33,18 +33,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 date: item.upload_date,
                 title: item.title,
                 description: item.description,
+                thumbnail: item.image
             })),
             ...niconicoData.items.map(item => ({
                 type: 'niconico',
                 date: item.upload_date,
                 title: item.title,
-                description: "-"
+                thumbnail: item.image
             })),
             ...fciuData.items.map(item => ({
                 type: 'fciu',
                 date: item.upload_date,
                 title: item.title,
-                description: item.metadata && item.metadata.length > 0 ? item.metadata[item.metadata.length - 1] : "No metadata"
+                thumbnail: item.image,
             })),
             ...apiData.data
         ];
@@ -110,11 +111,33 @@ document.addEventListener('DOMContentLoaded', () => {
                         eventsForDate.forEach(event => {
                             const eventElement = document.createElement('div');
                             eventElement.classList.add('event');
+                            let title = event.title;
+                            if (event.type) {
+                                eventElement.classList.add(`${event.type}-event`);
+                            }
+                            if (event.type === 'youtube') {
+                                title = "You Tube 憂世いう: " + event.title;
+                            } else if (event.type === 'niconico') {
+                                title = "ニコ生 ういせとおやすみ: " + event.title;
+                            } else if (event.type === 'fciu') {
+                                title = "FC いうねこないと: " + event.title;
+                            } else if (event.type === 'api') {
+                                title = "予定: " + event.title;
+                            }
+                            let description = event.description || null;
+                            if (description) {
+                                description = '<p>' + description + '</p>';
+                            } else {
+                                description = '';
+                            }
+
                             eventElement.innerHTML = `
-                                <h3>${event.title}</h3>
-                                <p><strong>Type:</strong> ${event.type}</p>
-                                <p>${new Date(event.date).toLocaleDateString()}</p>
-                                <p>${event.description}</p>
+                                <div class="calendar-modal-element ${event.type}-event">
+                                    <h3>${title}</h3>
+                                    <p>${new Date(event.date).toLocaleDateString()}</p>
+                                    ${event.thumbnail ? `<img src="${event.thumbnail}" alt="${title}">` : ''}
+                                    ${description}
+                                </div>
                             `;
                             modalEvents.appendChild(eventElement);
                         });

@@ -6,14 +6,15 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f4f4f4;
+    background-color: #ffe4e1; /* 薄ピンク */
 }
 
 #calendar-container {
     text-align: center;
-    background: white;
+    background: #fff0f5; /* 薄ピンクの背景 */
     padding: 20px;
     border-radius: 10px;
+    border: 1px solid #ffc0cb; /* ピンクの枠線 */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -26,7 +27,9 @@ body {
 
 .day {
     padding: 10px;
-    background: #eaeaea;
+    background: #ffe4e1; /* 薄ピンク */
+    color: #333;
+    border: 1px solid #ffc0cb; /* ピンクの枠線 */
     border-radius: 5px;
     text-align: center;
 }
@@ -44,8 +47,8 @@ body {
 }
 
 .current-day {
-    background-color: #ffeb3b;
-    color: #000;
+    background-color: #ffb6c1; /* 強調された薄ピンク */
+    color: #fff;
     font-weight: bold;
 }
 
@@ -64,15 +67,15 @@ body {
 }
 
 .modal-content {
-    background-color: #fefefe;
+    background-color: #fff0f5; /* モーダルの薄ピンク背景 */
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
-    border: 1px solid #888;
+    border: 1px solid #ffc0cb; /* ピンクの枠線 */
     width: 80%; /* Could be more or less, depending on screen size */
 }
 
 .close-button {
-    color: #aaa;
+    color: #ff69b4; /* 濃いピンク */
     float: right;
     font-size: 28px;
     font-weight: bold;
@@ -91,7 +94,7 @@ body {
     width: 6px;
     height: 6px;
     margin: 2px auto 0;
-    background-color: #ff5722;
+    background-color: #ff69b4; /* 濃いピンク */
     border-radius: 50%;
 }
 
@@ -113,4 +116,59 @@ body {
 @keyframes spin {
     0% { transform: translate(-50%, -50%) rotate(0deg); }
     100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+#prev-month {
+    left: -20%; /* 左に-20% */
+}
+
+#next-month {
+    left: 20%; /* 左に20% */
+}
+
+#prev-month, #next-month {
+    background-color: #ffc0cb; /* ピンク */
+    color: #fff;
+    border: none;
+    position: relative;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;    
+}
+
+#prev-month:hover, #next-month:hover {
+    background-color: #ff69b4; /* 濃いピンク */
+    transform: scale(1.1);
+}
+
+.calendar-modal-element {
+    padding: 10px;
+    background: #fff0f5; /* 薄ピンク */
+    color: #333;
+    border: 1px solid #ffc0cb; /* ピンクの枠線 */
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.calendar-modal-element img {
+    max-width: 500px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.calendar-modal-element .youtube-event {
+    background-color: #ff0026e1; /* YouTubeの赤 */
+}
+
+.calendar-modal-element .niconico-event {
+    background-color: #ffffff; /* ニコ生の白 */
+}
+
+.calendar-modal-element .fciu-event {
+    background-color: #f8bbd0 ; /* FCのピンク */
+}
+
+.calendar-modal-element .api-event {
+    background-color: #000000; /* APIの薄いピンク */
 }
