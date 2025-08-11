@@ -41,7 +41,7 @@ class FCVideoInfoExtractor:
         Args:
             date_str: str - 日付文字列
         Returns:
-            tuple: (日付:YYYY-MM-DD, 時間:HH:MM:SS)
+            tuple: (日付:YYYY/MM/DD, 時間:HH:MM:SS)
         """
         if not date_str:
             print("日付文字列が空です。空の値を返します。")
@@ -52,11 +52,11 @@ class FCVideoInfoExtractor:
             # 日本時間に変換
             dt_japan = dt + timedelta(hours=9)  # UTC+9時間
             # 日付と時間をフォーマット
-            upload_date = dt_japan.strftime("%Y-%m-%d")
+            upload_date = dt_japan.strftime("%Y/%m/%d")
             upload_time = dt_japan.strftime("%H:%M:%S")
             # 00:00:00~03:59:59は前日扱いで、24:00:00~27:59:59の形式で返す
             if dt_japan.hour < 4:
-                upload_date = (dt_japan - timedelta(days=1)).strftime("%Y-%m-%d")
+                upload_date = (dt_japan - timedelta(days=1)).strftime("%Y/%m/%d")
                 hour = "{:02}".format(dt_japan.hour + 24)
                 upload_time = f"{hour}:{dt_japan.minute:02}:{dt_japan.second:02}"
             return upload_date, upload_time
@@ -235,7 +235,7 @@ def _display_sample_results(all_videos):
             print(f"タイトル: {video.get('title', 'N/A')}")
             print(f"動画URL: {video.get('video_url', 'N/A')}")
             print(f"サムネイル: {video.get('image', 'N/A')}")
-            print(f"alt: {video.get('upload_date', 'N/A')}")
+            print(f"配信日: {video.get('upload_date', 'N/A')}")
             if video.get('metadata'):
                 print(f"メタデータ: {video['metadata']}")
 
