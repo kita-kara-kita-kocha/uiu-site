@@ -73,27 +73,27 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Function to add event dots and click handlers to calendar days
+        // カレンダーの日付にイベントドットとクリックハンドラを追加する関数
         function addEventHandlers() {
-            // Remove existing dots
+            // 既存のイベントドットを削除
             document.querySelectorAll('.event-dot').forEach(dot => dot.remove());
 
-            // Add event dots to dates that have events
+            // イベントがある日付にイベントドットを追加
             allEvents.forEach(event => {
-                const eventDate = new Date(event.date);
-                if (isNaN(eventDate.getTime())) {
-                    console.warn('Invalid date for event:', event);
-                    return; // Skip invalid dates
-                }
-                const dateCell = document.querySelector(`[data-date="${eventDate.toISOString().split('T')[0]}"]`);
-                if (dateCell) {
-                    const dot = document.createElement('span');
-                    dot.classList.add('event-dot');
-                    dateCell.appendChild(dot);
-                }
+            const eventDate = new Date(event.date);
+            if (isNaN(eventDate.getTime())) {
+                console.warn('Invalid date for event:', event);
+                return; // 無効な日付はスキップ
+            }
+            const dateCell = document.querySelector(`[data-date="${eventDate.toISOString().split('T')[0]}"]`);
+            if (dateCell) {
+                const dot = document.createElement('span');
+                dot.classList.add('event-dot');
+                dateCell.appendChild(dot);
+            }
             });
 
-            // Add click event to calendar days
+            // カレンダーの日付にクリックイベントを追加
             document.querySelectorAll('.day[data-date]').forEach(day => {
                 day.addEventListener('click', () => {
                     const date = day.getAttribute('data-date');
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         const eventDate = new Date(event.date);
                         if (isNaN(eventDate.getTime())) {
                             console.warn('Invalid date for event in modal:', event);
-                            return false; // Skip invalid dates
+                            return false; // 無効な日付はスキップ
                         }
                         return eventDate.toISOString().split('T')[0] === date;
                     });
