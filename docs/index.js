@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // JSONデータ読み込み関数
     async function loadTabData(tabName) {
         try {
-            const response = await fetch(`${tabName}.json`);
+            const response = await fetch(`${tabName}.json?v=${Date.now()}`); // キャッシュバスティングのためにタイムスタンプを追加
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
