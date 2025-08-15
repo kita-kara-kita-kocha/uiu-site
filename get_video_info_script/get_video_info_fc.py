@@ -8,7 +8,12 @@ python get_video_info_fc.py
 """
 
 import json
+from bs4 import BeautifulSoup
 import requests
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
+from webdriver_manager.chrome import ChromeDriverManager
 from pathlib import Path
 from datetime import datetime, timedelta
 import time
@@ -121,24 +126,38 @@ class FCVideoInfoExtractor:
                             # 視聴条件をメタデータに追加
                             pricing_info: int = item.get('video_delivery_target', {"id": 0}).get('id', 0)
                             if pricing_info == 1:
-                                video_free_periods = item.get('video_free_periods', [])
-                                if video_free_periods:
-                                    metadata.append("視聴条件: 一部無料")
-                                    free_periods = []
-                                    for period in video_free_periods:
-                                        free_start:int = period.get('elapsed_started_time', 0)
-                                        free_end:int = period.get('elapsed_ended_time', 0)
-                                        # free_start, free_end が秒数なので、hh:mm:ss形式に変換(hhが0の場合はmm:ss形式)
-                                        if free_start // 3600 == 0:
-                                            free_start = f"{((free_start % 3600) // 60):02}:{free_start % 60:02}"
-                                            free_end = f"{((free_end % 3600) // 60):02}:{free_end % 60:02}"
-                                        else:
-                                            free_start = f"{free_start // 3600}:{((free_start % 3600) // 60):02}:{free_start % 60:02}"
-                                            free_end = f"{free_end // 3600}:{((free_end % 3600) // 60):02}:{free_end % 60:02}"
-                                        free_periods.append(f"{free_start}~{free_end}")
-                                    metadata.append("無料部分 " + ", ".join(free_periods))
-                                else:
-                                    metadata.append("視聴条件: 会員のみ")
+                                if live_type == 1 or live_type == 2: # 配信中 or 配信予定
+                                    # タイトルに「スマホ」が含まれている場合は、会員のみの視聴条件(たぶん)
+                                    if "スマホ" in item.get('title', ''):
+                                        metadata.append("視聴条件: 会員のみ")
+                                    else:
+                                        metadata.append("視聴条件: 一部無料")
+                                    # ↓あとで実装
+                                    # SeleniumのWebDriverで枠ページへブラウジングして視聴条件を取得
+                                    # options = Options()
+                                    # options.add_argument("--headless")  # ヘッドレスモード
+                                    # options.add_argument("--no-sandbox")
+                                    # options.add_argument("--disable-dev-shm-usage")
+                                    # driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+                                else:  # 過去の配信の場合
+                                    video_free_periods = item.get('video_free_periods', [])
+                                    if video_free_periods:
+                                        metadata.append("視聴条件: 一部無料")
+                                        free_periods = []
+                                        for period in video_free_periods:
+                                            free_start:int = period.get('elapsed_started_time', 0)
+                                            free_end:int = period.get('elapsed_ended_time', 0)
+                                            # free_start, free_end が秒数なので、hh:mm:ss形式に変換(hhが0の場合はmm:ss形式)
+                                            if free_start // 3600 == 0:
+                                                free_start = f"{((free_start % 3600) // 60):02}:{free_start % 60:02}"
+                                                free_end = f"{((free_end % 3600) // 60):02}:{free_end % 60:02}"
+                                            else:
+                                                free_start = f"{free_start // 3600}:{((free_start % 3600) // 60):02}:{free_start % 60:02}"
+                                                free_end = f"{free_end // 3600}:{((free_end % 3600) // 60):02}:{free_end % 60:02}"
+                                            free_periods.append(f"{free_start}~{free_end}")
+                                        metadata.append("無料部分 " + ", ".join(free_periods))
+                                    else:
+                                        metadata.append("視聴条件: 会員のみ")
                             elif pricing_info == 2:
                                 metadata.append("視聴条件: 全編無料")
                             else:
