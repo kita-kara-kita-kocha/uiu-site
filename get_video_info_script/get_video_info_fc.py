@@ -68,8 +68,8 @@ class FCVideoInfoExtractor:
         """
         APIからすべての動画情報を取得
         """
-        # 放送予定のlive_typeは1 (↓と逆かも)
-        # 配信中のlive_typeは2 (↑と逆かも)
+        # 配信中のlive_typeは1
+        # 放送予定のlive_typeは2
         # 過去の配信のlive_typeは3
         # 1から3までのlive_typeを順に取得
         video_info_list: list = []
@@ -93,20 +93,18 @@ class FCVideoInfoExtractor:
                             # 動画情報を抽出
                             upload_date: str = ""
                             upload_time: str = ""
-                            # 配信日時情報取得
-                            if live_type == 1:
-                                upload_date, upload_time = self._date_str_fmt(item.get('live_scheduled_start_at', ''))
-                            elif live_type == 2:
-                                upload_date, upload_time = self._date_str_fmt(item.get('live_started_at', ''))
-                            else:
-                                upload_date, upload_time = self._date_str_fmt(item.get('live_started_at', ''))
                             metadata:list = []
+                            # 配信日時情報取得
+                            if live_type == 2: # 配信予定
+                                upload_date, upload_time = self._date_str_fmt(item.get('live_scheduled_start_at', ''))
+                            else: # 配信中 or 過去の配信
+                                upload_date, upload_time = self._date_str_fmt(item.get('live_started_at', ''))
                             metadata.append("配信日時: " + upload_date + " " + upload_time)
                             # 配信状態のメタデータを追加
                             if live_type == 1:
-                                metadata.append("配信予定")
-                            elif live_type == 2:
                                 metadata.append("配信中")
+                            elif live_type == 2:
+                                metadata.append("配信予定")
                             else:
                                 # 過去の配信の場合
                                 # 再生時間を計算し、メタデータに追加

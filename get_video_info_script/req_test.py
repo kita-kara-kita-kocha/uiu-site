@@ -2,9 +2,9 @@ import requests
 import json
 
 # URL
-# url = "https://api.uise-official.com/fc/fanclub_sites/434/live_pages?page=1&live_type=1&per_page=10" # 配信中 or 配信予定
-# url = "https://api.uise-official.com/fc/fanclub_sites/434/live_pages?page=1&live_type=2&per_page=10" # 配信中 or 配信予定
-url = "https://api.uise-official.com/fc/fanclub_sites/434/live_pages?page=1&live_type=3&per_page=10" # 過去の配信
+# url = "https://api.uise-official.com/fc/fanclub_sites/434/live_pages?page=1&live_type=1&per_page=10" # 配信中
+url = "https://api.uise-official.com/fc/fanclub_sites/434/live_pages?page=1&live_type=2&per_page=10" # 配信予定
+# url = "https://api.uise-official.com/fc/fanclub_sites/434/live_pages?page=1&live_type=3&per_page=10" # 過去の配信
 # url = "https://api.uise-official.com/fc/fanclub_sites/434/live_pages?page=1&live_type=4&per_page=10" # 過去の配信 古い順
 # url = "https://api.uise-official.com/fc/video_pages/smjsfppgLfY293jfTVFBfNso"
 
