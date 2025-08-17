@@ -21,9 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Fetch data from local JSON files and API
     Promise.all([
-        fetch('../youtube.json').then(res => res.json()),
-        fetch('../niconico_l.json').then(res => res.json()),
-        fetch('../fciu.json').then(res => res.json()),
+        fetch(`../youtube.json?v=${Date.now()}`).then(res => res.json()),
+        fetch(`../niconico_l.json?v=${Date.now()}`).then(res => res.json()),
+        fetch(`../fciu.json?v=${Date.now()}`).then(res => res.json()),
         fetch(apiUrl).then(res => res.json())
     ])
     .then(([youtubeData, niconicoData, fciuData, apiData]) => {

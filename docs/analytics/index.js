@@ -2,7 +2,7 @@ let globalData = null;
 let chart = null;
 
 document.addEventListener('DOMContentLoaded', async () => {
-    const response = await fetch('../youtube_analyzed.json');
+    const response = await fetch(`../youtube_analyzed.json?v=${Date.now()}`); // キャッシュバスティングのためにタイムスタンプを追加
     globalData = await response.json();
 
     // 初期表示
