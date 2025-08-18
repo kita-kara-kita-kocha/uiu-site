@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
         fetch(`../youtube.json?v=${Date.now()}`).then(res => res.json()),
         fetch(`../niconico_l.json?v=${Date.now()}`).then(res => res.json()),
         fetch(`../fciu.json?v=${Date.now()}`).then(res => res.json()),
-        fetch(apiUrl).then(res => res.json())
+        fetch(`${apiUrl}?v=${Date.now()}`).then(res => res.json())
     ])
     .then(([youtubeData, niconicoData, fciuData, apiData]) => {
         const allEvents = [
