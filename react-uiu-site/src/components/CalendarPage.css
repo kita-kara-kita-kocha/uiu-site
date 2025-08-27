@@ -1,0 +1,320 @@
+/* CalendarPage.css */
+
+.calendar-page {
+    min-height: 100vh;
+    background-color: #ffe4e1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.calendar-container {
+    text-align: center;
+    background: #fff0f5;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #ffc0cb;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    width: 100%;
+}
+
+.calendar-container h1 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 2rem;
+}
+
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: #ff69b4;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: rgba(255, 105, 180, 0.1);
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 0 20px;
+}
+
+.calendar-header button {
+    background-color: #ffc0cb;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-weight: bold;
+}
+
+.calendar-header button:hover {
+    background-color: #ff69b4;
+    transform: scale(1.1);
+}
+
+.year-month {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.day {
+    padding: 15px 10px;
+    background: #ffe4e1;
+    color: #333;
+    border: 1px solid #ffc0cb;
+    border-radius: 5px;
+    text-align: center;
+    min-height: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: background-color 0.3s ease;
+}
+
+.day:hover {
+    background-color: #ffb6c1;
+}
+
+.current-day {
+    background-color: #ffb6c1 !important;
+    color: #fff !important;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(255, 182, 193, 0.5);
+}
+
+.event-dot {
+    display: block;
+    width: 6px;
+    height: 6px;
+    margin: 2px auto 0;
+    background-color: #ff69b4;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 5px;
+}
+
+.spreadsheet-link {
+    display: inline-block;
+    margin-top: 20px;
+    color: #ff69b4;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 16px;
+    border: 2px solid #ffc0cb;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.spreadsheet-link:hover {
+    background-color: #ffc0cb;
+    color: white;
+    transform: scale(1.05);
+}
+
+.loader {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    font-size: 1.2rem;
+    color: #ff69b4;
+    font-weight: bold;
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal:target,
+.modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: #fff0f5;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #ffc0cb;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+.close-button {
+    color: #ff69b4;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+}
+
+.modal-events {
+    margin-top: 30px;
+}
+
+.calendar-modal-element {
+    padding: 15px;
+    background: #fff0f5;
+    color: #333;
+    border: 1px solid #ffc0cb;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.calendar-modal-element h3 {
+    margin-bottom: 10px;
+    color: #333;
+    font-size: 1.2rem;
+}
+
+.calendar-modal-element p {
+    margin: 5px 0;
+    color: #666;
+}
+
+.calendar-modal-element img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.calendar-modal-element.youtube-event {
+    background-color: #ff0026e1;
+    color: white;
+}
+
+.calendar-modal-element.youtube-event h3,
+.calendar-modal-element.youtube-event p {
+    color: white;
+}
+
+.calendar-modal-element.niconico-event {
+    background-color: #ffffff;
+    border: 2px solid #ff69b4;
+}
+
+.calendar-modal-element.fciu-event {
+    background-color: #f8bbd0;
+}
+
+.calendar-modal-element.api-event {
+    background-color: #000000;
+    color: white;
+}
+
+.calendar-modal-element.api-event h3,
+.calendar-modal-element.api-event p {
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .calendar-page {
+        padding: 10px;
+        align-items: flex-start;
+    }
+    
+    .calendar-container {
+        padding: 15px;
+    }
+    
+    .calendar-container h1 {
+        font-size: 1.5rem;
+    }
+    
+    .back-button {
+        position: static;
+        display: inline-block;
+        margin-bottom: 15px;
+    }
+    
+    .calendar-header {
+        flex-direction: column;
+        gap: 10px;
+        padding: 0;
+    }
+    
+    .calendar-header button {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+    
+    .year-month {
+        font-size: 1.2rem;
+    }
+    
+    .day {
+        padding: 10px 5px;
+        min-height: 50px;
+        font-size: 0.9rem;
+    }
+    
+    .modal-content {
+        width: 95%;
+        margin: 10% auto;
+        padding: 15px;
+    }
+    
+    .calendar-modal-element {
+        padding: 10px;
+    }
+    
+    .calendar-modal-element h3 {
+        font-size: 1rem;
+    }
+}
