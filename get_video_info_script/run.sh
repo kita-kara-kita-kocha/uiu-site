@@ -87,11 +87,12 @@ run_script() {
 # yt-dlpのアップデート
 echo "🔄 yt-dlpのアップデートを確認しています..."
 if command -v yt-dlp > /dev/null; then
-    if yt-dlp --update; then
+    # pipでインストールされたyt-dlpは pip install --upgrade で更新
+    if pip install --upgrade yt-dlp; then
         echo "✅ yt-dlpのアップデートが完了しました"
     else
         echo "❌ yt-dlpのアップデートに失敗しました。手動でアップデートしてください。"
-        echo "💡 コマンド: yt-dlp --update"
+        echo "💡 コマンド: pip install --upgrade yt-dlp"
     fi
 else
     echo "❌ yt-dlpが見つかりません。インストールしてください。"
