@@ -568,12 +568,7 @@ def main():
     
     # 動画情報を取得
     print(f"🔍 チャンネル '{CHANNEL_URL}' から動画情報を取得します...")
-    videos = []
-    types = ['stream', 'videos']
-    for t in types:
-        videos.extend(get_video_info(f'{CHANNEL_URL}/{t}'))
-    videos.sort(key=lambda x: x.get('upload_date', ''), reverse=True)  # アップロード日の降順でソート
-
+    videos = get_video_info(f'{CHANNEL_URL}')
     
     if videos:
         # JSONファイルに保存
