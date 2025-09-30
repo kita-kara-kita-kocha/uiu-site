@@ -12,6 +12,10 @@ from datetime import datetime
 import yt_dlp
 from pathlib import Path
 import re
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 
 # 設定
 CHANNEL_URL = "https://www.youtube.com/@uise_iu_asmr"
@@ -211,44 +215,65 @@ def to_update_timestamp(timestamp):
         # 無効な形式の場合は空文字列を返す
         return ""
 
-def get_live_date_info(video_url):
+def get_live_date_info(video_url: str) -> str:
     """
     メンバー限定配信の開始日時はyt-dlpでは取得できないため、
     youtube動画サイトにブラウジングして、配信開始日時を取得
-    セレクタは以下を利用(バクったら修正)
+    どちらかのセレクタから取得
     #watch7-content > span:nth-child(22) > meta:nth-child(2)
-
+    #watch7-content > meta:nth-child(19)
     Args:
         video_url (str): YouTube動画のURL
     Returns:
         str: 配信開始日時
     """
     # youtube動画サイト(video_url)にブラウジングアクセス
-    try:
-        # SeleniumのWebDriverを使用してブラウジング
-        from selenium import webdriver
-        from selenium.webdriver.chrome.service import Service
-        from selenium.webdriver.chrome.options import Options
-        from webdriver_manager.chrome import ChromeDriverManager
 
-        options = Options()
-        options.add_argument("--headless")  # ヘッドレスモードを使用
-        options.add_argument("--no-sandbox")
-        options.add_argument("--disable-dev-shm-usage")
+    # 想定されるセレクタリストを定義
+    selectors = [
+        "#watch7-content > span:nth-child(22) > meta:nth-child(2)",
+        "#watch7-content > span:nth-child(23) > meta:nth-child(2)",
+        "#watch7-content > meta:nth-child(19)",
+        "#watch7-content > meta:nth-child(20)",
+        "#watch7-content > meta:nth-child(21)",
+    ]
 
-        driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
-        driver.get(video_url)
+    print(f"   → ✓ ブラウジングで開始日時を取得中: {video_url}", flush=True)
+    # SeleniumのWebDriverを使用してブラウジング
+    options = Options()
+    options.add_argument("--headless")  # ヘッドレスモードを使用
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
 
-        # 配信開始日時を取得
-        start_time_element = driver.find_element("css selector", "#watch7-content > span:nth-child(22) > meta:nth-child(2)")
-        start_time = start_time_element.get_attribute("content")
+    for attempt in range(3):
+        try:
+            driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+            driver.get(video_url)
 
-        driver.quit()
-        return start_time
+            # セレクタを順に試して配信開始日時を取得
+            for sel in selectors:
+                try:
+                    start_time_element = driver.find_element("css selector", sel)
+                    start_time = start_time_element.get_attribute("content")
 
-    except Exception as e:
-        print(f"エラーが発生しました: {e}")
-        return None
+                    driver.quit()
+                    if not start_time:
+                        print(f"     ┣ セレクタ '{sel}' で配信開始日時が取得できませんでした。", flush=True)
+                        continue
+                    print(f"    → ✓ セレクタ '{sel}' で配信開始日時を取得しました。", flush=True)
+                    return start_time
+
+                except Exception as e:
+                    print(f"     ┣ セレクタ '{sel}' での取得に失敗しました。", flush=True)
+            driver.quit()
+            print(f"     ┗ ✗ すべてのセレクタで配信開始日時の取得に失敗しました。", flush=True)
+        except Exception as e:
+            print(f"   → △ ブラウジング試行 {attempt+1}/3 でエラー: {e}", flush=True)
+        if attempt < 2:
+            print(f"   → リトライします... ({attempt+2}/3)", flush=True)
+            time.sleep(2)
+    print("❌ 3回試行しても配信開始日時の取得に失敗しました。", flush=True)
+    raise Exception("failed get_live_date_info")
 
 def create_video_data_from_basic_info(entry):
     """
@@ -484,6 +509,29 @@ def save_to_json(videos, output_file):
                 tags[tag] = 0
             tags[tag] += 1
     tags = sorted(tags.items(), key=lambda x: x[1], reverse=True)
+
+    # youtube_tmp.jsonからメン限動画の情報を追加(全体公開の動画が出るまでチャンネルでまとめて取得できないため)
+    try:
+        with open('./youtube_tmp.json', 'r', encoding='utf-8') as f:
+            tmp_data = json.load(f)
+            # tagsを辞書形式に戻す（追加処理のため）
+            tags_dict = {tag[0]: tag[1] for tag in tags}
+            for video in tmp_data.get('items', []):
+                if video not in videos:
+                    videos.append(video)
+                    for tag in video.get('tags', []):
+                        if tag not in tags_dict:
+                            tags_dict[tag] = 0
+                        tags_dict[tag] += 1
+            tags = sorted(tags_dict.items(), key=lambda x: x[1], reverse=True)
+    except FileNotFoundError:
+        print("一時ファイル youtube_tmp.json が見つかりません。メン限動画の情報は追加されません。")
+    except json.JSONDecodeError:
+        print("一時ファイル youtube_tmp.json の読み込み中にエラーが発生しました。メン限動画の情報は追加されません。")
+    except Exception as e:
+        print(f"一時ファイル youtube_tmp.json の処理中に予期しないエラーが発生しました: {str(e)}")
+        raise e
+
 
     # JSON形式でデータを構築
     json_data = {
