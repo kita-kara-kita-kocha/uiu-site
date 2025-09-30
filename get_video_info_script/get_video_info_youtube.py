@@ -170,9 +170,12 @@ def create_video_data_from_detailed_info(video_info, video_id):
     Returns:
         dict: 整形された動画データ
     """
+    # コメントからタイムスタンプ情報を抽出
     timestamps = extract_timestamps_from_comments(video_info)
     # タイトルからタグ情報を抽出
     title = video_info.get('title', '')
+    # upload_dateの取得
+    upload_date = to_update_timestamp(video_info.get('release_timestamp', ''))
     # 「#」で始まるタグを抽出
     tags = re.findall(r'#(\w+) ', title)
     # タグを重複なく保持
@@ -187,12 +190,12 @@ def create_video_data_from_detailed_info(video_info, video_id):
         "video_url": f"https://www.youtube.com/watch?v={video_id}",
         "tags": tags,
         "view_count": video_info.get('view_count', 0),
-        "upload_date": to_update_timestamp(video_info.get('release_timestamp', '')),
+        "upload_date": upload_date,
         "timestamps": timestamps,
         "metadata": [
             f"再生時間: {format_duration(video_info.get('duration', 0))}",
             f"視聴回数: {format_view_count(video_info.get('view_count', 0))}",
-            f"投稿日: {to_update_timestamp(video_info.get('release_timestamp', ''))}"
+            f"投稿日: {upload_date}"
         ],
         "addAdditionalClass": [video_info.get('availability', '')],  # "availability": "subscriber_only"なら"subscriber_only", それ以外は"-"
     }
@@ -328,7 +331,7 @@ def create_video_data_from_basic_info(entry):
         "upload_date": upload_date,
         "addAdditionalClass": add_class,
         "metadata": [
-            f"投稿日: {to_update_timestamp(entry.get('release_timestamp', ''))}",
+            f"投稿日: {upload_date}",
         ]
     }
 
@@ -502,6 +505,9 @@ def save_to_json(videos, output_file):
     except Exception as e:
         print(f"一時ファイル youtube_tmp.json の処理中に予期しないエラーが発生しました: {str(e)}")
         raise e
+    
+    # 動画をupload_dateの降順でソート
+    videos.sort(key=lambda x: x.get('upload_date', ''), reverse=True)
 
 
     # JSON形式でデータを構築
