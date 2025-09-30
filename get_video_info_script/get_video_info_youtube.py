@@ -9,12 +9,13 @@ import json
 import sys
 import time
 from datetime import datetime
+from datetime import timedelta
 import yt_dlp
 from pathlib import Path
 import re
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 
 # 設定
@@ -186,12 +187,12 @@ def create_video_data_from_detailed_info(video_info, video_id):
         "video_url": f"https://www.youtube.com/watch?v={video_id}",
         "tags": tags,
         "view_count": video_info.get('view_count', 0),
-        "upload_date": format_upload_date(video_info.get('release_timestamp', '')),
+        "upload_date": to_update_timestamp(video_info.get('release_timestamp', '')),
         "timestamps": timestamps,
         "metadata": [
             f"再生時間: {format_duration(video_info.get('duration', 0))}",
             f"視聴回数: {format_view_count(video_info.get('view_count', 0))}",
-            f"投稿日: {format_upload_date_time(video_info.get('release_timestamp', ''))}"
+            f"投稿日: {to_update_timestamp(video_info.get('release_timestamp', ''))}"
         ],
         "addAdditionalClass": [video_info.get('availability', '')],  # "availability": "subscriber_only"なら"subscriber_only", それ以外は"-"
     }
@@ -207,13 +208,23 @@ def to_update_timestamp(timestamp):
     """
     if isinstance(timestamp, int):
         # 秒単位のタイムスタンプをISO形式に変換
-        return datetime.fromtimestamp(timestamp).isoformat()
+        convert_timestamp = datetime.fromtimestamp(timestamp).isoformat()
+        return convert_timestamp
     elif isinstance(timestamp, str):
-        # ISO形式の文字列をそのまま返す
-        return timestamp
+        # datetimeに変換
+        dt = datetime.fromisoformat(timestamp)
+        # タイムゾーン+9の時間に変換
+        dt = dt + timedelta(hours=9)
+        # strのISO形式に変換
+        convert_timestamp = dt.isoformat()
+        # 末尾のタイムゾーン情報を削除(末尾に+XX:XXか-XX:XXがある場合)
+        if re.search(r"[+-]\d{2}:\d{2}$", convert_timestamp):
+            convert_timestamp = convert_timestamp[:-6]
+        return convert_timestamp
     else:
         # 無効な形式の場合は空文字列を返す
         return ""
+
 
 def get_live_date_info(video_url: str) -> str:
     """
@@ -293,7 +304,7 @@ def create_video_data_from_basic_info(entry):
 
     title = entry.get('title', 'タイトル不明')
     video_url = entry.get('url', f"https://www.youtube.com/watch?v={video_id}")
-    upload_date = format_upload_date(entry.get('release_timestamp', ''))
+    upload_date = to_update_timestamp(entry.get('release_timestamp', ''))
 
     # 「#」で始まるタグを抽出
     tags = re.findall(r'#(\w+) ', title)
@@ -301,7 +312,7 @@ def create_video_data_from_basic_info(entry):
     if availability == 'subscriber_only':
         add_class = ['subscriber_only']
         tags.append('#メン限')
-        upload_date = format_upload_date(get_live_date_info(video_url))
+        upload_date = to_update_timestamp(get_live_date_info(video_url))
     elif entry.get('live_status') == 'is_upcoming':
         add_class = ['schedule']
     else:
@@ -317,7 +328,7 @@ def create_video_data_from_basic_info(entry):
         "upload_date": upload_date,
         "addAdditionalClass": add_class,
         "metadata": [
-            f"投稿日: {format_upload_date_time(entry.get('release_timestamp', ''))}",
+            f"投稿日: {to_update_timestamp(entry.get('release_timestamp', ''))}",
         ]
     }
 
@@ -384,9 +395,13 @@ def get_video_info(channel_url):
             info = ydl.extract_info(channel_url, download=False)
             
             if 'entries' in info:
-                print(f"発見された動画数: {len(info['entries'])}")
+                len_entries = len(info['entries'])
+                print(f"発見された動画数: {len_entries}")
                 
+                cnt = 0
                 for entry in info['entries']:
+                    cnt += 1
+                    print(f"{cnt}/{len_entries}", end="", flush=True)
                     if entry and 'id' in entry:
                         video_data = process_video_entry(entry, ydl_opts)
                         videos.append(video_data)
@@ -442,50 +457,6 @@ def format_view_count(count):
     else:
         return f"{count:,}回"
 
-def format_upload_date_time(timestamp):
-    """
-    アップロード日をフォーマット
-    
-    Args:
-        timestamp (int): アップロード日時のタイムスタンプ（秒単位）
-    
-    Returns:
-        str: フォーマットされたアップロード日
-    """
-    if isinstance(timestamp, int):
-        # 秒単位のタイムスタンプをISO形式に変換
-        timestamp = datetime.fromtimestamp(timestamp).isoformat()
-        # 年 月 日 時間 分をそれぞれ抽出
-        year = timestamp[:4]
-        month = timestamp[5:7]
-        day = timestamp[8:10]
-        hour = timestamp[11:13]
-        minute = timestamp[14:16]
-        # hourが00～03のときは、hourに24を足して、dayを引いて
-        if hour in ['00', '01', '02', '03']:
-            hour = str(int(hour) + 24).zfill(2)
-            day = str(int(day) - 1).zfill(2)
-        return f"{year}/{month}/{day} {hour}:{minute}"
-    else:
-        # 無効な形式の場合は空文字列を返す
-        return ""
-
-def format_upload_date(timestamp):
-    """
-    アップロード日をフォーマット
-    
-    Args:
-        timestamp (int): アップロード日時のタイムスタンプ（秒単位）
-    
-    Returns:
-        str: フォーマットされたアップロード日
-    """
-    if isinstance(timestamp, int):
-        date_time = format_upload_date_time(timestamp)
-        return date_time.split(' ')[0] if date_time else ""
-    else:
-        # 無効な形式の場合は空文字列を返す
-        return ""
 
 def save_to_json(videos, output_file):
     """
