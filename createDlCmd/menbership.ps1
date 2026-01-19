@@ -1,4 +1,8 @@
 # command to download youtube menbership video
+$video_url="https://www.youtube.com/watch?v=HS1IHl2XKQo"
+yt-dlp -o "【メン限】[%(upload_date)s]%(title)s.%(ext)s" $video_url -f bestvideo[height<=720][ext=mp4]+bestaudio[ext=m4a] -S vcodec:hevc_nvenc --cookies .\tmp\www.youtube.com_cookies.txt --download-archive acv
+
+# command to download youtube menbership video
 $video_url="https://www.youtube.com/watch?v=qbcMv-5KqEM"
 yt-dlp -o "【メン限】[%(upload_date)s]%(title)s.%(ext)s" $video_url -f bestvideo[height<=720][ext=mp4]+bestaudio[ext=m4a] -S vcodec:hevc_nvenc --cookies .\tmp\www.youtube.com_cookies.txt --download-archive acv
 
