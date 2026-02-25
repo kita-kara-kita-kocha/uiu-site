@@ -28,12 +28,12 @@
 
 ### YouTubeメンバーシップ動画のコマンド生成
 ```bash
-python createDlCmd/menbership.py
+python3 createDlCmd/menbership.py
 ```
 
 ### ニコニコ生放送のコマンド生成
 ```bash
-python createDlCmd/niconico.py
+python3 createDlCmd/niconico.py
 ```
 
 ## 依存関係
