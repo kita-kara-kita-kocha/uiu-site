@@ -102,7 +102,7 @@ fi
 
 # 各スクリプトを順次実行
 run_script "get_video_info_youtube.py" "YouTube動画情報取得"
-run_script "analyzer_youtube.py" "YouTube動画情報分析"
+# run_script "analyzer_youtube.py" "YouTube動画情報分析"
 run_script "get_video_info_niconico_live.py" "ニコニコ動画ライブ情報取得"
 run_script "get_video_info_secret.py" "ファンサイト投稿情報取得"
 run_script "get_video_info_fc.py" "ファンクラブ動画情報取得"
@@ -153,7 +153,8 @@ else
         
         # JSON ファイルのみをステージングに追加
         echo "📦 JSON ファイルをステージングに追加します..."
-        git add docs/youtube.json docs/niconico_l.json docs/secret_ac.json docs/fciu.json docs/youtube_analyzed.json
+        # git add docs/youtube.json docs/niconico_l.json docs/secret_ac.json docs/fciu.json docs/youtube_analyzed.json
+        git add docs/youtube.json docs/niconico_l.json docs/secret_ac.json docs/fciu.json
 
         # コミット
         commit_message="Update video info data - $(date '+%Y-%m-%d %H:%M:%S')"
