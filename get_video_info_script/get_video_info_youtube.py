@@ -156,6 +156,8 @@ def get_detailed_video_info(video_id, ydl_opts):
         if latest_error:
             logger.clear_messages()  # エラーメッセージをクリア
             raise Exception(latest_error)  # エラーメッセージを例外として上げる
+        else:
+            raise Exception("動画情報の取得に失敗しました（詳細なエラー情報がありません）")
     
     return video_info
 
@@ -362,12 +364,12 @@ def process_video_entry(entry, ydl_opts):
         
     except Exception as e: 
         # 個別動画の取得に失敗した場合は放送予定枠かメン限枠なので動画情報を整形する
-        error_message = str(e)
+        error_message = str(e) if e is not None else "不明なエラー"
         
         # エラーメッセージから特定の状況を判定
-        if 'members-only' in error_message:
+        if error_message and 'members-only' in error_message:
             print(f"  → ✓ メンバー限定動画: ID: {video_id} - 詳細情報の取得をスキップします")
-        elif "This live event will" in error_message:
+        elif error_message and "This live event will" in error_message:
             print(f"  → ✓ 未放送枠: ID: {video_id} - 詳細情報の取得をスキップします")
         else:
             print(f"  → ✗ 詳細情報取得失敗: ID: {video_id} - {error_message}")
@@ -392,10 +394,10 @@ def get_video_info(channel_url):
     
     try:
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-            print(f"'{channel_url}/stream' から動画情報を取得中...")
+            print(f"'{channel_url}/streams' から動画情報を取得中...")
             
-            # チャンネルの動画一覧を取得
-            info = ydl.extract_info(channel_url, download=False)
+            # チャンネルの配信一覧を取得
+            info = ydl.extract_info(f'{channel_url}/streams', download=False)
             
             if 'entries' in info:
                 len_entries = len(info['entries'])
@@ -408,7 +410,24 @@ def get_video_info(channel_url):
                     if entry and 'id' in entry:
                         video_data = process_video_entry(entry, ydl_opts)
                         videos.append(video_data)
+            else:
+                print("チャンネルに動画が見つかりませんでした。")
 
+            # チャンネルの動画一覧を取得
+            print(f"\n'{channel_url}/videos' から動画情報を取得中...")
+            info = ydl.extract_info(f'{channel_url}/videos', download=False)
+
+            if 'entries' in info:
+                len_entries = len(info['entries'])
+                print(f"発見された動画数: {len_entries}")
+                
+                cnt = 0
+                for entry in info['entries']:
+                    cnt += 1
+                    print(f"{cnt}/{len_entries}", end="", flush=True)
+                    if entry and 'id' in entry:
+                        video_data = process_video_entry(entry, ydl_opts)
+                        videos.append(video_data)
             else:
                 print("チャンネルに動画が見つかりませんでした。")
                 
