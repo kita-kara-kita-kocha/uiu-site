@@ -16,6 +16,8 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+    position: relative;
+    overflow: hidden; /* コンテナからはみ出した要素を隠す */
 }
 
 header {
