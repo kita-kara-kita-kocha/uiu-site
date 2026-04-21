@@ -398,10 +398,7 @@ def get_video_info(channel_url):
             # チャンネルの配信一覧を取得
             print(f"'{channel_url}/streams' から動画情報を取得中...")            
             info = {}
-            try:
-                info = ydl.extract_info(f'{channel_url}/streams', download=False)
-            except Exception as e:
-                print(f"'{channel_url}/streams' からの情報取得に失敗しました: {str(e)}")
+            info = ydl.extract_info(f'{channel_url}/streams', download=False)
             
             if 'entries' in info:
                 len_entries = len(info['entries'])
