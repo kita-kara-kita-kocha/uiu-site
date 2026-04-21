@@ -105,6 +105,88 @@ document.addEventListener('DOMContentLoaded', function() {
             .replace(/\u2029/g, '\\u2029'); // パラグラフセパレーターをエスケープ
     }
 
+    // 日本時間をローカルタイムゾーンに変換する関数
+    function convertJapanTimeToLocal(text) {
+        if (!text) return text;
+        
+        // 日付時間のパターンを検出（YYYY/MM/DD HH:MM、YYYY-MM-DD HH:MMなど）
+        const dateTimePatterns = [
+            /(\d{4})[\/\-](\d{1,2})[\/\-](\d{1,2})\s+(\d{1,2}):(\d{2})(?::(\d{2}))?/g,
+            /(\d{4})年(\d{1,2})月(\d{1,2})日\s+(\d{1,2}):(\d{2})(?::(\d{2}))?/g,
+            /(\d{4})年(\d{1,2})月(\d{1,2})日\s*(\d{1,2})時(\d{2})分(?:(\d{2})秒)?/g
+        ];
+        
+        let convertedText = text;
+        
+        dateTimePatterns.forEach(pattern => {
+            convertedText = convertedText.replace(pattern, (match, year, month, day, hour, minute, second) => {
+                try {
+                    // 日本時間（UTC+9）として解釈
+                    const japanDate = new Date();
+                    japanDate.setUTCFullYear(parseInt(year));
+                    japanDate.setUTCMonth(parseInt(month) - 1); // 月は0ベース
+                    japanDate.setUTCDate(parseInt(day));
+                    japanDate.setUTCHours(parseInt(hour) - 9); // UTC+9を考慮
+                    japanDate.setUTCMinutes(parseInt(minute));
+                    japanDate.setUTCSeconds(parseInt(second) || 0);
+                    japanDate.setUTCMilliseconds(0);
+                    
+                    // ローカルタイムゾーンに変換して表示
+                    const options = {
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        second: second ? '2-digit' : undefined,
+                        timeZoneName: 'short'
+                    };
+                    
+                    return japanDate.toLocaleString(undefined, options);
+                } catch (e) {
+                    console.warn('日時変換エラー:', match, e);
+                    return match; // エラーの場合は元の文字列をそのまま返す
+                }
+            });
+        });
+        
+        // 日付のみのパターン（YYYY/MM/DD、YYYY-MM-DDなど）
+        const dateOnlyPatterns = [
+            /(\d{4})[\/\-](\d{1,2})[\/\-](\d{1,2})(?!\s*\d)/g,
+            /(\d{4})年(\d{1,2})月(\d{1,2})日(?!\s*\d)/g
+        ];
+        
+        dateOnlyPatterns.forEach(pattern => {
+            convertedText = convertedText.replace(pattern, (match, year, month, day) => {
+                try {
+                    // 日付のみの場合は時刻は00:00として扱う
+                    const japanDate = new Date();
+                    japanDate.setUTCFullYear(parseInt(year));
+                    japanDate.setUTCMonth(parseInt(month) - 1);
+                    japanDate.setUTCDate(parseInt(day));
+                    japanDate.setUTCHours(-9); // UTC+9を考慮
+                    japanDate.setUTCMinutes(0);
+                    japanDate.setUTCSeconds(0);
+                    japanDate.setUTCMilliseconds(0);
+                    
+                    const options = {
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit',
+                        timeZoneName: 'short'
+                    };
+                    
+                    return japanDate.toLocaleDateString(undefined, options);
+                } catch (e) {
+                    console.warn('日付変換エラー:', match, e);
+                    return match;
+                }
+            });
+        });
+        
+        return convertedText;
+    }
+
     // サムネイルHTMLを生成する関数
     function createThumbnailHTML(item, tabType) {
         let additionalClass = '';
@@ -119,7 +201,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         if (item.metadata) {
             item.metadata.forEach(meta => {
-                infoHTML += `<p>${meta}</p>`;
+                const convertedMeta = convertJapanTimeToLocal(meta);
+                infoHTML += `<p>${convertedMeta}</p>`;
             });
         }
 
