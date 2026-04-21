@@ -394,10 +394,14 @@ def get_video_info(channel_url):
     
     try:
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-            print(f"'{channel_url}/streams' から動画情報を取得中...")
-            
+
             # チャンネルの配信一覧を取得
-            info = ydl.extract_info(f'{channel_url}/streams', download=False)
+            print(f"'{channel_url}/streams' から動画情報を取得中...")            
+            info = {}
+            try:
+                info = ydl.extract_info(f'{channel_url}/streams', download=False)
+            except Exception as e:
+                print(f"'{channel_url}/streams' からの情報取得に失敗しました: {str(e)}")
             
             if 'entries' in info:
                 len_entries = len(info['entries'])
@@ -411,11 +415,15 @@ def get_video_info(channel_url):
                         video_data = process_video_entry(entry, ydl_opts)
                         videos.append(video_data)
             else:
-                print("チャンネルに動画が見つかりませんでした。")
+                print("チャンネルに配信が見つかりませんでした。")
 
             # チャンネルの動画一覧を取得
             print(f"\n'{channel_url}/videos' から動画情報を取得中...")
-            info = ydl.extract_info(f'{channel_url}/videos', download=False)
+            try:
+                info = ydl.extract_info(f'{channel_url}/videos', download=False)
+            except Exception as e:
+                print(f"'{channel_url}/videos' からの情報取得に失敗しました: {str(e)}")
+                info = {}
 
             if 'entries' in info:
                 len_entries = len(info['entries'])
