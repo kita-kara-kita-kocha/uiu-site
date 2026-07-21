@@ -1,4 +1,28 @@
 # command to download niconico video
+$video_url="https://live.nicovideo.jp/watch/lv350718538"
+# cookieファイル「*.nicovideo.jp_cookies.txt」から、Tab区切りで5つめの要素がuser_sessionの行から6つ目の値を取得し、$user_sessionに格納
+$user_session = (Get-Content .\*.nicovideo.jp_cookies.txt | Where-Object {$_ -match "user_session"}) -split "`t" | Select-Object -Index 6
+streamlink $video_url --niconico-user-session $user_session --default-stream best -o "lv350718538_tmp.ts" --ffmpeg-ffmpeg "D:\Youtube-DL\ffmpeg.exe"
+ffmpeg -i "lv350718538_tmp.ts" -c:v copy -c:a copy "【ういせとおやすみ】20260610_♥実写：耳舐め♥(無料あり) ピンク清楚ワンピなお姉さんがじーっくり奥まで耳舐め♡.mp4"
+Remove-Item "lv350718538_tmp.ts"
+
+# command to download niconico video
+$video_url="https://live.nicovideo.jp/watch/lv350506156"
+# cookieファイル「*.nicovideo.jp_cookies.txt」から、Tab区切りで5つめの要素がuser_sessionの行から6つ目の値を取得し、$user_sessionに格納
+$user_session = (Get-Content .\*.nicovideo.jp_cookies.txt | Where-Object {$_ -match "user_session"}) -split "`t" | Select-Object -Index 6
+streamlink $video_url --niconico-user-session $user_session --default-stream best -o "lv350506156_tmp.ts" --ffmpeg-ffmpeg "D:\Youtube-DL\ffmpeg.exe"
+ffmpeg -i "lv350506156_tmp.ts" -c:v copy -c:a copy "【ういせとおやすみ】20260511_♥実写：耳舐め♥(無料あり) 大人ばぶちゃん♡ママメイドにお耳舐められて5月病も吹き飛ばしちゃおうね♡.mp4"
+Remove-Item "lv350506156_tmp.ts"
+
+# command to download niconico video
+$video_url="https://live.nicovideo.jp/watch/lv350235272"
+# cookieファイル「*.nicovideo.jp_cookies.txt」から、Tab区切りで5つめの要素がuser_sessionの行から6つ目の値を取得し、$user_sessionに格納
+$user_session = (Get-Content .\*.nicovideo.jp_cookies.txt | Where-Object {$_ -match "user_session"}) -split "`t" | Select-Object -Index 6
+streamlink $video_url --niconico-user-session $user_session --default-stream best -o "lv350235272_tmp.ts" --ffmpeg-ffmpeg "D:\Youtube-DL\ffmpeg.exe"
+ffmpeg -i "lv350235272_tmp.ts" -c:v copy -c:a copy "【ういせとおやすみ】20260404_♥実写：耳舐め♥(無料あり)新社員のむちむち後輩ちゃんに耳舐めされて癒してもらいましょう♡.mp4"
+Remove-Item "lv350235272_tmp.ts"
+
+# command to download niconico video
 $video_url="https://live.nicovideo.jp/watch/lv349946497"
 # cookieファイル「*.nicovideo.jp_cookies.txt」から、Tab区切りで5つめの要素がuser_sessionの行から6つ目の値を取得し、$user_sessionに格納
 $user_session = (Get-Content .\*.nicovideo.jp_cookies.txt | Where-Object {$_ -match "user_session"}) -split "`t" | Select-Object -Index 6
