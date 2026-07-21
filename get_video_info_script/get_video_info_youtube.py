@@ -17,9 +17,10 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
+import traceback
 
 # 設定
-CHANNEL_URL = "https://www.youtube.com/@uise_iu_asmr"
+CHANNEL_URL = "https://www.youtube.com/@uise_iuch"
 OUTPUT_FILE = "../docs/youtube.json"
 
 class CustomLogger:
@@ -215,7 +216,7 @@ def to_update_timestamp(timestamp):
         # 秒単位のタイムスタンプをISO形式に変換
         convert_timestamp = datetime.fromtimestamp(timestamp).isoformat()
         return convert_timestamp
-    elif isinstance(timestamp, str):
+    elif isinstance(timestamp, str) and timestamp:
         # datetimeに変換
         dt = datetime.fromisoformat(timestamp)
         # タイムゾーン+9の時間に変換
@@ -394,10 +395,10 @@ def get_video_info(channel_url):
     
     try:
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-
-            # チャンネルの配信一覧を取得
-            print(f"'{channel_url}/streams' から動画情報を取得中...")            
             info = {}
+
+            # # チャンネルの配信一覧を取得
+            print(f"'{channel_url}/streams' から動画情報を取得中...")            
             info = ydl.extract_info(f'{channel_url}/streams', download=False)
             
             if 'entries' in info:
@@ -415,14 +416,13 @@ def get_video_info(channel_url):
                 print("チャンネルに配信が見つかりませんでした。")
 
             # チャンネルの動画一覧を取得
-            print(f"\n'{channel_url}/videos' から動画情報を取得中...")
             try:
+                print(f"\n'{channel_url}/videos' から動画情報を取得中...")
                 info = ydl.extract_info(f'{channel_url}/videos', download=False)
             except Exception as e:
-                print(f"'{channel_url}/videos' からの情報取得に失敗しました: {str(e)}")
-                info = {}
+                print(f"動画一覧の取得に失敗しました: {str(e)}")
 
-            if 'entries' in info:
+            if info is not None and 'entries' in info.keys():
                 len_entries = len(info['entries'])
                 print(f"発見された動画数: {len_entries}")
                 
@@ -433,12 +433,13 @@ def get_video_info(channel_url):
                     if entry and 'id' in entry:
                         video_data = process_video_entry(entry, ydl_opts)
                         videos.append(video_data)
+
             else:
                 print("チャンネルに動画が見つかりませんでした。")
                 
     except Exception as e:
         print(f"エラーが発生しました: {str(e)}")
-        return []
+        traceback.print_exc()
     
     return videos
 
