@@ -30,7 +30,6 @@ class FCVideoInfoExtractor:
         # headersの設定
         self.headers: dict = {
             "accept": "application/json, text/plain, */*",
-            "accept-encoding": "gzip, deflate, br, zstd",
             "fc_site_id": "434",
             "fc_use_device": "null",
         }
@@ -69,6 +68,26 @@ class FCVideoInfoExtractor:
             print(f"日付のフォーマットエラー: {e}")
             raise e
 
+    def _get_api_response(self, url: str) -> dict:
+        """APIの一時的な非JSON応答を再試行し、JSONを返す。"""
+        last_error = None
+        for attempt in range(3):
+            try:
+                response = requests.get(url, headers=self.headers, timeout=30)
+                response.raise_for_status()
+                return response.json()
+            except (requests.RequestException, ValueError) as error:
+                last_error = error
+                if attempt < 2:
+                    time.sleep(2 ** attempt)
+                    continue
+
+                body = response.text[:200].replace("\n", " ") if "response" in locals() else ""
+                raise RuntimeError(
+                    f"API応答の取得に失敗しました ({url}, "
+                    f"status={getattr(response, 'status_code', 'unknown')}, body={body!r})"
+                ) from last_error
+
     def get_api_all_video_info(self):
         """
         APIからすべての動画情報を取得
@@ -78,23 +97,21 @@ class FCVideoInfoExtractor:
         # 過去の配信のlive_typeは3
         # 1から3までのlive_typeを順に取得
         video_info_list: list = []
-        for live_type in range(1, 4):
+        for live_type in range(1, 5):
             page = 1
             while True:
                 url = FC_API_BASE_URL.replace("$1", str(live_type)).replace("$2", str(page))
                 print(f"取得中: {url}")
                 try:
-                    response = requests.get(url, headers=self.headers)
-                    if response.status_code == 200:
-                        res = response.json()
-                        data = res.get('data', {})
-                        video_pages = data.get('video_pages', {})
-                        items = video_pages.get('list', [])
-                        if len(items) == 0:
-                            print(f"live_type {live_type} はページ {page-1} で終了") 
-                            break
-                        print(f"live_type {live_type} のページ {page} を取得")
-                        for item in items:
+                    res = self._get_api_response(url)
+                    data = res.get('data', {})
+                    video_pages = data.get('video_pages', {})
+                    items = video_pages.get('list', [])
+                    if len(items) == 0:
+                        print(f"live_type {live_type} はページ {page-1} で終了")
+                        break
+                    print(f"live_type {live_type} のページ {page} を取得")
+                    for item in items:
                             # 動画情報を抽出
                             upload_date: str = ""
                             upload_time: str = ""
