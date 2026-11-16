@@ -1,4 +1,20 @@
 # command to download niconico video
+$video_url="https://live.nicovideo.jp/watch/lv351788050"
+# cookieファイル「*.nicovideo.jp_cookies.txt」から、Tab区切りで5つめの要素がuser_sessionの行から6つ目の値を取得し、$user_sessionに格納
+$user_session = (Get-Content .\*.nicovideo.jp_cookies.txt | Where-Object {$_ -match "user_session"}) -split "`t" | Select-Object -Index 6
+streamlink $video_url --niconico-user-session $user_session --default-stream best -o "lv351788050_tmp.ts" --ffmpeg-ffmpeg "D:\Youtube-DL\ffmpeg.exe"
+ffmpeg -i "lv351788050_tmp.ts" -c:v copy -c:a copy "【ういせとおやすみ】20261111_♥実写：耳舐め♥(無料あり) 寒くなってきたしお姉さんにお耳舐められながらあったまろ？♡.mp4"
+Remove-Item "lv351788050_tmp.ts"
+
+# command to download niconico video
+$video_url="https://live.nicovideo.jp/watch/lv351398112"
+# cookieファイル「*.nicovideo.jp_cookies.txt」から、Tab区切りで5つめの要素がuser_sessionの行から6つ目の値を取得し、$user_sessionに格納
+$user_session = (Get-Content .\*.nicovideo.jp_cookies.txt | Where-Object {$_ -match "user_session"}) -split "`t" | Select-Object -Index 6
+streamlink $video_url --niconico-user-session $user_session --default-stream best -o "lv351398112_tmp.ts" --ffmpeg-ffmpeg "D:\Youtube-DL\ffmpeg.exe"
+ffmpeg -i "lv351398112_tmp.ts" -c:v copy -c:a copy "【ういせとおやすみ】20260916_♥実写：耳舐め♥(無料あり) むちふわお姉さんは好き？♡ じっとり絡め取られる耳舐め堪能して♡.mp4"
+Remove-Item "lv351398112_tmp.ts"
+
+# command to download niconico video
 $video_url="https://live.nicovideo.jp/watch/lv351133592"
 # cookieファイル「*.nicovideo.jp_cookies.txt」から、Tab区切りで5つめの要素がuser_sessionの行から6つ目の値を取得し、$user_sessionに格納
 $user_session = (Get-Content .\*.nicovideo.jp_cookies.txt | Where-Object {$_ -match "user_session"}) -split "`t" | Select-Object -Index 6
